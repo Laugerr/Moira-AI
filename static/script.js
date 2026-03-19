@@ -9,6 +9,7 @@ let currentStats = {
 let currentHistory = [];
 let usedScenarios = [];
 let currentScenario = null;
+let profileSeed = null;
 
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
@@ -32,6 +33,14 @@ const riskStat = document.getElementById("risk-stat");
 const energyBar = document.getElementById("energy-bar");
 const happinessBar = document.getElementById("happiness-bar");
 const riskBar = document.getElementById("risk-bar");
+const profileName = document.getElementById("profile-name");
+const profileSubtitle = document.getElementById("profile-subtitle");
+const profileMood = document.getElementById("profile-mood");
+const profileStage = document.getElementById("profile-stage");
+const profileTrait = document.getElementById("profile-trait");
+const profileOrigin = document.getElementById("profile-origin");
+const profileSummary = document.getElementById("profile-summary");
+const profileAgeBadge = document.getElementById("profile-age-badge");
 
 function updateStatsUI(stats) {
   ageStat.textContent = stats.age;
@@ -43,6 +52,17 @@ function updateStatsUI(stats) {
   energyBar.style.width = `${stats.energy}%`;
   happinessBar.style.width = `${stats.happiness}%`;
   riskBar.style.width = `${stats.risk}%`;
+}
+
+function renderProfile(profile) {
+  profileName.textContent = profile.name;
+  profileSubtitle.textContent = `${profile.title} - Chasing a life to ${profile.dream}`;
+  profileMood.textContent = profile.mood;
+  profileStage.textContent = profile.stage;
+  profileTrait.textContent = profile.trait;
+  profileOrigin.textContent = profile.hometown;
+  profileSummary.textContent = profile.summary;
+  profileAgeBadge.textContent = profile.age_badge;
 }
 
 function renderScenario(scenario) {
@@ -84,8 +104,10 @@ async function startGame() {
     currentStats = data.stats;
     currentHistory = data.history || [];
     usedScenarios = data.used_scenarios || [];
+    profileSeed = data.profile_seed || null;
 
     updateStatsUI(currentStats);
+    renderProfile(data.player_profile);
     renderHistory(currentHistory);
 
     gameMessage.textContent = data.message;
@@ -113,6 +135,7 @@ async function handleChoice(choice) {
         stats: currentStats,
         history: currentHistory,
         used_scenarios: usedScenarios,
+        profile_seed: profileSeed,
         effects: choice.effects,
         result: choice.result
       })
@@ -123,8 +146,10 @@ async function handleChoice(choice) {
     currentStats = data.updated_stats;
     currentHistory = data.history || [];
     usedScenarios = data.used_scenarios || [];
+    profileSeed = data.profile_seed || profileSeed;
 
     updateStatsUI(currentStats);
+    renderProfile(data.player_profile);
     renderHistory(currentHistory);
     resultText.textContent = data.result_text;
 

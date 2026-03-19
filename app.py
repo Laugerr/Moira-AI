@@ -7,6 +7,36 @@ app = Flask(__name__)
 
 DATA_FILE = Path("data/scenarios.json")
 
+FIRST_NAMES = [
+    "Avery", "Jordan", "Sage", "Milan", "Noah", "Lena", "Kai", "Elena",
+    "Theo", "Amara", "Ezra", "Nina", "Julian", "Zara", "Ivy", "Leo"
+]
+
+LAST_NAMES = [
+    "Vale", "Mercer", "Rowe", "Bennett", "Hale", "Cross", "Quinn", "Blake",
+    "Santos", "Cole", "Hart", "Lane", "Marlow", "Stone", "Reed", "Brooks"
+]
+
+HOMETOWNS = [
+    "Kyiv, Ukraine", "Toronto, Canada", "Lisbon, Portugal", "Chicago, USA",
+    "Seoul, South Korea", "Prague, Czech Republic", "Valencia, Spain",
+    "Warsaw, Poland", "Tallinn, Estonia", "Melbourne, Australia"
+]
+
+STARTING_TRAITS = [
+    "ambitious", "curious", "restless", "thoughtful",
+    "bold", "resourceful", "idealistic", "independent"
+]
+
+STARTING_DREAMS = [
+    "build a meaningful career",
+    "create financial freedom",
+    "find a life that feels exciting",
+    "prove their potential",
+    "turn talent into stability",
+    "build a future on their own terms"
+]
+
 
 FALLBACK_SCENARIOS = [
     {
@@ -210,6 +240,74 @@ def clamp_stat(value):
     return max(0, min(100, value))
 
 
+def generate_profile_seed():
+    return {
+        "name": f"{random.choice(FIRST_NAMES)} {random.choice(LAST_NAMES)}",
+        "hometown": random.choice(HOMETOWNS),
+        "trait": random.choice(STARTING_TRAITS),
+        "dream": random.choice(STARTING_DREAMS),
+    }
+
+
+def get_life_stage(age):
+    if age <= 22:
+        return "Emerging Adult"
+    if age <= 30:
+        return "Young Professional"
+    if age <= 45:
+        return "Established Adult"
+    if age <= 59:
+        return "Midlife Builder"
+    return "Legacy Years"
+
+
+def build_profile_snapshot(profile_seed, stats):
+    age = stats.get("age", 18)
+    money = stats.get("money", 50)
+    energy = stats.get("energy", 50)
+    happiness = stats.get("happiness", 50)
+    risk = stats.get("risk", 20)
+
+    stage = get_life_stage(age)
+
+    if risk >= 75:
+        title = "Volatile Path"
+        summary = "Your choices are creating fast momentum, but danger is now part of daily life."
+        mood = "High Risk"
+    elif energy <= 20:
+        title = "Exhausted Dreamer"
+        summary = "You are still chasing your future, but your energy is becoming one of your biggest limitations."
+        mood = "Burnout Warning"
+    elif happiness >= 70 and money >= 60:
+        title = "Rising Success Story"
+        summary = "You are building a life with visible momentum, stronger stability, and room for bigger ambitions."
+        mood = "Thriving"
+    elif money <= 25:
+        title = "Under Pressure"
+        summary = "Money is tight, and every decision feels heavier because survival is always in the background."
+        mood = "Financial Stress"
+    elif happiness <= 25:
+        title = "Emotionally Drained"
+        summary = "Even when life keeps moving, your sense of joy is fading. Recovery matters now."
+        mood = "Low Morale"
+    else:
+        title = "Life In Progress"
+        summary = "You are shaping your identity one year at a time, balancing risk, ambition, and stability."
+        mood = "Steady"
+
+    return {
+        "name": profile_seed["name"],
+        "hometown": profile_seed["hometown"],
+        "trait": profile_seed["trait"].title(),
+        "dream": profile_seed["dream"],
+        "stage": stage,
+        "title": title,
+        "summary": summary,
+        "mood": mood,
+        "age_badge": f"Age {age}",
+    }
+
+
 def scenario_matches_player(scenario, stats):
     conditions = scenario.get("conditions", {})
 
@@ -265,11 +363,14 @@ def start_game():
         "risk": 20
     }
 
+    profile_seed = generate_profile_seed()
     scenario = get_next_scenario(initial_stats, [])
 
     return jsonify({
         "scenario": scenario,
         "stats": initial_stats,
+        "profile_seed": profile_seed,
+        "player_profile": build_profile_snapshot(profile_seed, initial_stats),
         "history": [
             {
                 "age": 18,
@@ -295,6 +396,7 @@ def make_choice():
 
     history = data.get("history", [])
     used_scenarios = data.get("used_scenarios", [])
+    profile_seed = data.get("profile_seed") or generate_profile_seed()
     choice_effects = data.get("effects", {})
     result_text = data.get("result", "You made a choice and moved forward.")
 
@@ -339,6 +441,8 @@ def make_choice():
     return jsonify({
         "result_text": result_text,
         "updated_stats": updated_stats,
+        "profile_seed": profile_seed,
+        "player_profile": build_profile_snapshot(profile_seed, updated_stats),
         "history": history,
         "used_scenarios": used_scenarios,
         "next_scenario": next_scenario,
