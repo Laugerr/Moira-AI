@@ -7,71 +7,187 @@ app = Flask(__name__)
 
 DATA_FILE = Path("data/scenarios.json")
 
-# Fallback scenarios in case JSON file is empty or missing
+
 FALLBACK_SCENARIOS = [
     {
         "id": 1,
         "title": "First Job, First Pressure",
-        "text": "You are 19 years old, living in a small apartment, with only €250 left. A local café offers you a low-paying job, but your friend wants you to join him in building a small online business.",
+        "text": "You are young, low on money, and trying to build your future. A local café offers you a stable but tiring job, while your friend asks you to join a risky online business.",
+        "conditions": {
+            "age_min": 18,
+            "age_max": 24,
+            "money_max": 70
+        },
         "choices": [
             {
                 "text": "Take the café job for stability",
                 "effects": {"money": 15, "energy": -10, "happiness": -2, "risk": -5},
-                "result": "You gain stability, but the routine drains your energy."
+                "result": "You gain some stability, but routine begins to wear you down."
             },
             {
-                "text": "Join your friend and build the business",
+                "text": "Join your friend and try the business",
                 "effects": {"money": -5, "energy": -5, "happiness": 10, "risk": 15},
-                "result": "You chase opportunity, but success is far from guaranteed."
+                "result": "You chase opportunity, but your future becomes less certain."
             },
             {
-                "text": "Reject both and focus on learning a high-income skill",
-                "effects": {"money": -10, "energy": -3, "happiness": 5, "risk": 8},
-                "result": "You invest in your future, but money becomes tight."
+                "text": "Focus on learning a valuable skill instead",
+                "effects": {"money": -10, "energy": -3, "happiness": 5, "risk": 6},
+                "result": "You invest in yourself, hoping the payoff comes later."
             }
         ]
     },
     {
         "id": 2,
-        "title": "A New City",
-        "text": "You get the chance to move to a bigger city where salaries are higher, but living costs are much worse. Staying means comfort. Leaving means uncertainty.",
+        "title": "A New City Calls",
+        "text": "A chance appears to move to a bigger city with more opportunity. The cost of living is much higher, but so is your potential.",
+        "conditions": {
+            "age_min": 18,
+            "age_max": 35
+        },
         "choices": [
             {
-                "text": "Move to the bigger city",
-                "effects": {"money": -10, "energy": -8, "happiness": 8, "risk": 12},
-                "result": "The city feels alive and full of possibilities, but it is expensive."
+                "text": "Move and start over",
+                "effects": {"money": -12, "energy": -8, "happiness": 8, "risk": 10},
+                "result": "The city excites you, but survival becomes more expensive."
             },
             {
-                "text": "Stay where you are and save money",
-                "effects": {"money": 10, "energy": 2, "happiness": -3, "risk": -4},
-                "result": "You gain breathing room financially, but life feels repetitive."
+                "text": "Stay and save money",
+                "effects": {"money": 10, "energy": 2, "happiness": -3, "risk": -3},
+                "result": "You stay safe financially, though life feels smaller."
             },
             {
-                "text": "Visit first and decide later",
-                "effects": {"money": -5, "energy": -2, "happiness": 4, "risk": 2},
-                "result": "You take a cautious step without fully committing."
+                "text": "Visit first before deciding",
+                "effects": {"money": -4, "energy": -2, "happiness": 4, "risk": 2},
+                "result": "You test the waters without fully committing."
             }
         ]
     },
     {
         "id": 3,
         "title": "The Tempting Shortcut",
-        "text": "Someone offers you a fast way to make money online. It sounds easy, but the method feels questionable and could damage your future.",
+        "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
+        "conditions": {
+            "age_min": 18,
+            "risk_max": 75
+        },
         "choices": [
             {
-                "text": "Take the shortcut and cash in fast",
+                "text": "Take the shortcut",
                 "effects": {"money": 20, "energy": -3, "happiness": 2, "risk": 20},
-                "result": "You make money quickly, but the danger grows in the background."
+                "result": "The money arrives quickly, but danger follows close behind."
             },
             {
-                "text": "Refuse and keep things clean",
+                "text": "Refuse and stay clean",
                 "effects": {"money": -2, "energy": 1, "happiness": 4, "risk": -10},
-                "result": "You stay safe, even if you feel a little frustrated."
+                "result": "You protect your future, even if it feels frustrating now."
             },
             {
-                "text": "Research it before deciding",
-                "effects": {"money": 0, "energy": -2, "happiness": 1, "risk": 3},
-                "result": "You delay the decision and gather more information."
+                "text": "Investigate before deciding",
+                "effects": {"money": 0, "energy": -2, "happiness": 1, "risk": 4},
+                "result": "You buy yourself time by learning more."
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "The Expensive Dream",
+        "text": "A course appears that could change your future, but it costs a painful amount of money. It could be a breakthrough or a mistake.",
+        "conditions": {
+            "age_min": 18,
+            "money_min": 15
+        },
+        "choices": [
+            {
+                "text": "Buy the course",
+                "effects": {"money": -18, "energy": -4, "happiness": 8, "risk": 8},
+                "result": "You take a serious bet on your future."
+            },
+            {
+                "text": "Keep the money and learn for free",
+                "effects": {"money": 4, "energy": -2, "happiness": 2, "risk": -2},
+                "result": "You stay safer financially and progress more slowly."
+            },
+            {
+                "text": "Borrow to buy it now",
+                "effects": {"money": 8, "energy": -5, "happiness": 3, "risk": 12},
+                "result": "You move faster, but pressure builds behind the scenes."
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Love or Ambition",
+        "text": "Someone important in your life wants more time from you, but your ambitions are accelerating. You cannot fully prioritize both.",
+        "conditions": {
+            "age_min": 20,
+            "age_max": 40
+        },
+        "choices": [
+            {
+                "text": "Prioritize the relationship",
+                "effects": {"money": -5, "energy": 5, "happiness": 12, "risk": -3},
+                "result": "Your heart feels fuller, though your progress slows."
+            },
+            {
+                "text": "Prioritize ambition",
+                "effects": {"money": 12, "energy": -8, "happiness": -5, "risk": 6},
+                "result": "You move forward quickly, but emotionally it costs you."
+            },
+            {
+                "text": "Try to balance both",
+                "effects": {"money": 4, "energy": -10, "happiness": 4, "risk": 4},
+                "result": "You hold both worlds together, but the strain is real."
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Burnout Warning",
+        "text": "You have been pushing too hard for too long. Your body and mind are sending you a warning.",
+        "conditions": {
+            "energy_max": 35
+        },
+        "choices": [
+            {
+                "text": "Take a real break",
+                "effects": {"money": -6, "energy": 18, "happiness": 8, "risk": -6},
+                "result": "You slow down and recover some of what you lost."
+            },
+            {
+                "text": "Push through it",
+                "effects": {"money": 10, "energy": -12, "happiness": -6, "risk": 10},
+                "result": "You get more done, but you feel yourself cracking."
+            },
+            {
+                "text": "Reduce workload slightly",
+                "effects": {"money": -2, "energy": 8, "happiness": 4, "risk": -2},
+                "result": "You choose moderation and regain some balance."
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "title": "An Investment Opportunity",
+        "text": "A friend shows you a small investment opportunity. It might help you grow your money, or it might go badly.",
+        "conditions": {
+            "age_min": 21,
+            "money_min": 20
+        },
+        "choices": [
+            {
+                "text": "Invest aggressively",
+                "effects": {"money": 15, "energy": -2, "happiness": 5, "risk": 14},
+                "result": "You go in hard and hope the opportunity works in your favor."
+            },
+            {
+                "text": "Invest cautiously",
+                "effects": {"money": 6, "energy": -1, "happiness": 3, "risk": 5},
+                "result": "You take a measured approach and protect yourself somewhat."
+            },
+            {
+                "text": "Skip it entirely",
+                "effects": {"money": 0, "energy": 1, "happiness": -1, "risk": -3},
+                "result": "You stay safe, though you wonder what could have happened."
             }
         ]
     }
@@ -94,9 +210,44 @@ def clamp_stat(value):
     return max(0, min(100, value))
 
 
-def get_random_scenario():
+def scenario_matches_player(scenario, stats):
+    conditions = scenario.get("conditions", {})
+
+    checks = {
+        "age_min": lambda v: stats.get("age", 18) >= v,
+        "age_max": lambda v: stats.get("age", 18) <= v,
+        "money_min": lambda v: stats.get("money", 50) >= v,
+        "money_max": lambda v: stats.get("money", 50) <= v,
+        "energy_min": lambda v: stats.get("energy", 50) >= v,
+        "energy_max": lambda v: stats.get("energy", 50) <= v,
+        "happiness_min": lambda v: stats.get("happiness", 50) >= v,
+        "happiness_max": lambda v: stats.get("happiness", 50) <= v,
+        "risk_min": lambda v: stats.get("risk", 20) >= v,
+        "risk_max": lambda v: stats.get("risk", 20) <= v,
+    }
+
+    for key, value in conditions.items():
+        if key in checks and not checks[key](value):
+            return False
+
+    return True
+
+
+def get_next_scenario(stats, used_scenarios):
     scenarios = load_scenarios()
-    return random.choice(scenarios)
+
+    matching = [
+        s for s in scenarios
+        if scenario_matches_player(s, stats) and s.get("id") not in used_scenarios
+    ]
+
+    if not matching:
+        matching = [s for s in scenarios if scenario_matches_player(s, stats)]
+
+    if not matching:
+        matching = scenarios
+
+    return random.choice(matching)
 
 
 @app.route("/")
@@ -106,18 +257,27 @@ def index():
 
 @app.route("/start", methods=["GET"])
 def start_game():
-    scenario = get_random_scenario()
     initial_stats = {
+        "age": 18,
         "money": 50,
         "energy": 50,
         "happiness": 50,
         "risk": 20
     }
 
+    scenario = get_next_scenario(initial_stats, [])
+
     return jsonify({
         "scenario": scenario,
         "stats": initial_stats,
-        "message": "Your life begins. Every choice shapes your path."
+        "history": [
+            {
+                "age": 18,
+                "event": "You entered adulthood with uncertainty, potential, and a future still unwritten."
+            }
+        ],
+        "used_scenarios": [scenario.get("id")],
+        "message": "Your life begins. Every year, every choice, every consequence matters."
     })
 
 
@@ -126,44 +286,61 @@ def make_choice():
     data = request.get_json(silent=True) or {}
 
     current_stats = data.get("stats", {
+        "age": 18,
         "money": 50,
         "energy": 50,
         "happiness": 50,
         "risk": 20
     })
 
+    history = data.get("history", [])
+    used_scenarios = data.get("used_scenarios", [])
     choice_effects = data.get("effects", {})
     result_text = data.get("result", "You made a choice and moved forward.")
 
     updated_stats = {
+        "age": current_stats.get("age", 18) + 1,
         "money": clamp_stat(current_stats.get("money", 50) + choice_effects.get("money", 0)),
         "energy": clamp_stat(current_stats.get("energy", 50) + choice_effects.get("energy", 0)),
         "happiness": clamp_stat(current_stats.get("happiness", 50) + choice_effects.get("happiness", 0)),
         "risk": clamp_stat(current_stats.get("risk", 20) + choice_effects.get("risk", 0))
     }
 
-    next_scenario = get_random_scenario()
+    history.append({
+        "age": updated_stats["age"],
+        "event": result_text
+    })
 
-    # Basic ending signals
     status = "continue"
     ending_message = ""
 
     if updated_stats["risk"] >= 90:
         status = "game_over"
-        ending_message = "Your life spiraled into dangerous territory. Risk consumed your path."
+        ending_message = "Your life spiraled into dangerous territory. Risk took control of your future."
     elif updated_stats["energy"] <= 5:
         status = "game_over"
-        ending_message = "Burnout caught up with you. You pushed too hard for too long."
+        ending_message = "Burnout finally broke you. You pushed too hard for too long."
     elif updated_stats["happiness"] <= 5:
         status = "game_over"
-        ending_message = "You lost your sense of joy. Your life feels emotionally empty."
+        ending_message = "You lost your sense of joy and purpose. Life became emotionally empty."
     elif updated_stats["money"] <= 5:
         status = "game_over"
-        ending_message = "You ran out of money and options. Survival became your only focus."
+        ending_message = "You ran out of money and options. Survival became your whole reality."
+    elif updated_stats["age"] >= 60:
+        status = "completed"
+        ending_message = "You reached later adulthood. Your journey ends with a life shaped by every decision you made."
+
+    next_scenario = None
+
+    if status == "continue":
+        next_scenario = get_next_scenario(updated_stats, used_scenarios)
+        used_scenarios.append(next_scenario.get("id"))
 
     return jsonify({
         "result_text": result_text,
         "updated_stats": updated_stats,
+        "history": history,
+        "used_scenarios": used_scenarios,
         "next_scenario": next_scenario,
         "status": status,
         "ending_message": ending_message

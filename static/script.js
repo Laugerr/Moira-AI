@@ -1,10 +1,13 @@
 let currentStats = {
+  age: 18,
   money: 50,
   energy: 50,
   happiness: 50,
   risk: 20
 };
 
+let currentHistory = [];
+let usedScenarios = [];
 let currentScenario = null;
 
 const startBtn = document.getElementById("start-btn");
@@ -17,13 +20,17 @@ const choicesContainer = document.getElementById("choices-container");
 const resultText = document.getElementById("result-text");
 const gameOverCard = document.getElementById("game-over-card");
 const endingMessage = document.getElementById("ending-message");
+const endingTitle = document.getElementById("ending-title");
+const historyList = document.getElementById("history-list");
 
+const ageStat = document.getElementById("age-stat");
 const moneyStat = document.getElementById("money-stat");
 const energyStat = document.getElementById("energy-stat");
 const happinessStat = document.getElementById("happiness-stat");
 const riskStat = document.getElementById("risk-stat");
 
 function updateStatsUI(stats) {
+  ageStat.textContent = stats.age;
   moneyStat.textContent = stats.money;
   energyStat.textContent = stats.energy;
   happinessStat.textContent = stats.happiness;
@@ -45,13 +52,33 @@ function renderScenario(scenario) {
   });
 }
 
+function renderHistory(history) {
+  historyList.innerHTML = "";
+
+  const reversedHistory = [...history].reverse();
+
+  reversedHistory.forEach((entry) => {
+    const item = document.createElement("div");
+    item.className = "history-item";
+    item.innerHTML = `
+      <span class="history-age">Age ${entry.age}</span>
+      <p>${entry.event}</p>
+    `;
+    historyList.appendChild(item);
+  });
+}
+
 async function startGame() {
   try {
     const response = await fetch("/start");
     const data = await response.json();
 
     currentStats = data.stats;
+    currentHistory = data.history || [];
+    usedScenarios = data.used_scenarios || [];
+
     updateStatsUI(currentStats);
+    renderHistory(currentHistory);
 
     gameMessage.textContent = data.message;
     resultText.textContent = "Choose a path to reveal the consequences.";
@@ -74,6 +101,8 @@ async function handleChoice(choice) {
       },
       body: JSON.stringify({
         stats: currentStats,
+        history: currentHistory,
+        used_scenarios: usedScenarios,
         effects: choice.effects,
         result: choice.result
       })
@@ -82,16 +111,20 @@ async function handleChoice(choice) {
     const data = await response.json();
 
     currentStats = data.updated_stats;
-    updateStatsUI(currentStats);
+    currentHistory = data.history || [];
+    usedScenarios = data.used_scenarios || [];
 
+    updateStatsUI(currentStats);
+    renderHistory(currentHistory);
     resultText.textContent = data.result_text;
 
-    if (data.status === "game_over") {
+    if (data.status === "game_over" || data.status === "completed") {
       gameOverCard.classList.remove("hidden");
       endingMessage.textContent = data.ending_message;
+      endingTitle.textContent = data.status === "completed" ? "Life Complete" : "Game Over";
       choicesContainer.innerHTML = "";
       scenarioTitle.textContent = "Your Journey Ends Here";
-      scenarioText.textContent = "Your choices shaped this outcome. Restart and try a different path.";
+      scenarioText.textContent = "Your decisions created this life story. Restart and try a different path.";
       return;
     }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moira AI — Life Simulator</title>
+  <title>Moira AI — Continuous Life Simulator</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
@@ -12,16 +12,20 @@
 
   <main class="container">
     <header class="hero">
-      <p class="badge">🎮 Interactive Life Simulator</p>
+      <p class="badge">🎮 AI-Powered Continuous Life Simulator</p>
       <h1>Moira AI</h1>
       <p class="subtitle">
-        Every decision bends your future. Wealth, energy, happiness, and risk evolve with every move.
+        Live through years of decisions. Build wealth, protect your energy, manage risk, and shape a life story that is uniquely yours.
       </p>
       <button id="start-btn" class="primary-btn">Start Your Life</button>
     </header>
 
     <section id="game-section" class="game-section hidden">
       <div class="top-panel">
+        <div class="stat-card age-card">
+          <span>🎂 Age</span>
+          <strong id="age-stat">18</strong>
+        </div>
         <div class="stat-card">
           <span>💰 Money</span>
           <strong id="money-stat">50</strong>
@@ -40,23 +44,31 @@
         </div>
       </div>
 
-      <div class="story-card">
-        <p id="game-message" class="game-message">Your story is waiting...</p>
-        <h2 id="scenario-title">Scenario Title</h2>
-        <p id="scenario-text" class="scenario-text">Scenario text will appear here.</p>
+      <div class="main-grid">
+        <div>
+          <div class="story-card">
+            <p id="game-message" class="game-message">Your story is waiting...</p>
+            <h2 id="scenario-title">Scenario Title</h2>
+            <p id="scenario-text" class="scenario-text">Scenario text will appear here.</p>
+            <div id="choices-container" class="choices-container"></div>
+          </div>
 
-        <div id="choices-container" class="choices-container"></div>
-      </div>
+          <div class="result-card">
+            <h3>Latest Outcome</h3>
+            <p id="result-text">Choose a path to reveal the consequences.</p>
+          </div>
 
-      <div class="result-card">
-        <h3>Outcome</h3>
-        <p id="result-text">Choose a path to reveal the consequences.</p>
-      </div>
+          <div id="game-over-card" class="game-over-card hidden">
+            <h2 id="ending-title">Journey Complete</h2>
+            <p id="ending-message"></p>
+            <button id="restart-btn" class="secondary-btn">Start Again</button>
+          </div>
+        </div>
 
-      <div id="game-over-card" class="game-over-card hidden">
-        <h2>Game Over</h2>
-        <p id="ending-message"></p>
-        <button id="restart-btn" class="secondary-btn">Start Again</button>
+        <aside class="history-card">
+          <h3>📜 Life Timeline</h3>
+          <div id="history-list" class="history-list"></div>
+        </aside>
       </div>
     </section>
   </main>

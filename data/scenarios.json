@@ -2,7 +2,12 @@
   {
     "id": 1,
     "title": "First Job, First Pressure",
-    "text": "You are 19 years old, living in a small apartment, with only €250 left. A local café offers you a low-paying job, but your friend wants you to join him in building a small online business.",
+    "text": "You are young, low on money, and trying to build your future. A local café offers you a stable but tiring job, while your friend asks you to join a risky online business.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 24,
+      "money_max": 70
+    },
     "choices": [
       {
         "text": "Take the café job for stability",
@@ -12,145 +17,161 @@
           "happiness": -2,
           "risk": -5
         },
-        "result": "You gain stability, but the routine drains your energy."
+        "result": "You gain some stability, but routine begins to wear you down."
       },
       {
-        "text": "Join your friend and build the business",
+        "text": "Join your friend and try the business",
         "effects": {
           "money": -5,
           "energy": -5,
           "happiness": 10,
           "risk": 15
         },
-        "result": "You chase opportunity, but success is far from guaranteed."
+        "result": "You chase opportunity, but your future becomes less certain."
       },
       {
-        "text": "Reject both and focus on learning a high-income skill",
+        "text": "Focus on learning a valuable skill instead",
         "effects": {
           "money": -10,
           "energy": -3,
           "happiness": 5,
-          "risk": 8
+          "risk": 6
         },
-        "result": "You invest in your future, but money becomes tight."
+        "result": "You invest in yourself, hoping the payoff comes later."
       }
     ]
   },
   {
     "id": 2,
-    "title": "A New City",
-    "text": "You get the chance to move to a bigger city where salaries are higher, but living costs are much worse. Staying means comfort. Leaving means uncertainty.",
+    "title": "A New City Calls",
+    "text": "A chance appears to move to a bigger city with more opportunity. The cost of living is much higher, but so is your potential.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 35
+    },
     "choices": [
       {
-        "text": "Move to the bigger city",
+        "text": "Move and start over",
         "effects": {
-          "money": -10,
+          "money": -12,
           "energy": -8,
           "happiness": 8,
-          "risk": 12
+          "risk": 10
         },
-        "result": "The city feels alive and full of possibilities, but it is expensive."
+        "result": "The city excites you, but survival becomes more expensive."
       },
       {
-        "text": "Stay where you are and save money",
+        "text": "Stay and save money",
         "effects": {
           "money": 10,
           "energy": 2,
           "happiness": -3,
-          "risk": -4
+          "risk": -3
         },
-        "result": "You gain breathing room financially, but life feels repetitive."
+        "result": "You stay safe financially, though life feels smaller."
       },
       {
-        "text": "Visit first and decide later",
+        "text": "Visit first before deciding",
         "effects": {
-          "money": -5,
+          "money": -4,
           "energy": -2,
           "happiness": 4,
           "risk": 2
         },
-        "result": "You take a cautious step without fully committing."
+        "result": "You test the waters without fully committing."
       }
     ]
   },
   {
     "id": 3,
     "title": "The Tempting Shortcut",
-    "text": "Someone offers you a fast way to make money online. It sounds easy, but the method feels questionable and could damage your future.",
+    "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
+    "conditions": {
+      "age_min": 18,
+      "risk_max": 75
+    },
     "choices": [
       {
-        "text": "Take the shortcut and cash in fast",
+        "text": "Take the shortcut",
         "effects": {
           "money": 20,
           "energy": -3,
           "happiness": 2,
           "risk": 20
         },
-        "result": "You make money quickly, but the danger grows in the background."
+        "result": "The money arrives quickly, but danger follows close behind."
       },
       {
-        "text": "Refuse and keep things clean",
+        "text": "Refuse and stay clean",
         "effects": {
           "money": -2,
           "energy": 1,
           "happiness": 4,
           "risk": -10
         },
-        "result": "You stay safe, even if you feel a little frustrated."
+        "result": "You protect your future, even if it feels frustrating now."
       },
       {
-        "text": "Research it before deciding",
+        "text": "Investigate before deciding",
         "effects": {
           "money": 0,
           "energy": -2,
           "happiness": 1,
-          "risk": 3
+          "risk": 4
         },
-        "result": "You delay the decision and gather more information."
+        "result": "You buy yourself time by learning more."
       }
     ]
   },
   {
     "id": 4,
     "title": "The Expensive Dream",
-    "text": "A course appears that could change your future, but it costs almost all your savings. Buying it could open doors, or leave you broke.",
+    "text": "A course appears that could change your future, but it costs a painful amount of money. It could be a breakthrough or a mistake.",
+    "conditions": {
+      "age_min": 18,
+      "money_min": 15
+    },
     "choices": [
       {
-        "text": "Buy the course and commit fully",
+        "text": "Buy the course",
         "effects": {
-          "money": -20,
-          "energy": -5,
+          "money": -18,
+          "energy": -4,
           "happiness": 8,
-          "risk": 10
+          "risk": 8
         },
-        "result": "You bet on your growth, hoping the sacrifice pays off."
+        "result": "You take a serious bet on your future."
       },
       {
-        "text": "Keep your savings and learn free resources instead",
+        "text": "Keep the money and learn for free",
         "effects": {
-          "money": 5,
+          "money": 4,
           "energy": -2,
-          "happiness": 3,
+          "happiness": 2,
           "risk": -2
         },
-        "result": "You stay financially safe and move forward more slowly."
+        "result": "You stay safer financially and progress more slowly."
       },
       {
-        "text": "Borrow money from a friend to get it now",
+        "text": "Borrow to buy it now",
         "effects": {
-          "money": 10,
-          "energy": -4,
-          "happiness": 4,
+          "money": 8,
+          "energy": -5,
+          "happiness": 3,
           "risk": 12
         },
-        "result": "You gain access now, but pressure follows you."
+        "result": "You move faster, but pressure builds behind the scenes."
       }
     ]
   },
   {
     "id": 5,
     "title": "Love or Ambition",
-    "text": "Someone important to you wants more time and attention, but your career is finally gaining momentum. You cannot fully prioritize both right now.",
+    "text": "Someone important in your life wants more time from you, but your ambitions are accelerating. You cannot fully prioritize both.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 40
+    },
     "choices": [
       {
         "text": "Prioritize the relationship",
@@ -160,17 +181,17 @@
           "happiness": 12,
           "risk": -3
         },
-        "result": "Your heart feels full, but your progress slows down."
+        "result": "Your heart feels fuller, though your progress slows."
       },
       {
-        "text": "Prioritize your ambition",
+        "text": "Prioritize ambition",
         "effects": {
           "money": 12,
           "energy": -8,
           "happiness": -5,
           "risk": 6
         },
-        "result": "You move forward fast, but the emotional cost is real."
+        "result": "You move forward quickly, but emotionally it costs you."
       },
       {
         "text": "Try to balance both",
@@ -180,7 +201,88 @@
           "happiness": 4,
           "risk": 4
         },
-        "result": "You hold both worlds together, but it becomes exhausting."
+        "result": "You hold both worlds together, but the strain is real."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Burnout Warning",
+    "text": "You have been pushing too hard for too long. Your body and mind are sending you a warning.",
+    "conditions": {
+      "energy_max": 35
+    },
+    "choices": [
+      {
+        "text": "Take a real break",
+        "effects": {
+          "money": -6,
+          "energy": 18,
+          "happiness": 8,
+          "risk": -6
+        },
+        "result": "You slow down and recover some of what you lost."
+      },
+      {
+        "text": "Push through it",
+        "effects": {
+          "money": 10,
+          "energy": -12,
+          "happiness": -6,
+          "risk": 10
+        },
+        "result": "You get more done, but you feel yourself cracking."
+      },
+      {
+        "text": "Reduce workload slightly",
+        "effects": {
+          "money": -2,
+          "energy": 8,
+          "happiness": 4,
+          "risk": -2
+        },
+        "result": "You choose moderation and regain some balance."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "An Investment Opportunity",
+    "text": "A friend shows you a small investment opportunity. It might help you grow your money, or it might go badly.",
+    "conditions": {
+      "age_min": 21,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Invest aggressively",
+        "effects": {
+          "money": 15,
+          "energy": -2,
+          "happiness": 5,
+          "risk": 14
+        },
+        "result": "You go in hard and hope the opportunity works in your favor."
+      },
+      {
+        "text": "Invest cautiously",
+        "effects": {
+          "money": 6,
+          "energy": -1,
+          "happiness": 3,
+          "risk": 5
+        },
+        "result": "You take a measured approach and protect yourself somewhat."
+      },
+      {
+        "text": "Skip it entirely",
+        "effects": {
+          "money": 0,
+          "energy": 1,
+          "happiness": -1,
+          "risk": -3
+        },
+        "result": "You stay safe, though you wonder what could have happened."
       }
     ]
   }
