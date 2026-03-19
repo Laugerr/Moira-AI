@@ -29,12 +29,20 @@ const energyStat = document.getElementById("energy-stat");
 const happinessStat = document.getElementById("happiness-stat");
 const riskStat = document.getElementById("risk-stat");
 
+const energyBar = document.getElementById("energy-bar");
+const happinessBar = document.getElementById("happiness-bar");
+const riskBar = document.getElementById("risk-bar");
+
 function updateStatsUI(stats) {
   ageStat.textContent = stats.age;
-  moneyStat.textContent = stats.money;
-  energyStat.textContent = stats.energy;
-  happinessStat.textContent = stats.happiness;
-  riskStat.textContent = stats.risk;
+  moneyStat.textContent = `$${stats.money}`;
+  energyStat.textContent = `${stats.energy}%`;
+  happinessStat.textContent = `${stats.happiness}%`;
+  riskStat.textContent = `${stats.risk}%`;
+
+  energyBar.style.width = `${stats.energy}%`;
+  happinessBar.style.width = `${stats.happiness}%`;
+  riskBar.style.width = `${stats.risk}%`;
 }
 
 function renderScenario(scenario) {
@@ -94,6 +102,8 @@ async function startGame() {
 
 async function handleChoice(choice) {
   try {
+    choicesContainer.innerHTML = '<button class="choice-btn" disabled>Processing your decision...</button>';
+
     const response = await fetch("/choice", {
       method: "POST",
       headers: {
@@ -131,6 +141,11 @@ async function handleChoice(choice) {
     renderScenario(data.next_scenario);
   } catch (error) {
     resultText.textContent = "An error happened while processing your decision.";
+
+    if (currentScenario) {
+      renderScenario(currentScenario);
+    }
+
     console.error(error);
   }
 }

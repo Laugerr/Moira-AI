@@ -3,72 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moira AI — Continuous Life Simulator</title>
+  <title>Moira AI - Continuous Life Simulator</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <div class="background-glow glow-1"></div>
-  <div class="background-glow glow-2"></div>
+  <div class="page-glow glow-top-left"></div>
+  <div class="page-glow glow-top-right"></div>
+  <div class="page-glow glow-bottom"></div>
+  <div class="sparkles"></div>
 
-  <main class="container">
-    <header class="hero">
-      <p class="badge">🎮 AI-Powered Continuous Life Simulator</p>
-      <h1>Moira AI</h1>
-      <p class="subtitle">
-        Live through years of decisions. Build wealth, protect your energy, manage risk, and shape a life story that is uniquely yours.
-      </p>
-      <button id="start-btn" class="primary-btn">Start Your Life</button>
-    </header>
-
-    <section id="game-section" class="game-section hidden">
-      <div class="top-panel">
-        <div class="stat-card age-card">
-          <span>🎂 Age</span>
-          <strong id="age-stat">18</strong>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">
+          <div class="brand-core"></div>
         </div>
-        <div class="stat-card">
-          <span>💰 Money</span>
-          <strong id="money-stat">50</strong>
-        </div>
-        <div class="stat-card">
-          <span>⚡ Energy</span>
-          <strong id="energy-stat">50</strong>
-        </div>
-        <div class="stat-card">
-          <span>😊 Happiness</span>
-          <strong id="happiness-stat">50</strong>
-        </div>
-        <div class="stat-card danger">
-          <span>⚠️ Risk</span>
-          <strong id="risk-stat">20</strong>
+        <div>
+          <p class="brand-kicker">Life Simulator</p>
+          <h1>Moira AI</h1>
         </div>
       </div>
 
-      <div class="main-grid">
-        <div>
-          <div class="story-card">
-            <p id="game-message" class="game-message">Your story is waiting...</p>
-            <h2 id="scenario-title">Scenario Title</h2>
+      <div class="topbar-actions">
+        <div class="currency-pill">
+          <span class="currency-icon">◈</span>
+          <strong>0</strong>
+        </div>
+        <button id="start-btn" class="upgrade-btn">Start Your Life</button>
+      </div>
+    </header>
+
+    <section id="game-section" class="game-board hidden">
+      <aside class="left-rail">
+        <button class="rail-btn active">☰</button>
+        <button class="rail-btn">◉</button>
+        <button class="rail-btn">▣</button>
+        <button class="rail-btn">✦</button>
+      </aside>
+
+      <div class="board-content">
+        <section class="identity-card">
+          <div class="avatar-wrap">
+            <div class="avatar-face">M</div>
+          </div>
+
+          <div class="identity-main">
+            <h2>Moira Citizen</h2>
+            <p class="identity-subtitle">Continuous Life Journey</p>
+          </div>
+
+          <div class="identity-money">
+            <strong id="money-stat">$50</strong>
+            <span>Bank Balance</span>
+          </div>
+        </section>
+
+        <section class="story-panel">
+          <div class="story-header">
+            <div>
+              <p id="game-message" class="panel-kicker">Your story is waiting...</p>
+              <h2 id="scenario-title">Scenario Title</h2>
+            </div>
+            <div class="age-pill">
+              <span>Age</span>
+              <strong id="age-stat">18</strong>
+            </div>
+          </div>
+
+          <div class="story-body">
             <p id="scenario-text" class="scenario-text">Scenario text will appear here.</p>
             <div id="choices-container" class="choices-container"></div>
           </div>
+        </section>
 
-          <div class="result-card">
-            <h3>Latest Outcome</h3>
-            <p id="result-text">Choose a path to reveal the consequences.</p>
+        <section class="mid-actions">
+          <div class="mode-pill active-mode">Journey</div>
+          <div class="mode-pill">Assets</div>
+          <button class="age-button" type="button">
+            <span class="age-button-plus">+</span>
+            <span class="age-button-label">Age</span>
+          </button>
+          <div class="mode-pill">Timeline</div>
+          <div class="mode-pill">Activities</div>
+        </section>
+
+        <section class="bottom-grid">
+          <div class="status-card">
+            <div class="status-header">
+              <h3>Life Stats</h3>
+              <p>Track the direction of your life in real time.</p>
+            </div>
+
+            <div class="stat-rows">
+              <div class="stat-row">
+                <div class="stat-row-label">
+                  <span>Energy</span>
+                  <strong id="energy-stat">50%</strong>
+                </div>
+                <div class="stat-track">
+                  <div id="energy-bar" class="stat-fill energy-fill" style="width: 50%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-row-label">
+                  <span>Happiness</span>
+                  <strong id="happiness-stat">50%</strong>
+                </div>
+                <div class="stat-track">
+                  <div id="happiness-bar" class="stat-fill happiness-fill" style="width: 50%;"></div>
+                </div>
+              </div>
+
+              <div class="stat-row">
+                <div class="stat-row-label">
+                  <span>Risk</span>
+                  <strong id="risk-stat">20%</strong>
+                </div>
+                <div class="stat-track">
+                  <div id="risk-bar" class="stat-fill risk-fill" style="width: 20%;"></div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div id="game-over-card" class="game-over-card hidden">
-            <h2 id="ending-title">Journey Complete</h2>
-            <p id="ending-message"></p>
-            <button id="restart-btn" class="secondary-btn">Start Again</button>
+          <div class="side-stack">
+            <div class="result-card">
+              <h3>Latest Outcome</h3>
+              <p id="result-text">Choose a path to reveal the consequences.</p>
+            </div>
+
+            <aside class="history-card">
+              <h3>Life Timeline</h3>
+              <div id="history-list" class="history-list"></div>
+            </aside>
           </div>
+        </section>
+
+        <div id="game-over-card" class="game-over-card hidden">
+          <h2 id="ending-title">Journey Complete</h2>
+          <p id="ending-message"></p>
+          <button id="restart-btn" class="restart-btn">Start Again</button>
         </div>
-
-        <aside class="history-card">
-          <h3>📜 Life Timeline</h3>
-          <div id="history-list" class="history-list"></div>
-        </aside>
       </div>
     </section>
   </main>
