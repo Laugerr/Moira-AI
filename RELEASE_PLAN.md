@@ -37,13 +37,17 @@ Current repo already includes:
 - Basic endings
 - JSON-based scenario loading with fallback scenarios
 
-This means the project is already beyond idea stage and is moving through `v0.1.0`.
+This means the project is already beyond idea stage and `v0.1.0` is now feature-complete pending manual verification.
 
 ## 🚦 Release Roadmap
 
 ### 🛠 v0.1.0 - First Usable Prototype
 Goal:
 Establish the first fully working life-simulation prototype.
+
+Current status:
+- Feature-complete
+- Waiting on final manual playtest and release confirmation
 
 Scope:
 - Flask app runs locally

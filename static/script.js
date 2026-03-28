@@ -23,6 +23,7 @@ const resultText = document.getElementById("result-text");
 const gameOverCard = document.getElementById("game-over-card");
 const endingMessage = document.getElementById("ending-message");
 const endingTitle = document.getElementById("ending-title");
+const endingMeta = document.getElementById("ending-meta");
 const historyList = document.getElementById("history-list");
 
 const ageStat = document.getElementById("age-stat");
@@ -71,6 +72,14 @@ function renderProfile(profile) {
 }
 
 function renderScenario(scenario) {
+  if (!scenario) {
+    currentScenario = null;
+    scenarioTitle.textContent = "No Scenario Available";
+    scenarioText.textContent = "There are no life events available right now. Restart and try again.";
+    choicesContainer.innerHTML = "";
+    return;
+  }
+
   currentScenario = scenario;
   scenarioTitle.textContent = scenario.title;
   scenarioText.textContent = scenario.text;
@@ -79,6 +88,7 @@ function renderScenario(scenario) {
   scenario.choices.forEach((choice) => {
     const button = document.createElement("button");
     button.className = "choice-btn";
+    button.type = "button";
     button.textContent = choice.text;
     button.addEventListener("click", () => handleChoice(choice));
     choicesContainer.appendChild(button);
@@ -117,7 +127,10 @@ async function startGame() {
 
     gameMessage.textContent = data.message;
     resultText.textContent = "Choose a path to reveal the consequences.";
+    endingTitle.textContent = "Journey Complete";
+    endingMessage.textContent = "";
     gameOverCard.classList.add("hidden");
+    endingMeta.textContent = "";
     gameSection.classList.remove("hidden");
 
     renderScenario(data.scenario);
@@ -161,7 +174,8 @@ async function handleChoice(choice) {
     if (data.status === "game_over" || data.status === "completed") {
       gameOverCard.classList.remove("hidden");
       endingMessage.textContent = data.ending_message;
-      endingTitle.textContent = data.status === "completed" ? "Life Complete" : "Game Over";
+      endingTitle.textContent = data.ending_title || (data.status === "completed" ? "Life Complete" : "Game Over");
+      endingMeta.textContent = `${data.player_profile.age_badge} - ${data.player_profile.title} - ${data.player_profile.mood}`;
       choicesContainer.innerHTML = "";
       scenarioTitle.textContent = "Your Journey Ends Here";
       scenarioText.textContent = "Your decisions created this life story. Restart and try a different path.";

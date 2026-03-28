@@ -511,6 +511,12 @@ body {
   margin-bottom: 10px;
 }
 
+.ending-meta {
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 .game-over-card p {
   color: var(--text-soft);
   margin-bottom: 18px;

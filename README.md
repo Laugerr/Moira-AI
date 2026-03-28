@@ -25,7 +25,7 @@ Moira AI is designed to feel like a mix of:
 - JavaScript
 
 ## 📌 Status
-`v0.1.0` first usable prototype in progress.
+`v0.1.0` first usable prototype is feature-complete and ready for manual verification.
 
 ## 🗺 Planning
 - [Release Plan](./RELEASE_PLAN.md)

@@ -339,6 +339,89 @@ def build_profile_snapshot(profile_seed, stats):
     }
 
 
+def get_life_strengths(stats):
+    ranked = sorted(
+        (
+            ("health", stats.get("health", 50)),
+            ("energy", stats.get("energy", 50)),
+            ("happiness", stats.get("happiness", 50)),
+            ("social", stats.get("social", 50)),
+            ("money", stats.get("money", 50)),
+        ),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+    return ranked[0][0], ranked[-1][0]
+
+
+def build_ending(status, stats, profile_seed):
+    strongest, weakest = get_life_strengths(stats)
+    dream = profile_seed.get("dream", "build a meaningful life")
+
+    if status == "health":
+        return {
+            "title": "Health Gave Out",
+            "message": "Your body absorbed too many hard years without enough recovery. Ambition kept moving, but your health could not carry the weight any longer."
+        }
+    if status == "energy":
+        return {
+            "title": "Burned Out",
+            "message": "You kept pushing through exhaustion until there was nothing left to draw from. The life you were building asked more from you than you could keep giving."
+        }
+    if status == "happiness":
+        return {
+            "title": "Joy Slipped Away",
+            "message": "You stayed in motion, but somewhere along the way the meaning drained out of it. A life without enough joy became too heavy to continue."
+        }
+    if status == "social":
+        return {
+            "title": "Left Too Alone",
+            "message": "Distance grew where support should have been. Without enough closeness or belonging, even ordinary years became harder to survive."
+        }
+    if status == "money":
+        return {
+            "title": "Out of Options",
+            "message": "Your resources ran too low and survival took over every other priority. The pressure of getting by left too little room to keep shaping your future."
+        }
+    if status == "no_scenarios":
+        return {
+            "title": "A Quiet Pause",
+            "message": "This chapter closes with unfinished possibilities still in the air. Your life kept moving, but the record of major turning points comes to rest here."
+        }
+
+    strongest_lines = {
+        "health": "You protected your health well enough to keep going through changing seasons of life.",
+        "energy": "You managed your energy carefully enough to keep showing up for the life you wanted.",
+        "happiness": "You kept returning to what made life feel warm, personal, and worth living.",
+        "social": "You built enough connection that your life was not carried alone.",
+        "money": "You turned money into a stabilizing force instead of letting scarcity control every choice.",
+    }
+
+    weakest_lines = {
+        "health": "Your health remained one of the hardest parts of your journey.",
+        "energy": "Energy was a constant challenge, even when other parts of life improved.",
+        "happiness": "Happiness was harder to hold onto than it should have been.",
+        "social": "Connection never came as easily or as steadily as you needed.",
+        "money": "Money kept adding pressure, even when you found momentum elsewhere.",
+    }
+
+    completion_titles = {
+        "money": "Built for Stability",
+        "social": "A Life of Connection",
+        "happiness": "A Fulfilled Journey",
+        "health": "Steady Through the Years",
+        "energy": "Still Standing",
+    }
+
+    return {
+        "title": completion_titles.get(strongest, "Journey Complete"),
+        "message": (
+            f"You reached later adulthood still chasing your dream to {dream}. "
+            f"{strongest_lines[strongest]} {weakest_lines[weakest]}"
+        )
+    }
+
+
 def scenario_matches_player(scenario, stats):
     conditions = scenario.get("conditions", {})
 
@@ -450,26 +533,39 @@ def make_choice():
     })
 
     status = "continue"
+    ending_title = ""
     ending_message = ""
 
     if updated_stats["health"] <= 5:
         status = "game_over"
-        ending_message = "Your health collapsed after too many years of neglect. Your journey ends before you can keep building."
+        ending = build_ending("health", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
     elif updated_stats["energy"] <= 5:
         status = "game_over"
-        ending_message = "Burnout finally broke you. You pushed too hard for too long."
+        ending = build_ending("energy", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
     elif updated_stats["happiness"] <= 5:
         status = "game_over"
-        ending_message = "You lost your sense of joy and purpose. Life became emotionally empty."
+        ending = build_ending("happiness", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
     elif updated_stats["social"] <= 5:
         status = "game_over"
-        ending_message = "Isolation consumed too much of your life. Without connection, everything grew heavier."
+        ending = build_ending("social", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
     elif updated_stats["money"] <= 5:
         status = "game_over"
-        ending_message = "You ran out of money and options. Survival became your whole reality."
+        ending = build_ending("money", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
     elif updated_stats["age"] >= 60:
         status = "completed"
-        ending_message = "You reached later adulthood. Your journey ends with a life shaped by every decision you made."
+        ending = build_ending("completed", updated_stats, profile_seed)
+        ending_title = ending["title"]
+        ending_message = ending["message"]
 
     next_scenario = None
 
@@ -479,7 +575,9 @@ def make_choice():
             used_scenarios.append(next_scenario.get("id"))
         else:
             status = "completed"
-            ending_message = "Your journey pauses here because no new life events are available."
+            ending = build_ending("no_scenarios", updated_stats, profile_seed)
+            ending_title = ending["title"]
+            ending_message = ending["message"]
 
     return jsonify({
         "result_text": result_text,
@@ -490,6 +588,7 @@ def make_choice():
         "used_scenarios": used_scenarios,
         "next_scenario": next_scenario,
         "status": status,
+        "ending_title": ending_title,
         "ending_message": ending_message
     })
 
