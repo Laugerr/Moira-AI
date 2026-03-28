@@ -2,7 +2,7 @@
 
 **Moira AI** is an interactive life simulator where every choice shapes your story.
 
-Players begin with a starting life scenario and make decisions that affect their future through changing stats such as money, energy, happiness, and risk.
+Players begin with a starting life scenario and make decisions that affect their future through changing life needs like health, energy, happiness, and social connection, while managing money as a separate resource.
 
 ## 🚀 Vision
 Moira AI is designed to feel like a mix of:
@@ -12,7 +12,7 @@ Moira AI is designed to feel like a mix of:
 
 ## 🧩 Planned Features
 - Branching story paths
-- Stat-based decision system
+- Needs-based decision system
 - Dynamic life events
 - Beautiful game-like interface
 - Future AI-generated scenarios
@@ -25,7 +25,7 @@ Moira AI is designed to feel like a mix of:
 - JavaScript
 
 ## 📌 Status
-Version 1 setup in progress.
+`v0.1.0` first usable prototype in progress.
 
 ## 🗺 Planning
 - [Release Plan](./RELEASE_PLAN.md)

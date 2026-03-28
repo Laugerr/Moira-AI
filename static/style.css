@@ -16,9 +16,10 @@
   --text-dark: #41359e;
   --text-soft: rgba(67, 53, 158, 0.72);
   --shadow: 0 28px 70px rgba(87, 46, 181, 0.22);
+  --health: linear-gradient(90deg, #79f0b1, #37c88a);
   --energy: linear-gradient(90deg, #72d7ff, #4f89ff);
   --happiness: linear-gradient(90deg, #9f7cff, #6f56ea);
-  --risk: linear-gradient(90deg, #ff9dc7, #ff67a8);
+  --social: linear-gradient(90deg, #ffb4d8, #ff7eb7);
 }
 
 body {
@@ -460,8 +461,12 @@ body {
   background: var(--happiness);
 }
 
-.risk-fill {
-  background: var(--risk);
+.health-fill {
+  background: var(--health);
+}
+
+.social-fill {
+  background: var(--social);
 }
 
 .side-stack {

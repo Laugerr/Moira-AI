@@ -51,18 +51,18 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Take the cafe job for stability",
-                "effects": {"money": 15, "energy": -10, "happiness": -2, "risk": -5},
-                "result": "You gain some stability, but routine begins to wear you down."
+                "effects": {"money": 15, "energy": -10, "happiness": -2, "health": -4, "social": -2},
+                "result": "You gain some stability, but the routine quickly starts wearing on your body and your social life."
             },
             {
                 "text": "Join your friend and try the business",
-                "effects": {"money": -5, "energy": -5, "happiness": 10, "risk": 15},
-                "result": "You chase opportunity, but your future becomes less certain."
+                "effects": {"money": -5, "energy": -5, "happiness": 10, "health": -2, "social": 5},
+                "result": "You chase opportunity with someone you trust, and the uncertainty feels exciting."
             },
             {
                 "text": "Focus on learning a valuable skill instead",
-                "effects": {"money": -10, "energy": -3, "happiness": 5, "risk": 6},
-                "result": "You invest in yourself, hoping the payoff comes later."
+                "effects": {"money": -10, "energy": -3, "happiness": 5, "health": 0, "social": -1},
+                "result": "You invest in yourself and quietly build toward a better future."
             }
         ]
     },
@@ -77,18 +77,18 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Move and start over",
-                "effects": {"money": -12, "energy": -8, "happiness": 8, "risk": 10},
-                "result": "The city excites you, but survival becomes more expensive."
+                "effects": {"money": -12, "energy": -8, "happiness": 8, "health": -2, "social": -3},
+                "result": "The city energizes you, but the move leaves you tired and disconnected."
             },
             {
                 "text": "Stay and save money",
-                "effects": {"money": 10, "energy": 2, "happiness": -3, "risk": -3},
-                "result": "You stay safe financially, though life feels smaller."
+                "effects": {"money": 10, "energy": 2, "happiness": -3, "health": 0, "social": 1},
+                "result": "You stay safe financially, though life feels a little smaller."
             },
             {
                 "text": "Visit first before deciding",
-                "effects": {"money": -4, "energy": -2, "happiness": 4, "risk": 2},
-                "result": "You test the waters without fully committing."
+                "effects": {"money": -4, "energy": -2, "happiness": 4, "health": 0, "social": 1},
+                "result": "You explore carefully and give yourself more time to decide."
             }
         ]
     },
@@ -97,24 +97,23 @@ FALLBACK_SCENARIOS = [
         "title": "The Tempting Shortcut",
         "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
         "conditions": {
-            "age_min": 18,
-            "risk_max": 75
+            "age_min": 18
         },
         "choices": [
             {
                 "text": "Take the shortcut",
-                "effects": {"money": 20, "energy": -3, "happiness": 2, "risk": 20},
-                "result": "The money arrives quickly, but danger follows close behind."
+                "effects": {"money": 20, "energy": -3, "happiness": 2, "health": -10, "social": -4},
+                "result": "The money comes fast, but the pressure and paranoia start taking a toll."
             },
             {
                 "text": "Refuse and stay clean",
-                "effects": {"money": -2, "energy": 1, "happiness": 4, "risk": -10},
-                "result": "You protect your future, even if it feels frustrating now."
+                "effects": {"money": -2, "energy": 1, "happiness": 4, "health": 2, "social": 0},
+                "result": "You protect your future, even if the decision feels frustrating today."
             },
             {
                 "text": "Investigate before deciding",
-                "effects": {"money": 0, "energy": -2, "happiness": 1, "risk": 4},
-                "result": "You buy yourself time by learning more."
+                "effects": {"money": 0, "energy": -2, "happiness": 1, "health": -1, "social": 0},
+                "result": "You buy yourself time by learning more before stepping into danger."
             }
         ]
     },
@@ -129,18 +128,18 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Buy the course",
-                "effects": {"money": -18, "energy": -4, "happiness": 8, "risk": 8},
-                "result": "You take a serious bet on your future."
+                "effects": {"money": -18, "energy": -4, "happiness": 8, "health": 0, "social": -1},
+                "result": "You take a serious bet on your future and commit to growth."
             },
             {
                 "text": "Keep the money and learn for free",
-                "effects": {"money": 4, "energy": -2, "happiness": 2, "risk": -2},
-                "result": "You stay safer financially and progress more slowly."
+                "effects": {"money": 4, "energy": -2, "happiness": 2, "health": 0, "social": 0},
+                "result": "You stay safer financially and move forward more slowly."
             },
             {
                 "text": "Borrow to buy it now",
-                "effects": {"money": 8, "energy": -5, "happiness": 3, "risk": 12},
-                "result": "You move faster, but pressure builds behind the scenes."
+                "effects": {"money": 8, "energy": -5, "happiness": 3, "health": -2, "social": -1},
+                "result": "You move faster, but the pressure begins building behind the scenes."
             }
         ]
     },
@@ -155,18 +154,18 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Prioritize the relationship",
-                "effects": {"money": -5, "energy": 5, "happiness": 12, "risk": -3},
-                "result": "Your heart feels fuller, though your progress slows."
+                "effects": {"money": -5, "energy": 5, "happiness": 12, "health": 3, "social": 10},
+                "result": "Your heart feels fuller, and the connection strengthens your life."
             },
             {
                 "text": "Prioritize ambition",
-                "effects": {"money": 12, "energy": -8, "happiness": -5, "risk": 6},
-                "result": "You move forward quickly, but emotionally it costs you."
+                "effects": {"money": 12, "energy": -8, "happiness": -5, "health": -3, "social": -8},
+                "result": "You push ahead quickly, but the emotional cost is real."
             },
             {
                 "text": "Try to balance both",
-                "effects": {"money": 4, "energy": -10, "happiness": 4, "risk": 4},
-                "result": "You hold both worlds together, but the strain is real."
+                "effects": {"money": 4, "energy": -6, "happiness": 4, "health": -1, "social": 4},
+                "result": "You keep both parts of life alive, but the strain shows."
             }
         ]
     },
@@ -180,18 +179,18 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Take a real break",
-                "effects": {"money": -6, "energy": 18, "happiness": 8, "risk": -6},
-                "result": "You slow down and recover some of what you lost."
+                "effects": {"money": -6, "energy": 18, "happiness": 8, "health": 10, "social": 2},
+                "result": "You slow down, recover, and regain some balance."
             },
             {
                 "text": "Push through it",
-                "effects": {"money": 10, "energy": -12, "happiness": -6, "risk": 10},
+                "effects": {"money": 7, "energy": -10, "happiness": -5, "health": -10, "social": -3},
                 "result": "You get more done, but you feel yourself cracking."
             },
             {
                 "text": "Reduce workload slightly",
-                "effects": {"money": -2, "energy": 8, "happiness": 4, "risk": -2},
-                "result": "You choose moderation and regain some balance."
+                "effects": {"money": -2, "energy": 8, "happiness": 4, "health": 6, "social": 1},
+                "result": "You choose moderation and begin recovering without stopping completely."
             }
         ]
     },
@@ -206,17 +205,17 @@ FALLBACK_SCENARIOS = [
         "choices": [
             {
                 "text": "Invest aggressively",
-                "effects": {"money": 15, "energy": -2, "happiness": 5, "risk": 14},
+                "effects": {"money": 15, "energy": -2, "happiness": 5, "health": -1, "social": 2},
                 "result": "You go in hard and hope the opportunity works in your favor."
             },
             {
                 "text": "Invest cautiously",
-                "effects": {"money": 6, "energy": -1, "happiness": 3, "risk": 5},
+                "effects": {"money": 6, "energy": -1, "happiness": 3, "health": 0, "social": 1},
                 "result": "You take a measured approach and protect yourself somewhat."
             },
             {
                 "text": "Skip it entirely",
-                "effects": {"money": 0, "energy": 1, "happiness": -1, "risk": -3},
+                "effects": {"money": 0, "energy": 1, "happiness": -1, "health": 0, "social": 0},
                 "result": "You stay safe, though you wonder what could have happened."
             }
         ]
@@ -259,8 +258,12 @@ def load_scenarios():
     return FALLBACK_SCENARIOS
 
 
-def clamp_stat(value):
+def clamp_need(value):
     return max(0, min(100, value))
+
+
+def clamp_money(value):
+    return max(0, value)
 
 
 def generate_profile_seed():
@@ -287,20 +290,21 @@ def get_life_stage(age):
 def build_profile_snapshot(profile_seed, stats):
     age = stats.get("age", 18)
     money = stats.get("money", 50)
+    health = stats.get("health", 50)
     energy = stats.get("energy", 50)
     happiness = stats.get("happiness", 50)
-    risk = stats.get("risk", 20)
+    social = stats.get("social", 50)
 
     stage = get_life_stage(age)
 
-    if risk >= 75:
-        title = "Volatile Path"
-        summary = "Your choices are creating fast momentum, but danger is now part of daily life."
-        mood = "High Risk"
-    elif energy <= 20:
-        title = "Exhausted Dreamer"
-        summary = "You are still chasing your future, but your energy is becoming one of your biggest limitations."
-        mood = "Burnout Warning"
+    if health <= 20:
+        title = "Running on Empty"
+        summary = "Your body has been carrying more than it should, and recovery is becoming urgent."
+        mood = "Fragile"
+    elif social <= 20:
+        title = "Disconnected"
+        summary = "You are moving through life with too little support, and the loneliness is beginning to show."
+        mood = "Isolated"
     elif happiness >= 70 and money >= 60:
         title = "Rising Success Story"
         summary = "You are building a life with visible momentum, stronger stability, and room for bigger ambitions."
@@ -313,9 +317,13 @@ def build_profile_snapshot(profile_seed, stats):
         title = "Emotionally Drained"
         summary = "Even when life keeps moving, your sense of joy is fading. Recovery matters now."
         mood = "Low Morale"
+    elif energy <= 20:
+        title = "Exhausted Dreamer"
+        summary = "You are still chasing your future, but your energy is becoming one of your biggest limitations."
+        mood = "Burnout Warning"
     else:
         title = "Life In Progress"
-        summary = "You are shaping your identity one year at a time, balancing risk, ambition, and stability."
+        summary = "You are shaping your identity one year at a time, balancing health, connection, ambition, and stability."
         mood = "Steady"
 
     return {
@@ -339,12 +347,14 @@ def scenario_matches_player(scenario, stats):
         "age_max": lambda v: stats.get("age", 18) <= v,
         "money_min": lambda v: stats.get("money", 50) >= v,
         "money_max": lambda v: stats.get("money", 50) <= v,
+        "health_min": lambda v: stats.get("health", 50) >= v,
+        "health_max": lambda v: stats.get("health", 50) <= v,
         "energy_min": lambda v: stats.get("energy", 50) >= v,
         "energy_max": lambda v: stats.get("energy", 50) <= v,
         "happiness_min": lambda v: stats.get("happiness", 50) >= v,
         "happiness_max": lambda v: stats.get("happiness", 50) <= v,
-        "risk_min": lambda v: stats.get("risk", 20) >= v,
-        "risk_max": lambda v: stats.get("risk", 20) <= v,
+        "social_min": lambda v: stats.get("social", 50) >= v,
+        "social_max": lambda v: stats.get("social", 50) <= v,
     }
 
     for key, value in conditions.items():
@@ -381,9 +391,10 @@ def start_game():
     initial_stats = {
         "age": 18,
         "money": 50,
+        "health": 50,
         "energy": 50,
         "happiness": 50,
-        "risk": 20
+        "social": 50
     }
 
     profile_seed = generate_profile_seed()
@@ -412,9 +423,10 @@ def make_choice():
     current_stats = data.get("stats", {
         "age": 18,
         "money": 50,
+        "health": 50,
         "energy": 50,
         "happiness": 50,
-        "risk": 20
+        "social": 50
     })
 
     history = data.get("history", [])
@@ -425,10 +437,11 @@ def make_choice():
 
     updated_stats = {
         "age": current_stats.get("age", 18) + 1,
-        "money": clamp_stat(current_stats.get("money", 50) + choice_effects.get("money", 0)),
-        "energy": clamp_stat(current_stats.get("energy", 50) + choice_effects.get("energy", 0)),
-        "happiness": clamp_stat(current_stats.get("happiness", 50) + choice_effects.get("happiness", 0)),
-        "risk": clamp_stat(current_stats.get("risk", 20) + choice_effects.get("risk", 0))
+        "money": clamp_money(current_stats.get("money", 50) + choice_effects.get("money", 0)),
+        "health": clamp_need(current_stats.get("health", 50) + choice_effects.get("health", 0)),
+        "energy": clamp_need(current_stats.get("energy", 50) + choice_effects.get("energy", 0)),
+        "happiness": clamp_need(current_stats.get("happiness", 50) + choice_effects.get("happiness", 0)),
+        "social": clamp_need(current_stats.get("social", 50) + choice_effects.get("social", 0))
     }
 
     history.append({
@@ -439,15 +452,18 @@ def make_choice():
     status = "continue"
     ending_message = ""
 
-    if updated_stats["risk"] >= 90:
+    if updated_stats["health"] <= 5:
         status = "game_over"
-        ending_message = "Your life spiraled into dangerous territory. Risk took control of your future."
+        ending_message = "Your health collapsed after too many years of neglect. Your journey ends before you can keep building."
     elif updated_stats["energy"] <= 5:
         status = "game_over"
         ending_message = "Burnout finally broke you. You pushed too hard for too long."
     elif updated_stats["happiness"] <= 5:
         status = "game_over"
         ending_message = "You lost your sense of joy and purpose. Life became emotionally empty."
+    elif updated_stats["social"] <= 5:
+        status = "game_over"
+        ending_message = "Isolation consumed too much of your life. Without connection, everything grew heavier."
     elif updated_stats["money"] <= 5:
         status = "game_over"
         ending_message = "You ran out of money and options. Survival became your whole reality."

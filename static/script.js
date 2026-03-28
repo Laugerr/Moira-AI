@@ -1,9 +1,10 @@
 let currentStats = {
   age: 18,
   money: 50,
+  health: 50,
   energy: 50,
   happiness: 50,
-  risk: 20
+  social: 50
 };
 
 let currentHistory = [];
@@ -26,13 +27,15 @@ const historyList = document.getElementById("history-list");
 
 const ageStat = document.getElementById("age-stat");
 const moneyStat = document.getElementById("money-stat");
+const healthStat = document.getElementById("health-stat");
 const energyStat = document.getElementById("energy-stat");
 const happinessStat = document.getElementById("happiness-stat");
-const riskStat = document.getElementById("risk-stat");
+const socialStat = document.getElementById("social-stat");
 
+const healthBar = document.getElementById("health-bar");
 const energyBar = document.getElementById("energy-bar");
 const happinessBar = document.getElementById("happiness-bar");
-const riskBar = document.getElementById("risk-bar");
+const socialBar = document.getElementById("social-bar");
 const profileName = document.getElementById("profile-name");
 const profileSubtitle = document.getElementById("profile-subtitle");
 const profileMood = document.getElementById("profile-mood");
@@ -44,14 +47,16 @@ const profileAgeBadge = document.getElementById("profile-age-badge");
 
 function updateStatsUI(stats) {
   ageStat.textContent = stats.age;
-  moneyStat.textContent = `$${stats.money}`;
+  moneyStat.textContent = `$${Number(stats.money).toLocaleString()}`;
+  healthStat.textContent = `${stats.health}%`;
   energyStat.textContent = `${stats.energy}%`;
   happinessStat.textContent = `${stats.happiness}%`;
-  riskStat.textContent = `${stats.risk}%`;
+  socialStat.textContent = `${stats.social}%`;
 
+  healthBar.style.width = `${stats.health}%`;
   energyBar.style.width = `${stats.energy}%`;
   happinessBar.style.width = `${stats.happiness}%`;
-  riskBar.style.width = `${stats.risk}%`;
+  socialBar.style.width = `${stats.social}%`;
 }
 
 function renderProfile(profile) {

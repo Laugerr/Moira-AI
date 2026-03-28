@@ -13,31 +13,34 @@
         "text": "Take the cafe job for stability",
         "effects": {
           "money": 15,
+          "health": -4,
           "energy": -10,
           "happiness": -2,
-          "risk": -5
+          "social": -2
         },
-        "result": "You gain some stability, but routine begins to wear you down."
+        "result": "You gain some stability, but the routine quickly starts wearing on your body and your social life."
       },
       {
         "text": "Join your friend and try the business",
         "effects": {
           "money": -5,
+          "health": -2,
           "energy": -5,
           "happiness": 10,
-          "risk": 15
+          "social": 5
         },
-        "result": "You chase opportunity, but your future becomes less certain."
+        "result": "You chase opportunity with someone you trust, and the uncertainty feels exciting."
       },
       {
         "text": "Focus on learning a valuable skill instead",
         "effects": {
           "money": -10,
+          "health": 0,
           "energy": -3,
           "happiness": 5,
-          "risk": 6
+          "social": -1
         },
-        "result": "You invest in yourself, hoping the payoff comes later."
+        "result": "You invest in yourself and quietly build toward a better future."
       }
     ]
   },
@@ -54,31 +57,34 @@
         "text": "Move and start over",
         "effects": {
           "money": -12,
+          "health": -2,
           "energy": -8,
           "happiness": 8,
-          "risk": 10
+          "social": -3
         },
-        "result": "The city excites you, but survival becomes more expensive."
+        "result": "The city energizes you, but the move leaves you tired and disconnected."
       },
       {
         "text": "Stay and save money",
         "effects": {
           "money": 10,
+          "health": 0,
           "energy": 2,
           "happiness": -3,
-          "risk": -3
+          "social": 1
         },
-        "result": "You stay safe financially, though life feels smaller."
+        "result": "You stay safe financially, though life feels a little smaller."
       },
       {
         "text": "Visit first before deciding",
         "effects": {
           "money": -4,
+          "health": 0,
           "energy": -2,
           "happiness": 4,
-          "risk": 2
+          "social": 1
         },
-        "result": "You test the waters without fully committing."
+        "result": "You explore carefully and give yourself more time to decide."
       }
     ]
   },
@@ -87,39 +93,41 @@
     "title": "The Tempting Shortcut",
     "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
     "conditions": {
-      "age_min": 18,
-      "risk_max": 75
+      "age_min": 18
     },
     "choices": [
       {
         "text": "Take the shortcut",
         "effects": {
           "money": 20,
+          "health": -10,
           "energy": -3,
           "happiness": 2,
-          "risk": 20
+          "social": -4
         },
-        "result": "The money arrives quickly, but danger follows close behind."
+        "result": "The money comes fast, but the pressure and paranoia start taking a toll."
       },
       {
         "text": "Refuse and stay clean",
         "effects": {
           "money": -2,
+          "health": 2,
           "energy": 1,
           "happiness": 4,
-          "risk": -10
+          "social": 0
         },
-        "result": "You protect your future, even if it feels frustrating now."
+        "result": "You protect your future, even if the decision feels frustrating today."
       },
       {
         "text": "Investigate before deciding",
         "effects": {
           "money": 0,
+          "health": -1,
           "energy": -2,
           "happiness": 1,
-          "risk": 4
+          "social": 0
         },
-        "result": "You buy yourself time by learning more."
+        "result": "You buy yourself time by learning more before stepping into danger."
       }
     ]
   },
@@ -136,31 +144,34 @@
         "text": "Buy the course",
         "effects": {
           "money": -18,
+          "health": 0,
           "energy": -4,
           "happiness": 8,
-          "risk": 8
+          "social": -1
         },
-        "result": "You take a serious bet on your future."
+        "result": "You take a serious bet on your future and commit to growth."
       },
       {
         "text": "Keep the money and learn for free",
         "effects": {
           "money": 4,
+          "health": 0,
           "energy": -2,
           "happiness": 2,
-          "risk": -2
+          "social": 0
         },
-        "result": "You stay safer financially and progress more slowly."
+        "result": "You stay safer financially and move forward more slowly."
       },
       {
         "text": "Borrow to buy it now",
         "effects": {
           "money": 8,
+          "health": -2,
           "energy": -5,
           "happiness": 3,
-          "risk": 12
+          "social": -1
         },
-        "result": "You move faster, but pressure builds behind the scenes."
+        "result": "You move faster, but the pressure begins building behind the scenes."
       }
     ]
   },
@@ -170,38 +181,42 @@
     "text": "Someone important in your life wants more time from you, but your ambitions are accelerating. You cannot fully prioritize both.",
     "conditions": {
       "age_min": 20,
-      "age_max": 40
+      "age_max": 40,
+      "social_min": 20
     },
     "choices": [
       {
         "text": "Prioritize the relationship",
         "effects": {
           "money": -5,
+          "health": 3,
           "energy": 5,
           "happiness": 12,
-          "risk": -3
+          "social": 10
         },
-        "result": "Your heart feels fuller, though your progress slows."
+        "result": "Your heart feels fuller, and the connection strengthens your life."
       },
       {
         "text": "Prioritize ambition",
         "effects": {
           "money": 12,
+          "health": -3,
           "energy": -8,
           "happiness": -5,
-          "risk": 6
+          "social": -8
         },
-        "result": "You move forward quickly, but emotionally it costs you."
+        "result": "You push ahead quickly, but the emotional cost is real."
       },
       {
         "text": "Try to balance both",
         "effects": {
           "money": 4,
-          "energy": -10,
+          "health": -1,
+          "energy": -6,
           "happiness": 4,
-          "risk": 4
+          "social": 4
         },
-        "result": "You hold both worlds together, but the strain is real."
+        "result": "You keep both parts of life alive, but the strain shows."
       }
     ]
   },
@@ -217,19 +232,21 @@
         "text": "Take a real break",
         "effects": {
           "money": -6,
+          "health": 10,
           "energy": 18,
           "happiness": 8,
-          "risk": -6
+          "social": 2
         },
-        "result": "You slow down and recover some of what you lost."
+        "result": "You slow down, recover, and regain some balance."
       },
       {
         "text": "Push through it",
         "effects": {
-          "money": 10,
-          "energy": -12,
-          "happiness": -6,
-          "risk": 10
+          "money": 7,
+          "health": -10,
+          "energy": -10,
+          "happiness": -5,
+          "social": -3
         },
         "result": "You get more done, but you feel yourself cracking."
       },
@@ -237,11 +254,12 @@
         "text": "Reduce workload slightly",
         "effects": {
           "money": -2,
+          "health": 6,
           "energy": 8,
           "happiness": 4,
-          "risk": -2
+          "social": 1
         },
-        "result": "You choose moderation and regain some balance."
+        "result": "You choose moderation and begin recovering without stopping completely."
       }
     ]
   },
@@ -258,9 +276,10 @@
         "text": "Invest aggressively",
         "effects": {
           "money": 15,
+          "health": -1,
           "energy": -2,
           "happiness": 5,
-          "risk": 14
+          "social": 2
         },
         "result": "You go in hard and hope the opportunity works in your favor."
       },
@@ -268,9 +287,10 @@
         "text": "Invest cautiously",
         "effects": {
           "money": 6,
+          "health": 0,
           "energy": -1,
           "happiness": 3,
-          "risk": 5
+          "social": 1
         },
         "result": "You take a measured approach and protect yourself somewhat."
       },
@@ -278,11 +298,407 @@
         "text": "Skip it entirely",
         "effects": {
           "money": 0,
+          "health": 0,
           "energy": 1,
           "happiness": -1,
-          "risk": -3
+          "social": 0
         },
         "result": "You stay safe, though you wonder what could have happened."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Night Class Offer",
+    "text": "A local institute offers discounted evening classes that could improve your future. It will demand time and discipline, but it might open new doors.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 30,
+      "money_min": 10
+    },
+    "choices": [
+      {
+        "text": "Enroll and commit to studying",
+        "effects": {
+          "money": -8,
+          "health": 0,
+          "energy": -6,
+          "happiness": 5,
+          "social": -2
+        },
+        "result": "You invest in your growth and begin building a stronger foundation."
+      },
+      {
+        "text": "Wait until life is more stable",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": 1,
+          "happiness": -1,
+          "social": 0
+        },
+        "result": "You delay the opportunity and keep your current routine intact."
+      },
+      {
+        "text": "Teach yourself instead",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -3,
+          "happiness": 3,
+          "social": -1
+        },
+        "result": "You choose the slower route and rely on self-discipline."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Unexpected Medical Expense",
+    "text": "A health issue appears out of nowhere and the treatment is expensive. Ignoring it could save money now, but may cause bigger problems later.",
+    "conditions": {
+      "age_min": 18
+    },
+    "choices": [
+      {
+        "text": "Pay for treatment immediately",
+        "effects": {
+          "money": -14,
+          "health": 10,
+          "energy": 6,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "The bill hurts, but you take care of the problem before it grows."
+      },
+      {
+        "text": "Delay treatment and hope it passes",
+        "effects": {
+          "money": 4,
+          "health": -10,
+          "energy": -6,
+          "happiness": -4,
+          "social": -1
+        },
+        "result": "You keep your cash for now, but your body pays the price."
+      },
+      {
+        "text": "Look for a cheaper alternative",
+        "effects": {
+          "money": -6,
+          "health": -2,
+          "energy": -2,
+          "happiness": 1,
+          "social": 0
+        },
+        "result": "You find a temporary solution, though some uncertainty remains."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "A Friend Needs Help",
+    "text": "A close friend asks for help during a difficult period. Supporting them will cost time and money, but walking away may damage the relationship.",
+    "conditions": {
+      "age_min": 18,
+      "happiness_min": 20,
+      "social_min": 15
+    },
+    "choices": [
+      {
+        "text": "Show up and help fully",
+        "effects": {
+          "money": -6,
+          "health": 0,
+          "energy": -5,
+          "happiness": 8,
+          "social": 10
+        },
+        "result": "You become someone they can truly rely on."
+      },
+      {
+        "text": "Offer limited support",
+        "effects": {
+          "money": -2,
+          "health": 0,
+          "energy": -2,
+          "happiness": 3,
+          "social": 4
+        },
+        "result": "You help where you can, but you keep your boundaries."
+      },
+      {
+        "text": "Step back and focus on yourself",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 2,
+          "happiness": -4,
+          "social": -8
+        },
+        "result": "You protect your own capacity, though guilt lingers."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Promotion Window",
+    "text": "An opening appears at work that could move you into a better role. Competition is intense, and the pressure would increase immediately.",
+    "conditions": {
+      "age_min": 22,
+      "energy_min": 25
+    },
+    "choices": [
+      {
+        "text": "Compete hard for the promotion",
+        "effects": {
+          "money": 14,
+          "health": -2,
+          "energy": -7,
+          "happiness": 4,
+          "social": -2
+        },
+        "result": "You step up aggressively and your ambition becomes visible."
+      },
+      {
+        "text": "Stay in your current role",
+        "effects": {
+          "money": 3,
+          "health": 0,
+          "energy": 2,
+          "happiness": -1,
+          "social": 0
+        },
+        "result": "You choose stability over pressure and keep your footing."
+      },
+      {
+        "text": "Negotiate for more time to prepare",
+        "effects": {
+          "money": 6,
+          "health": 0,
+          "energy": -2,
+          "happiness": 2,
+          "social": 1
+        },
+        "result": "You position yourself carefully instead of rushing in."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Cheap Escape",
+    "text": "You find a chance to take a short trip out of town for very little money. It could refresh you, but it may also distract you from your responsibilities.",
+    "conditions": {
+      "age_min": 18,
+      "energy_max": 70
+    },
+    "choices": [
+      {
+        "text": "Take the trip and reset",
+        "effects": {
+          "money": -5,
+          "health": 3,
+          "energy": 10,
+          "happiness": 8,
+          "social": 2
+        },
+        "result": "The change of scenery helps you breathe again."
+      },
+      {
+        "text": "Stay home and keep grinding",
+        "effects": {
+          "money": 3,
+          "health": -1,
+          "energy": -4,
+          "happiness": -2,
+          "social": -1
+        },
+        "result": "You stay disciplined, but life feels narrower."
+      },
+      {
+        "text": "Take a smaller local break instead",
+        "effects": {
+          "money": -2,
+          "health": 1,
+          "energy": 5,
+          "happiness": 4,
+          "social": 1
+        },
+        "result": "You rest without fully disconnecting from your obligations."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "The Wrong Crowd",
+    "text": "A group around you starts chasing fast money and reckless thrills. Joining them could make life feel exciting, but it may pull you into serious trouble.",
+    "conditions": {
+      "age_min": 18
+    },
+    "choices": [
+      {
+        "text": "Join them for the excitement",
+        "effects": {
+          "money": 8,
+          "health": -6,
+          "energy": -4,
+          "happiness": 6,
+          "social": 4
+        },
+        "result": "The rush feels real, but the people and habits around you grow more dangerous."
+      },
+      {
+        "text": "Keep your distance",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 1,
+          "happiness": -1,
+          "social": -2
+        },
+        "result": "You avoid the chaos, even if part of you feels left out."
+      },
+      {
+        "text": "Stay close but avoid the worst parts",
+        "effects": {
+          "money": 3,
+          "health": -3,
+          "energy": -2,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "You try to walk the line, but that line keeps moving."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Mentor Encounter",
+    "text": "You meet someone experienced who sees potential in you. They offer guidance, but following their advice may force you to challenge your current habits.",
+    "conditions": {
+      "age_min": 18,
+      "happiness_min": 15
+    },
+    "choices": [
+      {
+        "text": "Accept the mentorship seriously",
+        "effects": {
+          "money": 2,
+          "health": 1,
+          "energy": -3,
+          "happiness": 7,
+          "social": 6
+        },
+        "result": "Their guidance gives your effort more direction and purpose."
+      },
+      {
+        "text": "Listen casually but stay independent",
+        "effects": {
+          "money": 1,
+          "health": 0,
+          "energy": 0,
+          "happiness": 3,
+          "social": 2
+        },
+        "result": "You take what helps and keep control over your own path."
+      },
+      {
+        "text": "Reject the advice",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 1,
+          "happiness": -2,
+          "social": -2
+        },
+        "result": "You choose pride and freedom, but may be missing a valuable shortcut."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Rent Goes Up",
+    "text": "Your living costs rise unexpectedly, forcing you to rethink your budget. Convenience now comes at a higher price than before.",
+    "conditions": {
+      "age_min": 18,
+      "money_min": 8
+    },
+    "choices": [
+      {
+        "text": "Pay the higher rent and stay",
+        "effects": {
+          "money": -10,
+          "health": 0,
+          "energy": 0,
+          "happiness": 1,
+          "social": 1
+        },
+        "result": "You preserve stability, but your finances tighten immediately."
+      },
+      {
+        "text": "Move to something cheaper",
+        "effects": {
+          "money": -4,
+          "health": -1,
+          "energy": -4,
+          "happiness": -2,
+          "social": -2
+        },
+        "result": "The move disrupts your life, but it reduces long-term pressure."
+      },
+      {
+        "text": "Find a roommate",
+        "effects": {
+          "money": 4,
+          "health": 0,
+          "energy": -2,
+          "happiness": 0,
+          "social": 4
+        },
+        "result": "You cut costs by giving up some privacy and gaining more human company."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Creative Spark",
+    "text": "A strong creative idea keeps pulling at your attention. It may be unrealistic, but it also feels deeply personal and hard to ignore.",
+    "conditions": {
+      "age_min": 18
+    },
+    "choices": [
+      {
+        "text": "Invest time in the idea",
+        "effects": {
+          "money": -4,
+          "health": 0,
+          "energy": -4,
+          "happiness": 9,
+          "social": 1
+        },
+        "result": "You create something that feels meaningful, even if results are uncertain."
+      },
+      {
+        "text": "Treat it as a hobby only",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -1,
+          "happiness": 4,
+          "social": 0
+        },
+        "result": "You protect the joy of it by keeping expectations low."
+      },
+      {
+        "text": "Ignore it and stay practical",
+        "effects": {
+          "money": 3,
+          "health": 0,
+          "energy": 1,
+          "happiness": -3,
+          "social": -1
+        },
+        "result": "You stay efficient, but something inside you feels muted."
       }
     ]
   }

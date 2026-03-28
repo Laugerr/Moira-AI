@@ -83,11 +83,21 @@
         <section class="bottom-grid">
           <div class="status-card">
             <div class="status-header">
-              <h3>Life Stats</h3>
-              <p>Track the direction of your life in real time.</p>
+              <h3>Life Needs</h3>
+              <p>Track the needs that shape your daily life.</p>
             </div>
 
             <div class="stat-rows">
+              <div class="stat-row">
+                <div class="stat-row-label">
+                  <span>Health</span>
+                  <strong id="health-stat">50%</strong>
+                </div>
+                <div class="stat-track">
+                  <div id="health-bar" class="stat-fill health-fill" style="width: 50%;"></div>
+                </div>
+              </div>
+
               <div class="stat-row">
                 <div class="stat-row-label">
                   <span>Energy</span>
@@ -110,11 +120,11 @@
 
               <div class="stat-row">
                 <div class="stat-row-label">
-                  <span>Risk</span>
-                  <strong id="risk-stat">20%</strong>
+                  <span>Social</span>
+                  <strong id="social-stat">50%</strong>
                 </div>
                 <div class="stat-track">
-                  <div id="risk-bar" class="stat-fill risk-fill" style="width: 20%;"></div>
+                  <div id="social-bar" class="stat-fill social-fill" style="width: 50%;"></div>
                 </div>
               </div>
             </div>
