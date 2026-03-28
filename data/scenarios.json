@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "First Job, First Pressure",
-    "text": "You are young, low on money, and trying to build your future. A local café offers you a stable but tiring job, while your friend asks you to join a risky online business.",
+    "text": "You are young, low on money, and trying to build your future. A local cafe offers you a stable but tiring job, while your friend asks you to join a risky online business.",
     "conditions": {
       "age_min": 18,
       "age_max": 24,
@@ -10,7 +10,7 @@
     },
     "choices": [
       {
-        "text": "Take the café job for stability",
+        "text": "Take the cafe job for stability",
         "effects": {
           "money": 15,
           "energy": -10,

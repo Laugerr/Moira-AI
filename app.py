@@ -42,7 +42,7 @@ FALLBACK_SCENARIOS = [
     {
         "id": 1,
         "title": "First Job, First Pressure",
-        "text": "You are young, low on money, and trying to build your future. A local café offers you a stable but tiring job, while your friend asks you to join a risky online business.",
+        "text": "You are young, low on money, and trying to build your future. A local cafe offers you a stable but tiring job, while your friend asks you to join a risky online business.",
         "conditions": {
             "age_min": 18,
             "age_max": 24,
@@ -50,7 +50,7 @@ FALLBACK_SCENARIOS = [
         },
         "choices": [
             {
-                "text": "Take the café job for stability",
+                "text": "Take the cafe job for stability",
                 "effects": {"money": 15, "energy": -10, "happiness": -2, "risk": -5},
                 "result": "You gain some stability, but routine begins to wear you down."
             },
@@ -224,13 +224,36 @@ FALLBACK_SCENARIOS = [
 ]
 
 
+def is_valid_scenario(scenario):
+    if not isinstance(scenario, dict):
+        return False
+
+    choices = scenario.get("choices")
+    if not isinstance(choices, list) or not choices:
+        return False
+
+    required_fields = ("id", "title", "text")
+    if any(not scenario.get(field) for field in required_fields):
+        return False
+
+    for choice in choices:
+        if not isinstance(choice, dict):
+            return False
+        if not choice.get("text") or not isinstance(choice.get("effects"), dict):
+            return False
+
+    return True
+
+
 def load_scenarios():
     try:
         if DATA_FILE.exists():
             with open(DATA_FILE, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if isinstance(data, list) and data:
-                    return data
+                if isinstance(data, list):
+                    valid_scenarios = [scenario for scenario in data if is_valid_scenario(scenario)]
+                    if valid_scenarios:
+                        return valid_scenarios
     except Exception:
         pass
     return FALLBACK_SCENARIOS
@@ -343,9 +366,9 @@ def get_next_scenario(stats, used_scenarios):
         matching = [s for s in scenarios if scenario_matches_player(s, stats)]
 
     if not matching:
-        matching = scenarios
+        matching = FALLBACK_SCENARIOS
 
-    return random.choice(matching)
+    return random.choice(matching) if matching else None
 
 
 @app.route("/")
@@ -377,7 +400,7 @@ def start_game():
                 "event": "You entered adulthood with uncertainty, potential, and a future still unwritten."
             }
         ],
-        "used_scenarios": [scenario.get("id")],
+        "used_scenarios": [scenario.get("id")] if scenario else [],
         "message": "Your life begins. Every year, every choice, every consequence matters."
     })
 
@@ -436,7 +459,11 @@ def make_choice():
 
     if status == "continue":
         next_scenario = get_next_scenario(updated_stats, used_scenarios)
-        used_scenarios.append(next_scenario.get("id"))
+        if next_scenario:
+            used_scenarios.append(next_scenario.get("id"))
+        else:
+            status = "completed"
+            ending_message = "Your journey pauses here because no new life events are available."
 
     return jsonify({
         "result_text": result_text,
