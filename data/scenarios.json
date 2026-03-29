@@ -155,6 +155,9 @@
           "happiness": 8,
           "social": -1
         },
+        "set_flags": [
+          "course_commitment"
+        ],
         "result": "You take a serious bet on your future and commit to growth."
       },
       {
@@ -201,6 +204,9 @@
           "happiness": 12,
           "social": 10
         },
+        "set_flags": [
+          "relationship_priority"
+        ],
         "result": "Your heart feels fuller, and the connection strengthens your life."
       },
       {
@@ -212,6 +218,9 @@
           "happiness": -5,
           "social": -8
         },
+        "set_flags": [
+          "ambition_priority"
+        ],
         "result": "You push ahead quickly, but the emotional cost is real."
       },
       {
@@ -681,6 +690,9 @@
           "happiness": 0,
           "social": 4
         },
+        "set_flags": [
+          "roommate_life"
+        ],
         "result": "You cut costs by giving up some privacy and gaining more human company."
       }
     ]
@@ -749,6 +761,9 @@
           "happiness": 6,
           "social": -1
         },
+        "set_flags": [
+          "scholarship_momentum"
+        ],
         "result": "Your preparation pays off and new academic support becomes possible."
       },
       {
@@ -1459,6 +1474,320 @@
           "side_hustle_growth"
         ],
         "result": "You walk away from the extra income and give your life more room to breathe."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "domain": "relationship",
+    "title": "Relationship Crossroads",
+    "text": "The relationship you protected now asks a bigger question about the future. What was once emotional support is becoming a real choice about commitment and direction.",
+    "conditions": {
+      "age_min": 24,
+      "flags_include": [
+        "relationship_priority"
+      ],
+      "flags_exclude": [
+        "relationship_priority_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Commit more deeply and build together",
+        "effects": {
+          "money": -4,
+          "health": 2,
+          "energy": 1,
+          "happiness": 8,
+          "social": 8
+        },
+        "set_flags": [
+          "relationship_priority_resolved"
+        ],
+        "result": "You choose closeness over ambiguity and your life feels more shared."
+      },
+      {
+        "text": "Keep things meaningful but independent",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 0,
+          "happiness": 3,
+          "social": 3
+        },
+        "set_flags": [
+          "relationship_priority_resolved"
+        ],
+        "result": "You preserve the bond without letting it define your whole future."
+      },
+      {
+        "text": "Step away before your goals drift apart",
+        "effects": {
+          "money": 0,
+          "health": -1,
+          "energy": -1,
+          "happiness": -5,
+          "social": -6
+        },
+        "set_flags": [
+          "relationship_priority_resolved"
+        ],
+        "clear_flags": [
+          "relationship_priority"
+        ],
+        "result": "You accept the loss and protect your direction, even though it hurts."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "domain": "work",
+    "title": "Cost of Ambition",
+    "text": "The years you poured into ambition created visible progress, but now the personal cost is catching up with you. Something in your life needs to be renegotiated.",
+    "conditions": {
+      "age_min": 24,
+      "flags_include": [
+        "ambition_priority"
+      ],
+      "flags_exclude": [
+        "ambition_priority_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Keep pushing and accept the tradeoff",
+        "effects": {
+          "money": 12,
+          "health": -2,
+          "energy": -5,
+          "happiness": -4,
+          "social": -4
+        },
+        "set_flags": [
+          "ambition_priority_resolved"
+        ],
+        "result": "You protect your momentum, but the imbalance in your life deepens."
+      },
+      {
+        "text": "Rebalance before success costs too much",
+        "effects": {
+          "money": 3,
+          "health": 1,
+          "energy": 3,
+          "happiness": 4,
+          "social": 3
+        },
+        "set_flags": [
+          "ambition_priority_resolved"
+        ],
+        "clear_flags": [
+          "ambition_priority"
+        ],
+        "result": "You slow the climb enough to make your life livable again."
+      },
+      {
+        "text": "Change direction entirely",
+        "effects": {
+          "money": -6,
+          "health": 2,
+          "energy": 2,
+          "happiness": 5,
+          "social": 1
+        },
+        "set_flags": [
+          "ambition_priority_resolved"
+        ],
+        "clear_flags": [
+          "ambition_priority"
+        ],
+        "result": "You give up some status in exchange for a future that fits you better."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "domain": "education",
+    "title": "The Course Pays Off",
+    "text": "The course you once gambled on starts opening doors. The payoff is real, but so is the pressure to turn potential into something concrete.",
+    "conditions": {
+      "age_min": 20,
+      "flags_include": [
+        "course_commitment"
+      ],
+      "flags_exclude": [
+        "course_commitment_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Use the momentum to pivot upward",
+        "effects": {
+          "money": 10,
+          "health": 0,
+          "energy": -4,
+          "happiness": 5,
+          "social": 0
+        },
+        "set_flags": [
+          "course_commitment_resolved"
+        ],
+        "result": "Your bet on yourself begins turning into real progress."
+      },
+      {
+        "text": "Apply the skills quietly over time",
+        "effects": {
+          "money": 5,
+          "health": 0,
+          "energy": -1,
+          "happiness": 3,
+          "social": 0
+        },
+        "set_flags": [
+          "course_commitment_resolved"
+        ],
+        "result": "The change is slower, but it roots itself more steadily in your life."
+      },
+      {
+        "text": "Let the opportunity fade",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 1,
+          "happiness": -2,
+          "social": 0
+        },
+        "set_flags": [
+          "course_commitment_resolved"
+        ],
+        "clear_flags": [
+          "course_commitment"
+        ],
+        "result": "The skills remain, but the moment to build on them slips away."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "domain": "education",
+    "title": "Scholarship Decision",
+    "text": "The scholarship momentum becomes real and forces a decision: go all in on the opportunity, balance it carefully, or stay with the life you already know.",
+    "conditions": {
+      "age_min": 19,
+      "age_max": 30,
+      "flags_include": [
+        "scholarship_momentum"
+      ],
+      "flags_exclude": [
+        "scholarship_momentum_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Restructure your life around the opportunity",
+        "effects": {
+          "money": 14,
+          "health": -1,
+          "energy": -5,
+          "happiness": 6,
+          "social": -2
+        },
+        "set_flags": [
+          "scholarship_momentum_resolved"
+        ],
+        "result": "You choose growth over comfort and your future starts widening."
+      },
+      {
+        "text": "Take the support but keep balance in mind",
+        "effects": {
+          "money": 8,
+          "health": 0,
+          "energy": -2,
+          "happiness": 4,
+          "social": 0
+        },
+        "set_flags": [
+          "scholarship_momentum_resolved"
+        ],
+        "result": "You use the opportunity well without letting it swallow the rest of your life."
+      },
+      {
+        "text": "Stay with the path you already trust",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": 1,
+          "happiness": -1,
+          "social": 0
+        },
+        "set_flags": [
+          "scholarship_momentum_resolved"
+        ],
+        "clear_flags": [
+          "scholarship_momentum"
+        ],
+        "result": "You choose familiarity over the larger leap, and your life remains steadier but smaller."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "domain": "housing",
+    "title": "Life with a Roommate",
+    "text": "Sharing space starts creating a new kind of tension and companionship. Living with someone else is saving money, but it is also reshaping your daily life.",
+    "conditions": {
+      "age_min": 19,
+      "flags_include": [
+        "roommate_life"
+      ],
+      "flags_exclude": [
+        "roommate_life_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Build a healthier shared routine",
+        "effects": {
+          "money": 5,
+          "health": 0,
+          "energy": 1,
+          "happiness": 3,
+          "social": 5
+        },
+        "set_flags": [
+          "roommate_life_resolved"
+        ],
+        "result": "The arrangement becomes one of the more supportive parts of your life."
+      },
+      {
+        "text": "Keep the peace and focus on practicality",
+        "effects": {
+          "money": 4,
+          "health": 0,
+          "energy": 0,
+          "happiness": 1,
+          "social": 1
+        },
+        "set_flags": [
+          "roommate_life_resolved"
+        ],
+        "result": "It works well enough and gives you the breathing room you needed."
+      },
+      {
+        "text": "Move out before the friction grows",
+        "effects": {
+          "money": -5,
+          "health": 0,
+          "energy": -2,
+          "happiness": -1,
+          "social": -3
+        },
+        "set_flags": [
+          "roommate_life_resolved"
+        ],
+        "clear_flags": [
+          "roommate_life"
+        ],
+        "result": "You recover your space, but the extra financial pressure returns."
       }
     ]
   }
