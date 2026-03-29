@@ -34,10 +34,11 @@ Current repo already includes:
 - Scenario and choice system
 - Needs-based stats
 - History timeline
-- Basic endings
-- JSON-based scenario loading with fallback scenarios
+- Connected scenario chains
+- State-aware selection
+- UI clarity improvements
 
-This means the project is already beyond idea stage and `v0.1.0` is complete.
+This means `v0.1.0` and `v0.2.0` are complete, and the project is ready to move into deeper systems work.
 
 ## 🚦 Release Roadmap
 
@@ -62,9 +63,12 @@ Definition of done:
 - Core screens work from start to ending
 - No critical logic bugs in start, choice, or ending flow
 
-### 🎮 v0.2.0 - First Truly Playable Version
+### ✅ v0.2.0 - First Truly Playable Version
 Goal:
 Make the prototype enjoyable and replayable.
+
+Current status:
+- Complete
 
 Scope:
 - More scenarios across multiple life domains
@@ -72,6 +76,8 @@ Scope:
 - Cleaner UI and better readability
 - Improved life-profile feedback
 - Better ending variety
+- State-aware scenario selection
+- First consequence chains and follow-up events
 
 Definition of done:
 - Multiple runs feel meaningfully different
