@@ -472,6 +472,9 @@
           "happiness": 4,
           "social": -2
         },
+        "set_flags": [
+          "career_push"
+        ],
         "result": "You step up aggressively and your ambition becomes visible."
       },
       {
@@ -563,6 +566,9 @@
           "happiness": 6,
           "social": 4
         },
+        "set_flags": [
+          "wrong_crowd"
+        ],
         "result": "The rush feels real, but the people and habits around you grow more dangerous."
       },
       {
@@ -879,6 +885,9 @@
           "happiness": 4,
           "social": -2
         },
+        "set_flags": [
+          "side_hustle_growth"
+        ],
         "result": "You turn the opportunity into real income, but your pace becomes intense."
       },
       {
@@ -1264,6 +1273,192 @@
           "social": 1
         },
         "result": "You let yourself breathe and realize not every year has to be a struggle."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "domain": "work",
+    "title": "After the Promotion",
+    "text": "Your push for career progress paid off, but the higher role now comes with sharper expectations. The opportunity is real, yet so is the pressure.",
+    "conditions": {
+      "age_min": 23,
+      "flags_include": [
+        "career_push"
+      ],
+      "flags_exclude": [
+        "career_push_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Rise to the challenge and own the role",
+        "effects": {
+          "money": 12,
+          "health": -2,
+          "energy": -6,
+          "happiness": 4,
+          "social": -1
+        },
+        "set_flags": [
+          "career_push_resolved"
+        ],
+        "result": "You prove you can handle the new pressure, though it asks a lot from your day-to-day life."
+      },
+      {
+        "text": "Set boundaries before the job consumes you",
+        "effects": {
+          "money": 6,
+          "health": 1,
+          "energy": -2,
+          "happiness": 3,
+          "social": 1
+        },
+        "set_flags": [
+          "career_push_resolved"
+        ],
+        "result": "You protect your life outside work and still hold onto the gains you earned."
+      },
+      {
+        "text": "Step back before burnout catches you",
+        "effects": {
+          "money": -2,
+          "health": 2,
+          "energy": 3,
+          "happiness": 1,
+          "social": 0
+        },
+        "set_flags": [
+          "career_push_resolved"
+        ],
+        "result": "You give up some momentum, but you leave before the pressure takes too much from you."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "domain": "risk",
+    "title": "Trouble from the Wrong Crowd",
+    "text": "The crowd you kept around you finally brings real consequences. A situation is turning serious, and staying close could pull you in deeper than you expected.",
+    "conditions": {
+      "age_min": 19,
+      "flags_include": [
+        "wrong_crowd"
+      ],
+      "flags_exclude": [
+        "wrong_crowd_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Cut ties immediately and walk away",
+        "effects": {
+          "money": -2,
+          "health": 1,
+          "energy": 1,
+          "happiness": -1,
+          "social": -4
+        },
+        "set_flags": [
+          "wrong_crowd_resolved"
+        ],
+        "clear_flags": [
+          "wrong_crowd"
+        ],
+        "result": "You lose part of your social world, but you protect your future before the damage grows."
+      },
+      {
+        "text": "Stay involved and hope it passes",
+        "effects": {
+          "money": 6,
+          "health": -8,
+          "energy": -5,
+          "happiness": -2,
+          "social": 2
+        },
+        "set_flags": [
+          "wrong_crowd_resolved"
+        ],
+        "result": "You stay inside the mess a little longer, and the cost becomes harder to ignore."
+      },
+      {
+        "text": "Help one person out, then leave the rest behind",
+        "effects": {
+          "money": -1,
+          "health": -2,
+          "energy": -2,
+          "happiness": 2,
+          "social": -1
+        },
+        "set_flags": [
+          "wrong_crowd_resolved"
+        ],
+        "clear_flags": [
+          "wrong_crowd"
+        ],
+        "result": "You leave with some of your conscience intact, even if the whole situation still leaves a mark."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "domain": "money",
+    "title": "Side Hustle Turning Point",
+    "text": "Your growing side hustle reaches a point where it can either become a bigger commitment or stay a useful extra stream. The next move will shape your balance.",
+    "conditions": {
+      "age_min": 21,
+      "flags_include": [
+        "side_hustle_growth"
+      ],
+      "flags_exclude": [
+        "side_hustle_resolved"
+      ]
+    },
+    "choices": [
+      {
+        "text": "Scale it into something serious",
+        "effects": {
+          "money": 16,
+          "health": -3,
+          "energy": -7,
+          "happiness": 5,
+          "social": -2
+        },
+        "set_flags": [
+          "side_hustle_resolved"
+        ],
+        "result": "The money grows, but your life becomes more tightly packed around work."
+      },
+      {
+        "text": "Keep it small and sustainable",
+        "effects": {
+          "money": 7,
+          "health": 0,
+          "energy": -2,
+          "happiness": 3,
+          "social": 0
+        },
+        "set_flags": [
+          "side_hustle_resolved"
+        ],
+        "result": "You keep the benefits without letting the hustle define your whole life."
+      },
+      {
+        "text": "Let it go and reclaim your time",
+        "effects": {
+          "money": 0,
+          "health": 2,
+          "energy": 5,
+          "happiness": 2,
+          "social": 1
+        },
+        "set_flags": [
+          "side_hustle_resolved"
+        ],
+        "clear_flags": [
+          "side_hustle_growth"
+        ],
+        "result": "You walk away from the extra income and give your life more room to breathe."
       }
     ]
   }

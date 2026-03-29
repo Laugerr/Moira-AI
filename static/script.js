@@ -11,6 +11,7 @@ let currentHistory = [];
 let usedScenarios = [];
 let currentScenario = null;
 let profileSeed = null;
+let lifeFlags = [];
 
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
@@ -119,6 +120,7 @@ async function startGame() {
     currentStats = data.stats;
     currentHistory = data.history || [];
     usedScenarios = data.used_scenarios || [];
+    lifeFlags = data.life_flags || [];
     profileSeed = data.profile_seed || null;
 
     updateStatsUI(currentStats);
@@ -153,9 +155,12 @@ async function handleChoice(choice) {
         stats: currentStats,
         history: currentHistory,
         used_scenarios: usedScenarios,
+        life_flags: lifeFlags,
         profile_seed: profileSeed,
         effects: choice.effects,
-        result: choice.result
+        result: choice.result,
+        set_flags: choice.set_flags || [],
+        clear_flags: choice.clear_flags || []
       })
     });
 
@@ -164,6 +169,7 @@ async function handleChoice(choice) {
     currentStats = data.updated_stats;
     currentHistory = data.history || [];
     usedScenarios = data.used_scenarios || [];
+    lifeFlags = data.life_flags || [];
     profileSeed = data.profile_seed || profileSeed;
 
     updateStatsUI(currentStats);

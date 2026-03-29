@@ -247,6 +247,10 @@ def is_valid_scenario(scenario):
             return False
         if not choice.get("text") or not isinstance(choice.get("effects"), dict):
             return False
+        if choice.get("set_flags") and not isinstance(choice.get("set_flags"), list):
+            return False
+        if choice.get("clear_flags") and not isinstance(choice.get("clear_flags"), list):
+            return False
 
     return True
 
@@ -427,8 +431,9 @@ def build_ending(status, stats, profile_seed):
     }
 
 
-def scenario_matches_player(scenario, stats):
+def scenario_matches_player(scenario, stats, life_flags=None):
     conditions = scenario.get("conditions", {})
+    active_flags = set(life_flags or [])
 
     checks = {
         "age_min": lambda v: stats.get("age", 18) >= v,
@@ -446,6 +451,16 @@ def scenario_matches_player(scenario, stats):
     }
 
     for key, value in conditions.items():
+        if key == "flags_include":
+            if not set(value).issubset(active_flags):
+                return False
+            continue
+
+        if key == "flags_exclude":
+            if set(value) & active_flags:
+                return False
+            continue
+
         if key in checks and not checks[key](value):
             return False
 
@@ -559,16 +574,16 @@ def score_scenario(scenario, stats, used_scenarios, scenarios):
     return score
 
 
-def get_next_scenario(stats, used_scenarios):
+def get_next_scenario(stats, used_scenarios, life_flags=None):
     scenarios = load_scenarios()
 
     matching = [
         s for s in scenarios
-        if scenario_matches_player(s, stats) and s.get("id") not in used_scenarios
+        if scenario_matches_player(s, stats, life_flags) and s.get("id") not in used_scenarios
     ]
 
     if not matching:
-        matching = [s for s in scenarios if scenario_matches_player(s, stats)]
+        matching = [s for s in scenarios if scenario_matches_player(s, stats, life_flags)]
 
     if not matching:
         matching = FALLBACK_SCENARIOS
@@ -599,11 +614,13 @@ def start_game():
     }
 
     profile_seed = generate_profile_seed()
-    scenario = get_next_scenario(initial_stats, [])
+    life_flags = []
+    scenario = get_next_scenario(initial_stats, [], life_flags)
 
     return jsonify({
         "scenario": scenario,
         "stats": initial_stats,
+        "life_flags": life_flags,
         "profile_seed": profile_seed,
         "player_profile": build_profile_snapshot(profile_seed, initial_stats),
         "history": [
@@ -632,9 +649,12 @@ def make_choice():
 
     history = data.get("history", [])
     used_scenarios = data.get("used_scenarios", [])
+    life_flags = data.get("life_flags", [])
     profile_seed = data.get("profile_seed") or generate_profile_seed()
     choice_effects = data.get("effects", {})
     result_text = data.get("result", "You made a choice and moved forward.")
+    set_flags = data.get("set_flags", [])
+    clear_flags = data.get("clear_flags", [])
 
     updated_stats = {
         "age": current_stats.get("age", 18) + 1,
@@ -649,6 +669,11 @@ def make_choice():
         "age": updated_stats["age"],
         "event": result_text
     })
+
+    updated_life_flags = [flag for flag in life_flags if flag not in clear_flags]
+    for flag in set_flags:
+        if flag not in updated_life_flags:
+            updated_life_flags.append(flag)
 
     status = "continue"
     ending_title = ""
@@ -688,7 +713,7 @@ def make_choice():
     next_scenario = None
 
     if status == "continue":
-        next_scenario = get_next_scenario(updated_stats, used_scenarios)
+        next_scenario = get_next_scenario(updated_stats, used_scenarios, updated_life_flags)
         if next_scenario:
             used_scenarios.append(next_scenario.get("id"))
         else:
@@ -700,6 +725,7 @@ def make_choice():
     return jsonify({
         "result_text": result_text,
         "updated_stats": updated_stats,
+        "life_flags": updated_life_flags,
         "profile_seed": profile_seed,
         "player_profile": build_profile_snapshot(profile_seed, updated_stats),
         "history": history,
