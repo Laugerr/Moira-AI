@@ -452,6 +452,113 @@ def scenario_matches_player(scenario, stats):
     return True
 
 
+def get_life_stage_domain_bias(age):
+    stage = get_life_stage(age)
+
+    if stage == "Emerging Adult":
+        return {
+            "education": 4,
+            "work": 3,
+            "growth": 3,
+            "life": 2,
+            "risk": 1,
+        }
+
+    if stage == "Young Professional":
+        return {
+            "work": 4,
+            "money": 3,
+            "housing": 2,
+            "social": 2,
+            "relationship": 2,
+            "growth": 1,
+        }
+
+    if stage == "Established Adult":
+        return {
+            "work": 3,
+            "family": 3,
+            "housing": 3,
+            "money": 2,
+            "health": 2,
+            "social": 1,
+        }
+
+    return {
+        "health": 4,
+        "family": 3,
+        "growth": 3,
+        "life": 3,
+        "money": 2,
+        "social": 2,
+    }
+
+
+def get_recent_domains(scenarios, used_scenarios, recent_count=2):
+    scenario_by_id = {scenario.get("id"): scenario for scenario in scenarios}
+    recent_domains = []
+
+    for scenario_id in reversed(used_scenarios):
+        scenario = scenario_by_id.get(scenario_id)
+        if not scenario:
+            continue
+
+        recent_domains.append(scenario.get("domain", "general"))
+        if len(recent_domains) >= recent_count:
+            break
+
+    return recent_domains
+
+
+def score_scenario(scenario, stats, used_scenarios, scenarios):
+    domain = scenario.get("domain", "general")
+    age = stats.get("age", 18)
+    money = stats.get("money", 50)
+    health = stats.get("health", 50)
+    energy = stats.get("energy", 50)
+    happiness = stats.get("happiness", 50)
+    social = stats.get("social", 50)
+
+    score = random.random()
+    stage_bias = get_life_stage_domain_bias(age)
+    score += stage_bias.get(domain, 0)
+
+    if money <= 25 and domain in {"money", "work", "housing"}:
+        score += 4
+    if health <= 35 and domain == "health":
+        score += 5
+    if energy <= 35 and domain in {"health", "life"}:
+        score += 4
+    if happiness <= 35 and domain in {"growth", "social", "life", "relationship"}:
+        score += 4
+    if social <= 35 and domain in {"social", "family", "relationship"}:
+        score += 5
+
+    if money >= 70 and domain in {"growth", "education", "housing"}:
+        score += 2
+    if social >= 70 and domain in {"relationship", "family", "social"}:
+        score += 2
+    if happiness >= 70 and domain in {"growth", "life", "social"}:
+        score += 1.5
+
+    used_domain_counts = {}
+    for item in scenarios:
+        if item.get("id") in used_scenarios:
+            used_domain = item.get("domain", "general")
+            used_domain_counts[used_domain] = used_domain_counts.get(used_domain, 0) + 1
+
+    score -= used_domain_counts.get(domain, 0) * 0.75
+
+    recent_domains = get_recent_domains(scenarios, used_scenarios)
+    if recent_domains:
+        if domain == recent_domains[0]:
+            score -= 4
+        elif domain in recent_domains:
+            score -= 2
+
+    return score
+
+
 def get_next_scenario(stats, used_scenarios):
     scenarios = load_scenarios()
 
@@ -469,16 +576,10 @@ def get_next_scenario(stats, used_scenarios):
     if not matching:
         return None
 
-    used_domain_counts = {}
-    for scenario in scenarios:
-        if scenario.get("id") in used_scenarios:
-            domain = scenario.get("domain", "general")
-            used_domain_counts[domain] = used_domain_counts.get(domain, 0) + 1
-
-    shuffled = matching[:]
-    random.shuffle(shuffled)
-    shuffled.sort(key=lambda scenario: used_domain_counts.get(scenario.get("domain", "general"), 0))
-    return shuffled[0]
+    return max(
+        matching,
+        key=lambda scenario: score_scenario(scenario, stats, used_scenarios, scenarios)
+    )
 
 
 @app.route("/")
