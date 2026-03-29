@@ -33,6 +33,11 @@ const healthStat = document.getElementById("health-stat");
 const energyStat = document.getElementById("energy-stat");
 const happinessStat = document.getElementById("happiness-stat");
 const socialStat = document.getElementById("social-stat");
+const healthState = document.getElementById("health-state");
+const energyState = document.getElementById("energy-state");
+const happinessState = document.getElementById("happiness-state");
+const socialState = document.getElementById("social-state");
+const historyCount = document.getElementById("history-count");
 
 const healthBar = document.getElementById("health-bar");
 const energyBar = document.getElementById("energy-bar");
@@ -47,6 +52,28 @@ const profileOrigin = document.getElementById("profile-origin");
 const profileSummary = document.getElementById("profile-summary");
 const profileAgeBadge = document.getElementById("profile-age-badge");
 
+function getNeedState(value) {
+  if (value <= 20) {
+    return { label: "Critical", tone: "critical" };
+  }
+
+  if (value <= 40) {
+    return { label: "Low", tone: "low" };
+  }
+
+  if (value >= 75) {
+    return { label: "Strong", tone: "strong" };
+  }
+
+  return { label: "Stable", tone: "stable" };
+}
+
+function applyNeedState(element, value) {
+  const state = getNeedState(value);
+  element.textContent = state.label;
+  element.className = `stat-state ${state.tone}`;
+}
+
 function updateStatsUI(stats) {
   ageStat.textContent = stats.age;
   moneyStat.textContent = `$${Number(stats.money).toLocaleString()}`;
@@ -59,6 +86,11 @@ function updateStatsUI(stats) {
   energyBar.style.width = `${stats.energy}%`;
   happinessBar.style.width = `${stats.happiness}%`;
   socialBar.style.width = `${stats.social}%`;
+
+  applyNeedState(healthState, stats.health);
+  applyNeedState(energyState, stats.energy);
+  applyNeedState(happinessState, stats.happiness);
+  applyNeedState(socialState, stats.social);
 }
 
 function renderProfile(profile) {
@@ -98,8 +130,14 @@ function renderScenario(scenario) {
 
 function renderHistory(history) {
   historyList.innerHTML = "";
+  historyCount.textContent = `${history.length} ${history.length === 1 ? "entry" : "entries"}`;
 
   const reversedHistory = [...history].reverse();
+
+  if (!reversedHistory.length) {
+    historyList.innerHTML = '<div class="history-empty">No major life events have been recorded yet.</div>';
+    return;
+  }
 
   reversedHistory.forEach((entry) => {
     const item = document.createElement("div");

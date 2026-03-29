@@ -90,7 +90,10 @@
             <div class="stat-rows">
               <div class="stat-row">
                 <div class="stat-row-label">
-                  <span>Health</span>
+                  <div class="stat-row-meta">
+                    <span>Health</span>
+                    <span id="health-state" class="stat-state">Stable</span>
+                  </div>
                   <strong id="health-stat">50%</strong>
                 </div>
                 <div class="stat-track">
@@ -100,7 +103,10 @@
 
               <div class="stat-row">
                 <div class="stat-row-label">
-                  <span>Energy</span>
+                  <div class="stat-row-meta">
+                    <span>Energy</span>
+                    <span id="energy-state" class="stat-state">Stable</span>
+                  </div>
                   <strong id="energy-stat">50%</strong>
                 </div>
                 <div class="stat-track">
@@ -110,7 +116,10 @@
 
               <div class="stat-row">
                 <div class="stat-row-label">
-                  <span>Happiness</span>
+                  <div class="stat-row-meta">
+                    <span>Happiness</span>
+                    <span id="happiness-state" class="stat-state">Stable</span>
+                  </div>
                   <strong id="happiness-stat">50%</strong>
                 </div>
                 <div class="stat-track">
@@ -120,7 +129,10 @@
 
               <div class="stat-row">
                 <div class="stat-row-label">
-                  <span>Social</span>
+                  <div class="stat-row-meta">
+                    <span>Social</span>
+                    <span id="social-state" class="stat-state">Stable</span>
+                  </div>
                   <strong id="social-stat">50%</strong>
                 </div>
                 <div class="stat-track">
@@ -132,12 +144,19 @@
 
           <div class="side-stack">
             <div class="result-card">
+              <p class="card-kicker">Latest Consequence</p>
               <h3>Latest Outcome</h3>
               <p id="result-text">Choose a path to reveal the consequences.</p>
             </div>
 
             <aside class="history-card">
-              <h3>Life Timeline</h3>
+              <div class="card-header">
+                <div>
+                  <p class="card-kicker">Run Memory</p>
+                  <h3>Life Timeline</h3>
+                </div>
+                <span id="history-count" class="history-count">1 entry</span>
+              </div>
               <div id="history-list" class="history-list"></div>
             </aside>
           </div>

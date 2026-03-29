@@ -13,9 +13,9 @@
       {
         "text": "Take the cafe job for stability",
         "effects": {
-          "money": 15,
+          "money": 12,
           "health": -4,
-          "energy": -10,
+          "energy": -8,
           "happiness": -2,
           "social": -2
         },
@@ -103,8 +103,8 @@
       {
         "text": "Take the shortcut",
         "effects": {
-          "money": 20,
-          "health": -10,
+          "money": 16,
+          "health": -8,
           "energy": -3,
           "happiness": 2,
           "social": -4
@@ -199,10 +199,10 @@
         "text": "Prioritize the relationship",
         "effects": {
           "money": -5,
-          "health": 3,
-          "energy": 5,
-          "happiness": 12,
-          "social": 10
+          "health": 2,
+          "energy": 4,
+          "happiness": 9,
+          "social": 7
         },
         "set_flags": [
           "relationship_priority"
@@ -249,9 +249,9 @@
         "text": "Take a real break",
         "effects": {
           "money": -6,
-          "health": 10,
-          "energy": 18,
-          "happiness": 8,
+          "health": 8,
+          "energy": 14,
+          "happiness": 6,
           "social": 2
         },
         "result": "You slow down, recover, and regain some balance."
@@ -293,10 +293,10 @@
       {
         "text": "Invest aggressively",
         "effects": {
-          "money": 15,
+          "money": 10,
           "health": -1,
           "energy": -2,
-          "happiness": 5,
+          "happiness": 4,
           "social": 2
         },
         "result": "You go in hard and hope the opportunity works in your favor."
@@ -383,9 +383,9 @@
       {
         "text": "Pay for treatment immediately",
         "effects": {
-          "money": -14,
-          "health": 10,
-          "energy": 6,
+          "money": -12,
+          "health": 8,
+          "energy": 5,
           "happiness": 2,
           "social": 0
         },
@@ -432,8 +432,8 @@
           "money": -6,
           "health": 0,
           "energy": -5,
-          "happiness": 8,
-          "social": 10
+          "happiness": 6,
+          "social": 7
         },
         "result": "You become someone they can truly rely on."
       },
@@ -475,7 +475,7 @@
       {
         "text": "Compete hard for the promotion",
         "effects": {
-          "money": 14,
+          "money": 10,
           "health": -2,
           "energy": -7,
           "happiness": 4,
@@ -894,9 +894,9 @@
       {
         "text": "Push hard while the momentum is there",
         "effects": {
-          "money": 14,
+          "money": 11,
           "health": -2,
-          "energy": -8,
+          "energy": -7,
           "happiness": 4,
           "social": -2
         },
@@ -986,7 +986,7 @@
       {
         "text": "Take the safe job",
         "effects": {
-          "money": 11,
+          "money": 9,
           "health": 0,
           "energy": -4,
           "happiness": -2,
@@ -1123,7 +1123,7 @@
       {
         "text": "Pay for the full repair now",
         "effects": {
-          "money": -15,
+          "money": -12,
           "health": 0,
           "energy": -2,
           "happiness": 3,
@@ -1386,8 +1386,8 @@
         "text": "Stay involved and hope it passes",
         "effects": {
           "money": 6,
-          "health": -8,
-          "energy": -5,
+          "health": -6,
+          "energy": -4,
           "happiness": -2,
           "social": 2
         },
@@ -1433,10 +1433,10 @@
       {
         "text": "Scale it into something serious",
         "effects": {
-          "money": 16,
+          "money": 12,
           "health": -3,
           "energy": -7,
-          "happiness": 5,
+          "happiness": 4,
           "social": -2
         },
         "set_flags": [
@@ -1498,8 +1498,8 @@
           "money": -4,
           "health": 2,
           "energy": 1,
-          "happiness": 8,
-          "social": 8
+          "happiness": 6,
+          "social": 6
         },
         "set_flags": [
           "relationship_priority_resolved"
@@ -1526,8 +1526,8 @@
           "money": 0,
           "health": -1,
           "energy": -1,
-          "happiness": -5,
-          "social": -6
+          "happiness": -4,
+          "social": -5
         },
         "set_flags": [
           "relationship_priority_resolved"
@@ -1557,9 +1557,9 @@
       {
         "text": "Keep pushing and accept the tradeoff",
         "effects": {
-          "money": 12,
+          "money": 10,
           "health": -2,
-          "energy": -5,
+          "energy": -4,
           "happiness": -4,
           "social": -4
         },
@@ -1622,10 +1622,10 @@
       {
         "text": "Use the momentum to pivot upward",
         "effects": {
-          "money": 10,
+          "money": 8,
           "health": 0,
           "energy": -4,
-          "happiness": 5,
+          "happiness": 4,
           "social": 0
         },
         "set_flags": [
@@ -1685,10 +1685,10 @@
       {
         "text": "Restructure your life around the opportunity",
         "effects": {
-          "money": 14,
+          "money": 11,
           "health": -1,
           "energy": -5,
-          "happiness": 6,
+          "happiness": 5,
           "social": -2
         },
         "set_flags": [

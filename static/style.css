@@ -412,6 +412,33 @@ body {
   margin-bottom: 6px;
 }
 
+.card-kicker {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.history-count {
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  color: var(--text-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
 .status-header p,
 .result-card p,
 .history-item p {
@@ -431,13 +458,50 @@ body {
 .stat-row-label {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   color: var(--text-dark);
   font-size: 1.1rem;
 }
 
+.stat-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .stat-row-label strong {
   font-weight: 800;
+}
+
+.stat-state {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  color: var(--text-dark);
+}
+
+.stat-state.critical {
+  background: rgba(255, 112, 157, 0.22);
+  color: #8b2850;
+}
+
+.stat-state.low {
+  background: rgba(255, 193, 108, 0.24);
+  color: #8d5c12;
+}
+
+.stat-state.stable {
+  background: rgba(255, 255, 255, 0.28);
+  color: var(--text-dark);
+}
+
+.stat-state.strong {
+  background: rgba(121, 240, 177, 0.24);
+  color: #1f7d53;
 }
 
 .stat-track {
@@ -493,6 +557,15 @@ body {
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.34);
   border: 1px solid rgba(255, 255, 255, 0.32);
+}
+
+.history-empty {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.26);
+  border: 1px dashed rgba(255, 255, 255, 0.36);
+  color: var(--text-soft);
+  line-height: 1.6;
 }
 
 .history-age {
@@ -567,6 +640,13 @@ body {
   .avatar-wrap,
   .identity-money {
     margin: 0 auto;
+  }
+
+  .card-header,
+  .stat-row-label,
+  .stat-row-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .scenario-text,
