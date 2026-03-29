@@ -29,5 +29,3 @@ Moira AI is designed to feel like a mix of:
 
 ## 🗺 Planning
 - [Release Plan](./RELEASE_PLAN.md)
-- [v0.1.0 Release Notes](./RELEASE_NOTES_v0.1.0.md)
-- [v0.2.0 Release Notes](./RELEASE_NOTES_v0.2.0.md)
