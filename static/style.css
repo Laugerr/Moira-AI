@@ -389,6 +389,12 @@ body {
   opacity: 0.78;
 }
 
+.upgrade-btn:disabled,
+.restart-btn:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
+
 .bottom-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -443,6 +449,16 @@ body {
 .result-card p,
 .history-item p {
   color: var(--text-soft);
+}
+
+.needs-summary {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.26);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-soft);
+  line-height: 1.6;
 }
 
 .stat-rows {

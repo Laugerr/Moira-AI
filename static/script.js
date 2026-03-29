@@ -38,6 +38,7 @@ const energyState = document.getElementById("energy-state");
 const happinessState = document.getElementById("happiness-state");
 const socialState = document.getElementById("social-state");
 const historyCount = document.getElementById("history-count");
+const needsSummary = document.getElementById("needs-summary");
 
 const healthBar = document.getElementById("health-bar");
 const energyBar = document.getElementById("energy-bar");
@@ -74,6 +75,15 @@ function applyNeedState(element, value) {
   element.className = `stat-state ${state.tone}`;
 }
 
+function getNeedRanking(stats) {
+  return [
+    ["Health", stats.health],
+    ["Energy", stats.energy],
+    ["Happiness", stats.happiness],
+    ["Social", stats.social]
+  ].sort((a, b) => a[1] - b[1]);
+}
+
 function updateStatsUI(stats) {
   ageStat.textContent = stats.age;
   moneyStat.textContent = `$${Number(stats.money).toLocaleString()}`;
@@ -91,6 +101,19 @@ function updateStatsUI(stats) {
   applyNeedState(energyState, stats.energy);
   applyNeedState(happinessState, stats.happiness);
   applyNeedState(socialState, stats.social);
+
+  const [lowestNeed] = getNeedRanking(stats);
+  const highestNeed = getNeedRanking(stats).at(-1);
+
+  if (lowestNeed[1] <= 20) {
+    needsSummary.textContent = `${lowestNeed[0]} is in critical condition. Stabilize it before the run starts collapsing.`;
+  } else if (lowestNeed[1] <= 40) {
+    needsSummary.textContent = `${lowestNeed[0]} is your weakest need right now. ${highestNeed[0]} is carrying the most stability.`;
+  } else if (highestNeed[1] >= 75) {
+    needsSummary.textContent = `${highestNeed[0]} is a major strength right now. Keep the rest of your life from falling too far behind.`;
+  } else {
+    needsSummary.textContent = "Your life is in balance right now. Keep an eye on the areas that start slipping.";
+  }
 }
 
 function renderProfile(profile) {
@@ -151,8 +174,13 @@ function renderHistory(history) {
 }
 
 async function startGame() {
+  startBtn.disabled = true;
+  startBtn.textContent = "Starting...";
   try {
     const response = await fetch("/start");
+    if (!response.ok) {
+      throw new Error(`Start request failed: ${response.status}`);
+    }
     const data = await response.json();
 
     currentStats = data.stats;
@@ -177,6 +205,9 @@ async function startGame() {
   } catch (error) {
     gameMessage.textContent = "Something went wrong while starting the game.";
     console.error(error);
+  } finally {
+    startBtn.disabled = false;
+    startBtn.textContent = "Start Your Life";
   }
 }
 
@@ -201,6 +232,9 @@ async function handleChoice(choice) {
         clear_flags: choice.clear_flags || []
       })
     });
+    if (!response.ok) {
+      throw new Error(`Choice request failed: ${response.status}`);
+    }
 
     const data = await response.json();
 
