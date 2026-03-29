@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "domain": "work",
     "title": "First Job, First Pressure",
     "text": "You are young, low on money, and trying to build your future. A local cafe offers you a stable but tiring job, while your friend asks you to join a risky online business.",
     "conditions": {
@@ -46,6 +47,7 @@
   },
   {
     "id": 2,
+    "domain": "life",
     "title": "A New City Calls",
     "text": "A chance appears to move to a bigger city with more opportunity. The cost of living is much higher, but so is your potential.",
     "conditions": {
@@ -90,10 +92,12 @@
   },
   {
     "id": 3,
+    "domain": "risk",
     "title": "The Tempting Shortcut",
     "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
     "conditions": {
-      "age_min": 18
+      "age_min": 18,
+      "age_max": 28
     },
     "choices": [
       {
@@ -133,10 +137,12 @@
   },
   {
     "id": 4,
+    "domain": "education",
     "title": "The Expensive Dream",
     "text": "A course appears that could change your future, but it costs a painful amount of money. It could be a breakthrough or a mistake.",
     "conditions": {
       "age_min": 18,
+      "age_max": 32,
       "money_min": 15
     },
     "choices": [
@@ -177,6 +183,7 @@
   },
   {
     "id": 5,
+    "domain": "relationship",
     "title": "Love or Ambition",
     "text": "Someone important in your life wants more time from you, but your ambitions are accelerating. You cannot fully prioritize both.",
     "conditions": {
@@ -222,6 +229,7 @@
   },
   {
     "id": 6,
+    "domain": "health",
     "title": "Burnout Warning",
     "text": "You have been pushing too hard for too long. Your body and mind are sending you a warning.",
     "conditions": {
@@ -265,6 +273,7 @@
   },
   {
     "id": 7,
+    "domain": "money",
     "title": "An Investment Opportunity",
     "text": "A friend shows you a small investment opportunity. It might help you grow your money, or it might go badly.",
     "conditions": {
@@ -309,6 +318,7 @@
   },
   {
     "id": 8,
+    "domain": "education",
     "title": "Night Class Offer",
     "text": "A local institute offers discounted evening classes that could improve your future. It will demand time and discipline, but it might open new doors.",
     "conditions": {
@@ -354,6 +364,7 @@
   },
   {
     "id": 9,
+    "domain": "health",
     "title": "Unexpected Medical Expense",
     "text": "A health issue appears out of nowhere and the treatment is expensive. Ignoring it could save money now, but may cause bigger problems later.",
     "conditions": {
@@ -397,6 +408,7 @@
   },
   {
     "id": 10,
+    "domain": "social",
     "title": "A Friend Needs Help",
     "text": "A close friend asks for help during a difficult period. Supporting them will cost time and money, but walking away may damage the relationship.",
     "conditions": {
@@ -442,10 +454,12 @@
   },
   {
     "id": 11,
+    "domain": "work",
     "title": "Promotion Window",
     "text": "An opening appears at work that could move you into a better role. Competition is intense, and the pressure would increase immediately.",
     "conditions": {
       "age_min": 22,
+      "age_max": 45,
       "energy_min": 25
     },
     "choices": [
@@ -486,10 +500,12 @@
   },
   {
     "id": 12,
+    "domain": "health",
     "title": "Cheap Escape",
     "text": "You find a chance to take a short trip out of town for very little money. It could refresh you, but it may also distract you from your responsibilities.",
     "conditions": {
       "age_min": 18,
+      "age_max": 40,
       "energy_max": 70
     },
     "choices": [
@@ -530,10 +546,12 @@
   },
   {
     "id": 13,
+    "domain": "risk",
     "title": "The Wrong Crowd",
     "text": "A group around you starts chasing fast money and reckless thrills. Joining them could make life feel exciting, but it may pull you into serious trouble.",
     "conditions": {
-      "age_min": 18
+      "age_min": 18,
+      "age_max": 30
     },
     "choices": [
       {
@@ -573,6 +591,7 @@
   },
   {
     "id": 14,
+    "domain": "growth",
     "title": "Mentor Encounter",
     "text": "You meet someone experienced who sees potential in you. They offer guidance, but following their advice may force you to challenge your current habits.",
     "conditions": {
@@ -617,6 +636,7 @@
   },
   {
     "id": 15,
+    "domain": "housing",
     "title": "Rent Goes Up",
     "text": "Your living costs rise unexpectedly, forcing you to rethink your budget. Convenience now comes at a higher price than before.",
     "conditions": {
@@ -661,6 +681,7 @@
   },
   {
     "id": 16,
+    "domain": "growth",
     "title": "Creative Spark",
     "text": "A strong creative idea keeps pulling at your attention. It may be unrealistic, but it also feels deeply personal and hard to ignore.",
     "conditions": {
@@ -699,6 +720,550 @@
           "social": -1
         },
         "result": "You stay efficient, but something inside you feels muted."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "domain": "education",
+    "title": "Scholarship Interview",
+    "text": "You are invited to interview for a scholarship that could ease financial pressure and open a stronger path forward. Preparing well will take time and confidence.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 26,
+      "happiness_min": 15
+    },
+    "choices": [
+      {
+        "text": "Prepare seriously and give it your best",
+        "effects": {
+          "money": 12,
+          "health": 0,
+          "energy": -4,
+          "happiness": 6,
+          "social": -1
+        },
+        "result": "Your preparation pays off and new academic support becomes possible."
+      },
+      {
+        "text": "Attend casually and hope your talent carries you",
+        "effects": {
+          "money": 3,
+          "health": 0,
+          "energy": -1,
+          "happiness": 1,
+          "social": 0
+        },
+        "result": "You show promise, but the opportunity only partly opens."
+      },
+      {
+        "text": "Skip it and focus on immediate work",
+        "effects": {
+          "money": 6,
+          "health": 0,
+          "energy": 1,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "You choose short-term certainty over a longer educational gamble."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "domain": "family",
+    "title": "Family Responsibility",
+    "text": "A family member is struggling and needs practical help. Stepping in could strengthen your bond, but it will cost time, energy, and money.",
+    "conditions": {
+      "age_min": 19,
+      "social_min": 20
+    },
+    "choices": [
+      {
+        "text": "Step in fully and carry the burden",
+        "effects": {
+          "money": -8,
+          "health": -1,
+          "energy": -6,
+          "happiness": 4,
+          "social": 8
+        },
+        "result": "You become a steady presence in a hard season, even though it strains your own life."
+      },
+      {
+        "text": "Help within your limits",
+        "effects": {
+          "money": -3,
+          "health": 0,
+          "energy": -3,
+          "happiness": 2,
+          "social": 4
+        },
+        "result": "You show up without letting the situation consume everything."
+      },
+      {
+        "text": "Protect your own stability first",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": 2,
+          "happiness": -2,
+          "social": -5
+        },
+        "result": "You keep your footing, but the relationship grows colder."
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "domain": "health",
+    "title": "Fitness Routine",
+    "text": "A friend invites you to join a structured fitness program. It could improve your health and energy, but it requires consistency that may disrupt your routine.",
+    "conditions": {
+      "age_min": 18,
+      "health_max": 75
+    },
+    "choices": [
+      {
+        "text": "Commit to the full routine",
+        "effects": {
+          "money": -4,
+          "health": 8,
+          "energy": 5,
+          "happiness": 3,
+          "social": 2
+        },
+        "result": "You begin treating your body like something worth investing in."
+      },
+      {
+        "text": "Adopt a lighter version at home",
+        "effects": {
+          "money": 0,
+          "health": 4,
+          "energy": 2,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "You make moderate progress without changing your life too drastically."
+      },
+      {
+        "text": "Ignore it for now",
+        "effects": {
+          "money": 0,
+          "health": -2,
+          "energy": -1,
+          "happiness": -1,
+          "social": 0
+        },
+        "result": "You leave the idea behind, and your routine stays mostly the same."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "domain": "money",
+    "title": "Side Hustle Momentum",
+    "text": "A small side project you started begins showing real promise. Growing it could improve your finances, but it will take energy away from the rest of your life.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 40,
+      "energy_min": 20
+    },
+    "choices": [
+      {
+        "text": "Push hard while the momentum is there",
+        "effects": {
+          "money": 14,
+          "health": -2,
+          "energy": -8,
+          "happiness": 4,
+          "social": -2
+        },
+        "result": "You turn the opportunity into real income, but your pace becomes intense."
+      },
+      {
+        "text": "Grow it steadily on the side",
+        "effects": {
+          "money": 7,
+          "health": 0,
+          "energy": -4,
+          "happiness": 3,
+          "social": -1
+        },
+        "result": "You build something useful without letting it swallow your life."
+      },
+      {
+        "text": "Cash out and simplify",
+        "effects": {
+          "money": 5,
+          "health": 1,
+          "energy": 3,
+          "happiness": 1,
+          "social": 0
+        },
+        "result": "You take the short-term win and protect your bandwidth."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "domain": "social",
+    "title": "Reunion Invitation",
+    "text": "Old friends organize a reunion and ask you to come. Showing up could restore important connections, though it may also bring up old tensions.",
+    "conditions": {
+      "age_min": 22
+    },
+    "choices": [
+      {
+        "text": "Go and reconnect openly",
+        "effects": {
+          "money": -3,
+          "health": 0,
+          "energy": -2,
+          "happiness": 6,
+          "social": 8
+        },
+        "result": "The night reminds you that some bonds can still matter after years apart."
+      },
+      {
+        "text": "Stop by briefly",
+        "effects": {
+          "money": -1,
+          "health": 0,
+          "energy": -1,
+          "happiness": 2,
+          "social": 3
+        },
+        "result": "You reconnect just enough to reopen a few doors."
+      },
+      {
+        "text": "Decline and stay in the present",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 1,
+          "happiness": -1,
+          "social": -3
+        },
+        "result": "You avoid the emotional weight of the past, but the distance remains."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "domain": "work",
+    "title": "Dead-End Offer",
+    "text": "You receive a job offer that pays reliably but offers almost no room to grow. It could stabilize your money now, yet leave your ambitions stuck.",
+    "conditions": {
+      "age_min": 18,
+      "money_max": 55
+    },
+    "choices": [
+      {
+        "text": "Take the safe job",
+        "effects": {
+          "money": 11,
+          "health": 0,
+          "energy": -4,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "Your finances improve, but the role quickly feels smaller than your hopes."
+      },
+      {
+        "text": "Hold out for something with growth",
+        "effects": {
+          "money": -4,
+          "health": 0,
+          "energy": -1,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "You protect your long-term direction, even though it costs you now."
+      },
+      {
+        "text": "Take it temporarily with an exit plan",
+        "effects": {
+          "money": 7,
+          "health": 0,
+          "energy": -2,
+          "happiness": 1,
+          "social": 0
+        },
+        "result": "You use stability as a bridge instead of letting it become a trap."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "domain": "work",
+    "title": "Career Plateau",
+    "text": "Your work has become stable, but it no longer challenges you. You can stay comfortable, retrain for something bolder, or push for change inside your current field.",
+    "conditions": {
+      "age_min": 30,
+      "age_max": 45,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Stay where things are secure",
+        "effects": {
+          "money": 8,
+          "health": 0,
+          "energy": 1,
+          "happiness": -3,
+          "social": 0
+        },
+        "result": "Your life becomes more stable, even if your ambition starts to flatten."
+      },
+      {
+        "text": "Retrain for a new direction",
+        "effects": {
+          "money": -10,
+          "health": 0,
+          "energy": -4,
+          "happiness": 6,
+          "social": -1
+        },
+        "result": "You shake your routine and invest in a future that feels more alive."
+      },
+      {
+        "text": "Push for change from inside",
+        "effects": {
+          "money": 5,
+          "health": -1,
+          "energy": -3,
+          "happiness": 3,
+          "social": 1
+        },
+        "result": "You try to reshape your path without abandoning what you have already built."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "domain": "family",
+    "title": "Aging Parent Call",
+    "text": "An aging parent or older relative starts needing more support. The situation is manageable for now, but ignoring it may damage the relationship and leave you with regret.",
+    "conditions": {
+      "age_min": 32,
+      "social_min": 18
+    },
+    "choices": [
+      {
+        "text": "Rearrange life to be present",
+        "effects": {
+          "money": -6,
+          "health": -1,
+          "energy": -5,
+          "happiness": 4,
+          "social": 9
+        },
+        "result": "You become more present for your family, even though it costs you time and ease."
+      },
+      {
+        "text": "Help financially where you can",
+        "effects": {
+          "money": -9,
+          "health": 0,
+          "energy": -1,
+          "happiness": 1,
+          "social": 4
+        },
+        "result": "You provide support without changing your daily life as much."
+      },
+      {
+        "text": "Keep your distance and protect your routine",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 2,
+          "happiness": -3,
+          "social": -6
+        },
+        "result": "You preserve your stability, but the emotional distance becomes harder to ignore."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "domain": "housing",
+    "title": "Major Home Repair",
+    "text": "A serious repair issue hits your home or living situation. Fixing it now is expensive, but delaying it risks bigger damage and more stress later.",
+    "conditions": {
+      "age_min": 28,
+      "age_max": 55,
+      "money_min": 12
+    },
+    "choices": [
+      {
+        "text": "Pay for the full repair now",
+        "effects": {
+          "money": -15,
+          "health": 0,
+          "energy": -2,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "The cost stings, but your life becomes steadier again."
+      },
+      {
+        "text": "Patch it temporarily",
+        "effects": {
+          "money": -6,
+          "health": -1,
+          "energy": -1,
+          "happiness": 0,
+          "social": 0
+        },
+        "result": "You buy some time, though the problem never fully leaves your mind."
+      },
+      {
+        "text": "Delay it and hope for the best",
+        "effects": {
+          "money": 2,
+          "health": -2,
+          "energy": -3,
+          "happiness": -3,
+          "social": 0
+        },
+        "result": "You protect your cash for now, but the strain lingers in the background."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "domain": "health",
+    "title": "Preventive Checkup",
+    "text": "A doctor recommends a preventive checkup and lifestyle adjustment. Nothing feels urgent yet, but this is the kind of decision that shapes the next decade more than the next week.",
+    "conditions": {
+      "age_min": 40,
+      "age_max": 60
+    },
+    "choices": [
+      {
+        "text": "Take it seriously and make changes",
+        "effects": {
+          "money": -7,
+          "health": 10,
+          "energy": 4,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "You make the hard adjustments now and give your future self a better chance."
+      },
+      {
+        "text": "Do the checkup but change little",
+        "effects": {
+          "money": -3,
+          "health": 3,
+          "energy": 1,
+          "happiness": 0,
+          "social": 0
+        },
+        "result": "You acknowledge the warning without fully reshaping your habits."
+      },
+      {
+        "text": "Ignore it until something feels wrong",
+        "effects": {
+          "money": 0,
+          "health": -6,
+          "energy": -3,
+          "happiness": -1,
+          "social": 0
+        },
+        "result": "You postpone the discomfort of change, but your body keeps the score."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "domain": "growth",
+    "title": "Mentoring Someone Younger",
+    "text": "Someone earlier in life starts looking to you for guidance. Helping them could be meaningful, but it asks for patience and time you could spend elsewhere.",
+    "conditions": {
+      "age_min": 35,
+      "age_max": 60,
+      "social_min": 15
+    },
+    "choices": [
+      {
+        "text": "Invest in them with real care",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -2,
+          "happiness": 6,
+          "social": 6
+        },
+        "result": "You become a meaningful guide, and it adds a new kind of purpose to your life."
+      },
+      {
+        "text": "Offer occasional advice",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -1,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "You stay helpful without taking on the full responsibility."
+      },
+      {
+        "text": "Keep your focus on your own path",
+        "effects": {
+          "money": 1,
+          "health": 0,
+          "energy": 1,
+          "happiness": -1,
+          "social": -2
+        },
+        "result": "You protect your time, though you pass up a chance to matter in someone else's story."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "domain": "life",
+    "title": "Quiet Stability",
+    "text": "For once, life is not demanding a crisis response. You can use this calm period to deepen relationships, organize your finances, or simply rest and enjoy what you have built.",
+    "conditions": {
+      "age_min": 45,
+      "age_max": 60
+    },
+    "choices": [
+      {
+        "text": "Invest in the people around you",
+        "effects": {
+          "money": -2,
+          "health": 1,
+          "energy": 1,
+          "happiness": 5,
+          "social": 6
+        },
+        "result": "You turn stability into closeness and make life feel richer."
+      },
+      {
+        "text": "Strengthen your long-term security",
+        "effects": {
+          "money": 9,
+          "health": 0,
+          "energy": -1,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "You use the calm wisely and make your future steadier."
+      },
+      {
+        "text": "Slow down and enjoy the peace",
+        "effects": {
+          "money": 0,
+          "health": 4,
+          "energy": 5,
+          "happiness": 4,
+          "social": 1
+        },
+        "result": "You let yourself breathe and realize not every year has to be a struggle."
       }
     ]
   }

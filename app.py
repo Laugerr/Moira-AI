@@ -41,6 +41,7 @@ STARTING_DREAMS = [
 FALLBACK_SCENARIOS = [
     {
         "id": 1,
+        "domain": "work",
         "title": "First Job, First Pressure",
         "text": "You are young, low on money, and trying to build your future. A local cafe offers you a stable but tiring job, while your friend asks you to join a risky online business.",
         "conditions": {
@@ -68,6 +69,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 2,
+        "domain": "life",
         "title": "A New City Calls",
         "text": "A chance appears to move to a bigger city with more opportunity. The cost of living is much higher, but so is your potential.",
         "conditions": {
@@ -94,6 +96,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 3,
+        "domain": "risk",
         "title": "The Tempting Shortcut",
         "text": "Someone offers you a fast way to make money online. It sounds easy, but something about it feels dangerous.",
         "conditions": {
@@ -119,6 +122,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 4,
+        "domain": "education",
         "title": "The Expensive Dream",
         "text": "A course appears that could change your future, but it costs a painful amount of money. It could be a breakthrough or a mistake.",
         "conditions": {
@@ -145,6 +149,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 5,
+        "domain": "relationship",
         "title": "Love or Ambition",
         "text": "Someone important in your life wants more time from you, but your ambitions are accelerating. You cannot fully prioritize both.",
         "conditions": {
@@ -171,6 +176,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 6,
+        "domain": "health",
         "title": "Burnout Warning",
         "text": "You have been pushing too hard for too long. Your body and mind are sending you a warning.",
         "conditions": {
@@ -196,6 +202,7 @@ FALLBACK_SCENARIOS = [
     },
     {
         "id": 7,
+        "domain": "money",
         "title": "An Investment Opportunity",
         "text": "A friend shows you a small investment opportunity. It might help you grow your money, or it might go badly.",
         "conditions": {
@@ -231,7 +238,7 @@ def is_valid_scenario(scenario):
     if not isinstance(choices, list) or not choices:
         return False
 
-    required_fields = ("id", "title", "text")
+    required_fields = ("id", "title", "text", "domain")
     if any(not scenario.get(field) for field in required_fields):
         return False
 
@@ -282,9 +289,7 @@ def get_life_stage(age):
         return "Young Professional"
     if age <= 45:
         return "Established Adult"
-    if age <= 59:
-        return "Midlife Builder"
-    return "Legacy Years"
+    return "Midlife Builder"
 
 
 def build_profile_snapshot(profile_seed, stats):
@@ -461,7 +466,19 @@ def get_next_scenario(stats, used_scenarios):
     if not matching:
         matching = FALLBACK_SCENARIOS
 
-    return random.choice(matching) if matching else None
+    if not matching:
+        return None
+
+    used_domain_counts = {}
+    for scenario in scenarios:
+        if scenario.get("id") in used_scenarios:
+            domain = scenario.get("domain", "general")
+            used_domain_counts[domain] = used_domain_counts.get(domain, 0) + 1
+
+    shuffled = matching[:]
+    random.shuffle(shuffled)
+    shuffled.sort(key=lambda scenario: used_domain_counts.get(scenario.get("domain", "general"), 0))
+    return shuffled[0]
 
 
 @app.route("/")
