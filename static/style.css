@@ -124,6 +124,7 @@ body {
   letter-spacing: 0.12em;
   color: rgba(255, 255, 255, 0.72);
   margin-bottom: 4px;
+  animation: shimmerText 6s linear infinite;
 }
 
 .brand h1 {
@@ -152,12 +153,30 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.45);
   font-size: 1.15rem;
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }
 
 .upgrade-btn:hover,
 .restart-btn:hover,
 .choice-btn:hover {
   transform: translateY(-2px);
+}
+
+.upgrade-btn::after,
+.restart-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -120%;
+  width: 60%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+
+.upgrade-btn:hover::after,
+.restart-btn:hover::after {
+  left: 150%;
 }
 
 .hidden {
@@ -186,6 +205,17 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: var(--shadow);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.identity-card:hover,
+.story-panel:hover,
+.status-card:hover,
+.result-card:hover,
+.history-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 90px rgba(87, 46, 181, 0.28);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .identity-card {
@@ -304,6 +334,7 @@ body {
     radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.42), transparent 26%);
   opacity: 0.75;
   pointer-events: none;
+  animation: cloudDrift 10s ease-in-out infinite;
 }
 
 .story-header,
@@ -376,12 +407,13 @@ body {
   font-size: 1rem;
   line-height: 1.55;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .choice-btn:hover {
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 0 16px 30px rgba(107, 84, 206, 0.16);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .choice-btn:disabled {
@@ -525,12 +557,22 @@ body {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.4);
   overflow: hidden;
+  position: relative;
 }
 
 .stat-fill {
   height: 100%;
   border-radius: 999px;
-  transition: width 0.35s ease;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.stat-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  animation: barSheen 3.2s linear infinite;
 }
 
 .energy-fill {
@@ -573,6 +615,7 @@ body {
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.34);
   border: 1px solid rgba(255, 255, 255, 0.32);
+  animation: fadeSlideUp 0.45s ease both;
 }
 
 .history-empty {
@@ -619,6 +662,123 @@ body {
   border: 2px solid rgba(255, 255, 255, 0.45);
   font-size: 1rem;
   box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-enter {
+  animation: panelEnter 0.7s ease both;
+  animation-delay: var(--panel-delay, 0ms);
+}
+
+.content-refresh {
+  animation: contentRefresh 0.45s ease;
+}
+
+.value-up,
+.value-down {
+  animation-duration: 0.65s;
+  animation-timing-function: ease;
+}
+
+.value-up {
+  animation-name: valuePulseUp;
+}
+
+.value-down {
+  animation-name: valuePulseDown;
+}
+
+@keyframes panelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes contentRefresh {
+  0% {
+    opacity: 0.55;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes valuePulseUp {
+  0%, 100% {
+    transform: scale(1);
+    color: inherit;
+  }
+  40% {
+    transform: scale(1.08);
+    color: #1f7d53;
+  }
+}
+
+@keyframes valuePulseDown {
+  0%, 100% {
+    transform: scale(1);
+    color: inherit;
+  }
+  40% {
+    transform: scale(1.08);
+    color: #a73861;
+  }
+}
+
+@keyframes barSheen {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(220%);
+  }
+}
+
+@keyframes cloudDrift {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-20px) translateY(-8px);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmerText {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (max-width: 980px) {

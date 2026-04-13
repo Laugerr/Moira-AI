@@ -12,6 +12,7 @@ let usedScenarios = [];
 let currentScenario = null;
 let profileSeed = null;
 let lifeFlags = [];
+let lastStatsSnapshot = null;
 
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
@@ -53,6 +54,10 @@ const profileOrigin = document.getElementById("profile-origin");
 const profileSummary = document.getElementById("profile-summary");
 const profileAgeBadge = document.getElementById("profile-age-badge");
 
+const animatedPanels = document.querySelectorAll(
+  ".identity-card, .story-panel, .status-card, .result-card, .history-card"
+);
+
 function getNeedState(value) {
   if (value <= 20) {
     return { label: "Critical", tone: "critical" };
@@ -84,7 +89,62 @@ function getNeedRanking(stats) {
   ].sort((a, b) => a[1] - b[1]);
 }
 
+function animatePanelSwap(element) {
+  if (!element) {
+    return;
+  }
+
+  element.classList.remove("content-refresh");
+  void element.offsetWidth;
+  element.classList.add("content-refresh");
+}
+
+function triggerValuePulse(element, direction) {
+  if (!element || !direction) {
+    return;
+  }
+
+  const className = direction > 0 ? "value-up" : "value-down";
+  element.classList.remove("value-up", "value-down");
+  void element.offsetWidth;
+  element.classList.add(className);
+}
+
+function animateStatChanges(previousStats, nextStats) {
+  if (!previousStats) {
+    return;
+  }
+
+  const statMap = [
+    ["money", moneyStat],
+    ["health", healthStat],
+    ["energy", energyStat],
+    ["happiness", happinessStat],
+    ["social", socialStat]
+  ];
+
+  statMap.forEach(([key, element]) => {
+    const before = previousStats[key];
+    const after = nextStats[key];
+
+    if (typeof before === "number" && typeof after === "number" && before !== after) {
+      triggerValuePulse(element, after - before);
+    }
+  });
+}
+
+function animateDashboardEntrance() {
+  animatedPanels.forEach((panel, index) => {
+    panel.style.setProperty("--panel-delay", `${index * 80}ms`);
+    panel.classList.remove("panel-enter");
+    void panel.offsetWidth;
+    panel.classList.add("panel-enter");
+  });
+}
+
 function updateStatsUI(stats) {
+  animateStatChanges(lastStatsSnapshot, stats);
+
   ageStat.textContent = stats.age;
   moneyStat.textContent = `$${Number(stats.money).toLocaleString()}`;
   healthStat.textContent = `${stats.health}%`;
@@ -114,6 +174,8 @@ function updateStatsUI(stats) {
   } else {
     needsSummary.textContent = "Your life is in balance right now. Keep an eye on the areas that start slipping.";
   }
+
+  lastStatsSnapshot = { ...stats };
 }
 
 function renderProfile(profile) {
@@ -125,6 +187,7 @@ function renderProfile(profile) {
   profileOrigin.textContent = profile.hometown;
   profileSummary.textContent = profile.summary;
   profileAgeBadge.textContent = profile.age_badge;
+  animatePanelSwap(document.querySelector(".identity-card"));
 }
 
 function renderScenario(scenario) {
@@ -133,6 +196,7 @@ function renderScenario(scenario) {
     scenarioTitle.textContent = "No Scenario Available";
     scenarioText.textContent = "There are no life events available right now. Restart and try again.";
     choicesContainer.innerHTML = "";
+    animatePanelSwap(document.querySelector(".story-panel"));
     return;
   }
 
@@ -149,6 +213,8 @@ function renderScenario(scenario) {
     button.addEventListener("click", () => handleChoice(choice));
     choicesContainer.appendChild(button);
   });
+
+  animatePanelSwap(document.querySelector(".story-panel"));
 }
 
 function renderHistory(history) {
@@ -159,6 +225,7 @@ function renderHistory(history) {
 
   if (!reversedHistory.length) {
     historyList.innerHTML = '<div class="history-empty">No major life events have been recorded yet.</div>';
+    animatePanelSwap(document.querySelector(".history-card"));
     return;
   }
 
@@ -171,6 +238,8 @@ function renderHistory(history) {
     `;
     historyList.appendChild(item);
   });
+
+  animatePanelSwap(document.querySelector(".history-card"));
 }
 
 async function startGame() {
@@ -200,6 +269,7 @@ async function startGame() {
     gameOverCard.classList.add("hidden");
     endingMeta.textContent = "";
     gameSection.classList.remove("hidden");
+    animateDashboardEntrance();
 
     renderScenario(data.scenario);
   } catch (error) {
@@ -248,6 +318,7 @@ async function handleChoice(choice) {
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
     resultText.textContent = data.result_text;
+    animatePanelSwap(document.querySelector(".result-card"));
 
     if (data.status === "game_over" || data.status === "completed") {
       gameOverCard.classList.remove("hidden");
@@ -257,6 +328,7 @@ async function handleChoice(choice) {
       choicesContainer.innerHTML = "";
       scenarioTitle.textContent = "Your Journey Ends Here";
       scenarioText.textContent = "Your decisions created this life story. Restart and try a different path.";
+      animatePanelSwap(gameOverCard);
       return;
     }
 
