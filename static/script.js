@@ -21,6 +21,7 @@ const gameMessage = document.getElementById("game-message");
 const scenarioTitle = document.getElementById("scenario-title");
 const scenarioText = document.getElementById("scenario-text");
 const choicesContainer = document.getElementById("choices-container");
+const actionsContainer = document.getElementById("actions-container");
 const resultText = document.getElementById("result-text");
 const gameOverCard = document.getElementById("game-over-card");
 const endingMessage = document.getElementById("ending-message");
@@ -55,7 +56,7 @@ const profileSummary = document.getElementById("profile-summary");
 const profileAgeBadge = document.getElementById("profile-age-badge");
 
 const animatedPanels = document.querySelectorAll(
-  ".identity-card, .story-panel, .status-card, .result-card, .history-card"
+  ".identity-card, .story-panel, .actions-card, .status-card, .result-card, .history-card"
 );
 
 function getNeedState(value) {
@@ -242,6 +243,31 @@ function renderHistory(history) {
   animatePanelSwap(document.querySelector(".history-card"));
 }
 
+function renderActions(actions) {
+  actionsContainer.innerHTML = "";
+
+  if (!actions || !actions.length) {
+    actionsContainer.innerHTML = '<div class="history-empty">No self-directed actions are available right now. Your best option is to respond to the current life event.</div>';
+    animatePanelSwap(document.querySelector(".actions-card"));
+    return;
+  }
+
+  actions.forEach((action) => {
+    const button = document.createElement("button");
+    button.className = "action-btn";
+    button.type = "button";
+    button.innerHTML = `
+      <span class="action-title">${action.title}</span>
+      <span class="action-subtitle">${action.subtitle}</span>
+      <span class="action-description">${action.description}</span>
+    `;
+    button.addEventListener("click", () => handleAction(action.id));
+    actionsContainer.appendChild(button);
+  });
+
+  animatePanelSwap(document.querySelector(".actions-card"));
+}
+
 async function startGame() {
   startBtn.disabled = true;
   startBtn.textContent = "Starting...";
@@ -261,6 +287,7 @@ async function startGame() {
     updateStatsUI(currentStats);
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
+    renderActions(data.available_actions || []);
 
     gameMessage.textContent = data.message;
     resultText.textContent = "Choose a path to reveal the consequences.";
@@ -317,6 +344,7 @@ async function handleChoice(choice) {
     updateStatsUI(currentStats);
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
+    renderActions(data.available_actions || []);
     resultText.textContent = data.result_text;
     animatePanelSwap(document.querySelector(".result-card"));
 
@@ -342,6 +370,93 @@ async function handleChoice(choice) {
 
     console.error(error);
   }
+}
+
+async function handleAction(actionId) {
+  try {
+    actionsContainer.innerHTML = '<button class="action-btn" disabled>Taking action...</button>';
+
+    const response = await fetch("/action", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        stats: currentStats,
+        history: currentHistory,
+        used_scenarios: usedScenarios,
+        life_flags: lifeFlags,
+        profile_seed: profileSeed,
+        action_id: actionId
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Action request failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    currentStats = data.updated_stats;
+    currentHistory = data.history || [];
+    usedScenarios = data.used_scenarios || [];
+    lifeFlags = data.life_flags || [];
+    profileSeed = data.profile_seed || profileSeed;
+
+    updateStatsUI(currentStats);
+    renderProfile(data.player_profile);
+    renderHistory(currentHistory);
+    renderActions(data.available_actions || []);
+    resultText.textContent = data.result_text;
+    animatePanelSwap(document.querySelector(".result-card"));
+
+    if (data.status === "game_over" || data.status === "completed") {
+      gameOverCard.classList.remove("hidden");
+      endingMessage.textContent = data.ending_message;
+      endingTitle.textContent = data.ending_title || (data.status === "completed" ? "Life Complete" : "Game Over");
+      endingMeta.textContent = `${data.player_profile.age_badge} - ${data.player_profile.title} - ${data.player_profile.mood}`;
+      choicesContainer.innerHTML = "";
+      scenarioTitle.textContent = "Your Journey Ends Here";
+      scenarioText.textContent = "Your decisions created this life story. Restart and try a different path.";
+      animatePanelSwap(gameOverCard);
+      return;
+    }
+
+    renderScenario(data.next_scenario);
+  } catch (error) {
+    resultText.textContent = "An error happened while processing your action.";
+    renderActions(getFallbackActions());
+    console.error(error);
+  }
+}
+
+function getFallbackActions() {
+  return [
+    {
+      id: "work_shift",
+      title: "Work Extra",
+      subtitle: "Trade comfort for cash",
+      description: "Take on extra work to strengthen your finances, even if it drains your energy."
+    },
+    {
+      id: "study_focus",
+      title: "Study",
+      subtitle: "Build long-term potential",
+      description: "Spend time learning and improving your future options at the cost of short-term energy."
+    },
+    {
+      id: "rest_reset",
+      title: "Rest",
+      subtitle: "Recover before you crack",
+      description: "Slow down and protect yourself before stress and fatigue become something worse."
+    },
+    {
+      id: "social_time",
+      title: "Socialize",
+      subtitle: "Invest in connection",
+      description: "Spend real time with people who matter and keep your relationships alive."
+    }
+  ];
 }
 
 startBtn.addEventListener("click", startGame);

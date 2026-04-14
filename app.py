@@ -37,6 +37,52 @@ STARTING_DREAMS = [
     "build a future on their own terms"
 ]
 
+PLAYER_ACTIONS = [
+    {
+        "id": "work_shift",
+        "title": "Work Extra",
+        "subtitle": "Trade comfort for cash",
+        "description": "Take on extra work to strengthen your finances, even if it drains your energy.",
+        "effects": {"money": 10, "health": -2, "energy": -8, "happiness": -2, "social": -2},
+        "result": "You put in extra hours and earn more money, but the pressure clearly costs you.",
+        "conditions": {
+            "energy_min": 18
+        }
+    },
+    {
+        "id": "study_focus",
+        "title": "Study",
+        "subtitle": "Build long-term potential",
+        "description": "Spend time learning and improving your future options at the cost of short-term energy.",
+        "effects": {"money": -4, "health": 0, "energy": -5, "happiness": 3, "social": -1},
+        "result": "You invest time in growth and quietly become more capable than you were last year.",
+        "conditions": {
+            "energy_min": 15,
+            "money_min": 4
+        },
+        "set_flags": ["self_improvement"]
+    },
+    {
+        "id": "rest_reset",
+        "title": "Rest",
+        "subtitle": "Recover before you crack",
+        "description": "Slow down and protect yourself before stress and fatigue become something worse.",
+        "effects": {"money": -3, "health": 6, "energy": 12, "happiness": 4, "social": 1},
+        "result": "You give yourself time to recover, and the decision makes the rest of life feel more manageable.",
+    },
+    {
+        "id": "social_time",
+        "title": "Socialize",
+        "subtitle": "Invest in connection",
+        "description": "Spend real time with people who matter and keep your relationships alive.",
+        "effects": {"money": -4, "health": 1, "energy": -2, "happiness": 7, "social": 9},
+        "result": "You reconnect with people around you and feel less alone in the life you are building.",
+        "conditions": {
+            "money_min": 4
+        }
+    }
+]
+
 
 FALLBACK_SCENARIOS = [
     {
@@ -348,6 +394,76 @@ def build_profile_snapshot(profile_seed, stats):
     }
 
 
+def action_matches_player(action, stats, life_flags=None):
+    return scenario_matches_player({"conditions": action.get("conditions", {})}, stats, life_flags)
+
+
+def get_available_actions(stats, life_flags=None):
+    available = []
+
+    for action in PLAYER_ACTIONS:
+        if action_matches_player(action, stats, life_flags):
+            available.append({
+                "id": action["id"],
+                "title": action["title"],
+                "subtitle": action["subtitle"],
+                "description": action["description"],
+            })
+
+    return available
+
+
+def find_action(action_id):
+    for action in PLAYER_ACTIONS:
+        if action["id"] == action_id:
+            return action
+    return None
+
+
+def build_updated_stats(current_stats, effects):
+    return {
+        "age": current_stats.get("age", 18) + 1,
+        "money": clamp_money(current_stats.get("money", 50) + effects.get("money", 0)),
+        "health": clamp_need(current_stats.get("health", 50) + effects.get("health", 0)),
+        "energy": clamp_need(current_stats.get("energy", 50) + effects.get("energy", 0)),
+        "happiness": clamp_need(current_stats.get("happiness", 50) + effects.get("happiness", 0)),
+        "social": clamp_need(current_stats.get("social", 50) + effects.get("social", 0))
+    }
+
+
+def apply_flag_changes(life_flags, set_flags=None, clear_flags=None):
+    updated_life_flags = [flag for flag in life_flags if flag not in (clear_flags or [])]
+
+    for flag in set_flags or []:
+        if flag not in updated_life_flags:
+            updated_life_flags.append(flag)
+
+    return updated_life_flags
+
+
+def evaluate_run_status(stats, profile_seed):
+    if stats["health"] <= 5:
+        ending = build_ending("health", stats, profile_seed)
+        return "game_over", ending["title"], ending["message"]
+    if stats["energy"] <= 5:
+        ending = build_ending("energy", stats, profile_seed)
+        return "game_over", ending["title"], ending["message"]
+    if stats["happiness"] <= 5:
+        ending = build_ending("happiness", stats, profile_seed)
+        return "game_over", ending["title"], ending["message"]
+    if stats["social"] <= 5:
+        ending = build_ending("social", stats, profile_seed)
+        return "game_over", ending["title"], ending["message"]
+    if stats["money"] <= 5:
+        ending = build_ending("money", stats, profile_seed)
+        return "game_over", ending["title"], ending["message"]
+    if stats["age"] >= 60:
+        ending = build_ending("completed", stats, profile_seed)
+        return "completed", ending["title"], ending["message"]
+
+    return "continue", "", ""
+
+
 def get_life_strengths(stats):
     ranked = sorted(
         (
@@ -619,6 +735,7 @@ def start_game():
 
     return jsonify({
         "scenario": scenario,
+        "available_actions": get_available_actions(initial_stats, life_flags),
         "stats": initial_stats,
         "life_flags": life_flags,
         "profile_seed": profile_seed,
@@ -656,59 +773,15 @@ def make_choice():
     set_flags = data.get("set_flags", [])
     clear_flags = data.get("clear_flags", [])
 
-    updated_stats = {
-        "age": current_stats.get("age", 18) + 1,
-        "money": clamp_money(current_stats.get("money", 50) + choice_effects.get("money", 0)),
-        "health": clamp_need(current_stats.get("health", 50) + choice_effects.get("health", 0)),
-        "energy": clamp_need(current_stats.get("energy", 50) + choice_effects.get("energy", 0)),
-        "happiness": clamp_need(current_stats.get("happiness", 50) + choice_effects.get("happiness", 0)),
-        "social": clamp_need(current_stats.get("social", 50) + choice_effects.get("social", 0))
-    }
+    updated_stats = build_updated_stats(current_stats, choice_effects)
 
     history.append({
         "age": updated_stats["age"],
         "event": result_text
     })
 
-    updated_life_flags = [flag for flag in life_flags if flag not in clear_flags]
-    for flag in set_flags:
-        if flag not in updated_life_flags:
-            updated_life_flags.append(flag)
-
-    status = "continue"
-    ending_title = ""
-    ending_message = ""
-
-    if updated_stats["health"] <= 5:
-        status = "game_over"
-        ending = build_ending("health", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
-    elif updated_stats["energy"] <= 5:
-        status = "game_over"
-        ending = build_ending("energy", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
-    elif updated_stats["happiness"] <= 5:
-        status = "game_over"
-        ending = build_ending("happiness", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
-    elif updated_stats["social"] <= 5:
-        status = "game_over"
-        ending = build_ending("social", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
-    elif updated_stats["money"] <= 5:
-        status = "game_over"
-        ending = build_ending("money", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
-    elif updated_stats["age"] >= 60:
-        status = "completed"
-        ending = build_ending("completed", updated_stats, profile_seed)
-        ending_title = ending["title"]
-        ending_message = ending["message"]
+    updated_life_flags = apply_flag_changes(life_flags, set_flags, clear_flags)
+    status, ending_title, ending_message = evaluate_run_status(updated_stats, profile_seed)
 
     next_scenario = None
 
@@ -725,6 +798,72 @@ def make_choice():
     return jsonify({
         "result_text": result_text,
         "updated_stats": updated_stats,
+        "available_actions": get_available_actions(updated_stats, updated_life_flags),
+        "life_flags": updated_life_flags,
+        "profile_seed": profile_seed,
+        "player_profile": build_profile_snapshot(profile_seed, updated_stats),
+        "history": history,
+        "used_scenarios": used_scenarios,
+        "next_scenario": next_scenario,
+        "status": status,
+        "ending_title": ending_title,
+        "ending_message": ending_message
+    })
+
+
+@app.route("/action", methods=["POST"])
+def take_action():
+    data = request.get_json(silent=True) or {}
+
+    current_stats = data.get("stats", {
+        "age": 18,
+        "money": 50,
+        "health": 50,
+        "energy": 50,
+        "happiness": 50,
+        "social": 50
+    })
+
+    history = data.get("history", [])
+    used_scenarios = data.get("used_scenarios", [])
+    life_flags = data.get("life_flags", [])
+    profile_seed = data.get("profile_seed") or generate_profile_seed()
+    action_id = data.get("action_id")
+
+    action = find_action(action_id)
+
+    if not action or not action_matches_player(action, current_stats, life_flags):
+        return jsonify({"error": "Action is not available right now."}), 400
+
+    updated_stats = build_updated_stats(current_stats, action.get("effects", {}))
+    updated_life_flags = apply_flag_changes(
+        life_flags,
+        action.get("set_flags", []),
+        action.get("clear_flags", [])
+    )
+
+    history.append({
+        "age": updated_stats["age"],
+        "event": action.get("result", "You took action and kept moving forward.")
+    })
+
+    status, ending_title, ending_message = evaluate_run_status(updated_stats, profile_seed)
+    next_scenario = None
+
+    if status == "continue":
+        next_scenario = get_next_scenario(updated_stats, used_scenarios, updated_life_flags)
+        if next_scenario:
+            used_scenarios.append(next_scenario.get("id"))
+        else:
+            status = "completed"
+            ending = build_ending("no_scenarios", updated_stats, profile_seed)
+            ending_title = ending["title"]
+            ending_message = ending["message"]
+
+    return jsonify({
+        "result_text": action.get("result", "You took action and kept moving forward."),
+        "updated_stats": updated_stats,
+        "available_actions": get_available_actions(updated_stats, updated_life_flags),
         "life_flags": updated_life_flags,
         "profile_seed": profile_seed,
         "player_profile": build_profile_snapshot(profile_seed, updated_stats),
