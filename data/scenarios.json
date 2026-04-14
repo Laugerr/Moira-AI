@@ -1790,5 +1790,2123 @@
         "result": "You recover your space, but the extra financial pressure returns."
       }
     ]
+  },
+  {
+    "id": 37,
+    "domain": "work",
+    "title": "Your First Real Job",
+    "text": "You have been drifting since finishing school. A staffing agency offers you an entry-level office job. It is not glamorous, but it is a start. Meanwhile a local restaurant is hiring and the tips could be solid.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 25,
+      "career_level_max": 0,
+      "flags_exclude": ["first_job", "career_started"]
+    },
+    "choices": [
+      {
+        "text": "Take the office job and start building a career",
+        "effects": {
+          "money": 5,
+          "health": -2,
+          "energy": -6,
+          "happiness": 5,
+          "social": 2,
+          "career_change": 1
+        },
+        "set_flags": ["first_job"],
+        "result": "You show up on your first day nervous but ready. The routine is new, but so is the sense of forward motion."
+      },
+      {
+        "text": "Take the restaurant job for quicker cash",
+        "effects": {
+          "money": 12,
+          "health": -4,
+          "energy": -8,
+          "happiness": 2,
+          "social": 5,
+          "career_change": 1
+        },
+        "set_flags": ["first_job"],
+        "result": "The shifts are exhausting but the money is real. You are working hard and building something, even if it feels small."
+      },
+      {
+        "text": "Hold out for something better",
+        "effects": {
+          "money": -5,
+          "health": 0,
+          "energy": 3,
+          "happiness": -4,
+          "social": -1
+        },
+        "result": "You wait, hoping the right thing shows up. The months pass and the financial pressure builds quietly."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "domain": "work",
+    "title": "The Freelance Trap",
+    "text": "You have been picking up freelance work to stay afloat. It pays inconsistently and has no benefits, but you are your own boss. A company just offered you a stable salaried role.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 32,
+      "career_level_max": 1
+    },
+    "choices": [
+      {
+        "text": "Take the salaried role and trade freedom for stability",
+        "effects": {
+          "money": 8,
+          "health": 2,
+          "energy": -4,
+          "happiness": 3,
+          "social": 2,
+          "career_change": 1
+        },
+        "result": "The structure takes getting used to, but the steady income immediately removes a layer of background stress."
+      },
+      {
+        "text": "Stick with freelance and push to grow it",
+        "effects": {
+          "money": -4,
+          "health": -2,
+          "energy": -6,
+          "happiness": 4,
+          "social": -2
+        },
+        "result": "You keep your independence but the inconsistency keeps you grinding harder than feels sustainable."
+      },
+      {
+        "text": "Freelance part-time while slowly taking on steady clients",
+        "effects": {
+          "money": 2,
+          "health": -1,
+          "energy": -8,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "The workload is heavy but you are building something with your own hands."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "domain": "work",
+    "title": "Laid Off Without Warning",
+    "text": "The company you have been with for a few years just let you go. Budget cuts, they said. You have some savings but not much, and the job market feels uncertain right now.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 45,
+      "career_level_min": 1,
+      "career_level_max": 3
+    },
+    "choices": [
+      {
+        "text": "Start applying immediately and treat it like a job",
+        "effects": {
+          "money": -5,
+          "health": -2,
+          "energy": -8,
+          "happiness": -3,
+          "social": 3,
+          "career_change": -1
+        },
+        "result": "The search is demoralizing but consistent effort keeps you moving. The gap on your resume stays short."
+      },
+      {
+        "text": "Take a few weeks to recover before diving back in",
+        "effects": {
+          "money": -8,
+          "health": 5,
+          "energy": 8,
+          "happiness": 4,
+          "social": 2,
+          "career_change": -1
+        },
+        "result": "You use the break to reset. When you start applying again, you feel clearer about what you actually want."
+      },
+      {
+        "text": "Use this moment to pivot into something new",
+        "effects": {
+          "money": -10,
+          "health": -1,
+          "energy": -6,
+          "happiness": 5,
+          "social": 1,
+          "career_change": -1,
+          "education_change": 1
+        },
+        "result": "Losing the job stings, but redirecting the energy into a new direction gives the moment unexpected purpose."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "domain": "work",
+    "title": "The Promotion They Promised",
+    "text": "You have been doing the work of someone two levels above you for over a year. Your manager finally brings up a promotion, but the raise is smaller than you expected and the title is vague.",
+    "conditions": {
+      "age_min": 24,
+      "age_max": 40,
+      "career_level_min": 1,
+      "career_level_max": 3
+    },
+    "choices": [
+      {
+        "text": "Accept it and use the title to negotiate elsewhere later",
+        "effects": {
+          "money": 6,
+          "health": 0,
+          "energy": -3,
+          "happiness": 4,
+          "social": 1,
+          "career_change": 1
+        },
+        "result": "It is not everything you wanted, but the title opens new doors. You file the disappointment and keep building."
+      },
+      {
+        "text": "Push back and negotiate harder",
+        "effects": {
+          "money": 12,
+          "health": -1,
+          "energy": -4,
+          "happiness": 6,
+          "social": 0,
+          "career_change": 1
+        },
+        "result": "The discomfort of the conversation pays off. You leave with better terms and more respect from your manager."
+      },
+      {
+        "text": "Decline and start looking elsewhere",
+        "effects": {
+          "money": -3,
+          "health": 1,
+          "energy": 2,
+          "happiness": 2,
+          "social": -1
+        },
+        "result": "You walk away from the offer and begin quietly exploring the market. Sometimes leaving is the promotion."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "domain": "work",
+    "title": "Your Boss Is the Problem",
+    "text": "Your manager micromanages, takes credit for your work, and creates a tense atmosphere. The job itself is good. The person in charge of it is not.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 42,
+      "career_level_min": 1,
+      "career_level_max": 3
+    },
+    "choices": [
+      {
+        "text": "Raise the issue with HR and document everything",
+        "effects": {
+          "money": 2,
+          "health": -2,
+          "energy": -5,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "The process is draining but you hold your ground. Things improve slightly, or at least you are on record."
+      },
+      {
+        "text": "Stay quiet, do good work, and outlast them",
+        "effects": {
+          "money": 5,
+          "health": -4,
+          "energy": -6,
+          "happiness": -5,
+          "social": -1
+        },
+        "result": "You keep your head down and absorb the frustration. The situation wears on you more than you admit."
+      },
+      {
+        "text": "Start applying to other jobs right away",
+        "effects": {
+          "money": -2,
+          "health": 2,
+          "energy": -4,
+          "happiness": 4,
+          "social": 1
+        },
+        "result": "The search gives you something to focus on. Having a plan makes the remaining time feel more bearable."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "domain": "work",
+    "title": "A Recruiter Calls",
+    "text": "Out of nowhere, a recruiter reaches out with an opportunity at a competitor. The money is better, the title is higher, but it means leaving a team you actually like.",
+    "conditions": {
+      "age_min": 26,
+      "age_max": 44,
+      "career_level_min": 2
+    },
+    "choices": [
+      {
+        "text": "Take the meeting and see what they are offering",
+        "effects": {
+          "money": 4,
+          "health": 0,
+          "energy": -2,
+          "happiness": 4,
+          "social": 1,
+          "career_change": 1
+        },
+        "result": "The meeting goes well. You leave with an offer and a clearer sense of your market value."
+      },
+      {
+        "text": "Use the offer to negotiate a raise where you are",
+        "effects": {
+          "money": 10,
+          "health": 0,
+          "energy": -3,
+          "happiness": 5,
+          "social": 2
+        },
+        "result": "The leverage works. Your employer matches enough to make leaving feel unnecessary. You stay, better compensated."
+      },
+      {
+        "text": "Decline without entertaining it",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 2,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "You choose stability and relationships over chasing numbers. The decision feels right, at least for now."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "domain": "work",
+    "title": "Managing People for the First Time",
+    "text": "You have just been given a team to lead. Two of your reports are experienced and helpful. One is difficult and resistant. This is not what you expected leadership to feel like.",
+    "conditions": {
+      "age_min": 28,
+      "age_max": 42,
+      "career_level_min": 2,
+      "career_level_max": 3
+    },
+    "choices": [
+      {
+        "text": "Invest in each person and lead with patience",
+        "effects": {
+          "money": 3,
+          "health": -2,
+          "energy": -8,
+          "happiness": 6,
+          "social": 6,
+          "career_change": 1
+        },
+        "result": "The effort is real, but your team starts to gel. The difficult report comes around slowly, and you grow as a leader."
+      },
+      {
+        "text": "Focus on outcomes and let the team figure out dynamics",
+        "effects": {
+          "money": 6,
+          "health": -1,
+          "energy": -5,
+          "happiness": 2,
+          "social": -2
+        },
+        "result": "Results are solid but the team stays fractured. You hit your numbers and miss something harder to measure."
+      },
+      {
+        "text": "Ask for help from a senior mentor in the company",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": -4,
+          "happiness": 5,
+          "social": 4,
+          "career_change": 1
+        },
+        "result": "Admitting you need guidance turns out to be the most effective leadership move you have made."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "domain": "work",
+    "title": "Starting a Side Business",
+    "text": "You have an idea that has been living in your head for months. Nothing big, just something that could earn extra income. You have enough to start small. The question is whether you have the bandwidth.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 40,
+      "career_level_min": 1,
+      "energy_min": 30
+    },
+    "choices": [
+      {
+        "text": "Start small and grow it slowly on weekends",
+        "effects": {
+          "money": 5,
+          "health": -2,
+          "energy": -8,
+          "happiness": 8,
+          "social": -2
+        },
+        "set_flags": ["side_hustle"],
+        "result": "Progress is slow but the creative outlet feeds something your main job does not. You build something that is yours."
+      },
+      {
+        "text": "Go in hard and try to make it real quickly",
+        "effects": {
+          "money": -6,
+          "health": -4,
+          "energy": -12,
+          "happiness": 5,
+          "social": -4
+        },
+        "set_flags": ["side_hustle"],
+        "result": "The pace is unsustainable but the commitment is real. You burn hot and move fast, for better or worse."
+      },
+      {
+        "text": "Table the idea and protect your energy",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 4,
+          "happiness": -3,
+          "social": 0
+        },
+        "result": "You shelve the idea for now. The regret is quiet but so is the relief of not adding more to your plate."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "domain": "work",
+    "title": "The Career Pivot",
+    "text": "You have been in the same industry for years and you are bored. A completely different field interests you, but switching means starting near the bottom again. Your current career has momentum. Your new one has possibility.",
+    "conditions": {
+      "age_min": 27,
+      "age_max": 40,
+      "career_level_min": 2,
+      "career_level_max": 4
+    },
+    "choices": [
+      {
+        "text": "Pivot fully and accept the temporary step backward",
+        "effects": {
+          "money": -8,
+          "health": -1,
+          "energy": -6,
+          "happiness": 8,
+          "social": -1,
+          "career_change": -1,
+          "education_change": 1
+        },
+        "result": "The reset stings financially but the energy shift is immediate. You arrive somewhere new and feel more alive doing it."
+      },
+      {
+        "text": "Transition slowly by building skills on the side",
+        "effects": {
+          "money": -4,
+          "health": -2,
+          "energy": -9,
+          "happiness": 5,
+          "social": -2,
+          "education_change": 1
+        },
+        "result": "You carry both worlds for a while. The pace is grueling but the transition is controlled and safer."
+      },
+      {
+        "text": "Stay the course and find what you love within your current field",
+        "effects": {
+          "money": 4,
+          "health": 1,
+          "energy": 2,
+          "happiness": -2,
+          "social": 1
+        },
+        "result": "You find ways to deepen your engagement where you are. The restlessness does not disappear but you choose to work with it."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "domain": "education",
+    "title": "College or the Workforce",
+    "text": "You are finishing high school and the path ahead has split. College is expensive and uncertain. Starting work immediately is practical but closes some doors early. The choice will shape the next decade.",
+    "conditions": {
+      "age_min": 17,
+      "age_max": 20,
+      "education_level_max": 1,
+      "career_level_max": 0,
+      "flags_exclude": ["college_decision"]
+    },
+    "choices": [
+      {
+        "text": "Enroll in a four-year degree program",
+        "effects": {
+          "money": -15,
+          "health": -2,
+          "energy": -8,
+          "happiness": 6,
+          "social": 5,
+          "education_change": 1
+        },
+        "set_flags": ["college_decision", "in_college"],
+        "result": "You sign the enrollment form and step onto campus for the first time. Everything feels new and slightly overwhelming."
+      },
+      {
+        "text": "Start working and build experience instead",
+        "effects": {
+          "money": 8,
+          "health": -2,
+          "energy": -5,
+          "happiness": 2,
+          "social": 2,
+          "career_change": 1
+        },
+        "set_flags": ["college_decision"],
+        "result": "You enter the workforce earlier than most. The learning curve is steep but real-world experience accumulates fast."
+      },
+      {
+        "text": "Take a gap year to figure out what you actually want",
+        "effects": {
+          "money": -4,
+          "health": 4,
+          "energy": 6,
+          "happiness": 6,
+          "social": 3
+        },
+        "set_flags": ["college_decision"],
+        "result": "You take the year for yourself. Some clarity comes. So does some doubt. Both feel honest."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "domain": "education",
+    "title": "Thinking About Dropping Out",
+    "text": "You are two years into a degree and something has shifted. The debt is real, the passion is fading, and the years ahead feel less certain than when you started. But quitting feels like failure.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 24,
+      "education_level_min": 2,
+      "flags_include": ["in_college"]
+    },
+    "choices": [
+      {
+        "text": "Drop out and put the energy into something real",
+        "effects": {
+          "money": 6,
+          "health": 2,
+          "energy": 6,
+          "happiness": 4,
+          "social": -2,
+          "education_change": -1,
+          "career_change": 1
+        },
+        "clear_flags": ["in_college"],
+        "set_flags": ["dropped_out"],
+        "result": "Leaving is harder than you expected emotionally but the relief is undeniable. You redirect that energy immediately."
+      },
+      {
+        "text": "Take a leave of absence and come back with more intention",
+        "effects": {
+          "money": -2,
+          "health": 4,
+          "energy": 5,
+          "happiness": 3,
+          "social": 0
+        },
+        "clear_flags": ["in_college"],
+        "result": "The pause gives you exactly what you needed. When you return, the degree feels chosen rather than inherited."
+      },
+      {
+        "text": "Push through and finish what you started",
+        "effects": {
+          "money": -6,
+          "health": -2,
+          "energy": -7,
+          "happiness": 2,
+          "social": 3
+        },
+        "result": "You stay and finish. The credential matters eventually. The relief at the end is real, even if the road was hard."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "domain": "education",
+    "title": "The Certification That Could Change Things",
+    "text": "A professional certification in your field would make you more competitive and open new doors. It takes time and a modest investment, but the payoff is documented and real.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 40,
+      "career_level_min": 1,
+      "money_min": 15
+    },
+    "choices": [
+      {
+        "text": "Enroll and commit to getting it done this year",
+        "effects": {
+          "money": -12,
+          "health": -1,
+          "energy": -7,
+          "happiness": 5,
+          "social": -1,
+          "education_change": 1
+        },
+        "result": "The study is demanding but the credential lands on your resume with weight. Doors that were closed before are now open."
+      },
+      {
+        "text": "Use free resources and self-study instead",
+        "effects": {
+          "money": -2,
+          "health": 0,
+          "energy": -5,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "You learn a lot but without the official credential the signal is weaker. You grow, even if it does not show up on paper."
+      },
+      {
+        "text": "Ask your employer to pay for it as part of development",
+        "effects": {
+          "money": 0,
+          "health": -1,
+          "energy": -5,
+          "happiness": 6,
+          "social": 3,
+          "education_change": 1
+        },
+        "result": "They say yes. The company invests in you and you invest in the role. Both sides get something out of it."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "domain": "education",
+    "title": "The MBA Decision",
+    "text": "An MBA from a strong program would fast-track your career and expand your network significantly. The cost is steep, the time commitment is real, and the opportunity cost is two years of salary.",
+    "conditions": {
+      "age_min": 27,
+      "age_max": 38,
+      "career_level_min": 2,
+      "money_min": 25
+    },
+    "choices": [
+      {
+        "text": "Apply and commit to the full program",
+        "effects": {
+          "money": -20,
+          "health": -3,
+          "energy": -10,
+          "happiness": 7,
+          "social": 8,
+          "education_change": 1,
+          "career_change": 1
+        },
+        "result": "The two years change you in ways that the curriculum does not fully explain. The network alone is worth something permanent."
+      },
+      {
+        "text": "Pursue a part-time program while keeping your job",
+        "effects": {
+          "money": -12,
+          "health": -3,
+          "energy": -12,
+          "happiness": 3,
+          "social": 2,
+          "education_change": 1
+        },
+        "result": "You hold everything together but barely. The degree comes at the cost of your free time for two years."
+      },
+      {
+        "text": "Skip it and invest in targeted experience instead",
+        "effects": {
+          "money": 4,
+          "health": 2,
+          "energy": 4,
+          "happiness": 2,
+          "social": 0
+        },
+        "result": "You choose depth over credential. The years you save compound into something different but genuinely valuable."
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "domain": "education",
+    "title": "Skills Bootcamp",
+    "text": "A twelve-week intensive bootcamp in a high-demand field is recruiting. It is expensive and exhausting but people who complete it regularly walk out into better jobs.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 36,
+      "education_level_max": 2,
+      "money_min": 12
+    },
+    "choices": [
+      {
+        "text": "Enroll and give it everything you have",
+        "effects": {
+          "money": -14,
+          "health": -2,
+          "energy": -10,
+          "happiness": 6,
+          "social": -2,
+          "education_change": 1
+        },
+        "result": "Twelve weeks of pressure leaves you exhausted and significantly more capable. The credential opens doors that were previously closed."
+      },
+      {
+        "text": "Find a free version of the same skills online",
+        "effects": {
+          "money": -1,
+          "health": 0,
+          "energy": -5,
+          "happiness": 4,
+          "social": 0
+        },
+        "result": "You learn at your own pace. The signal is weaker without the credential, but the knowledge is real."
+      },
+      {
+        "text": "Apply for a scholarship before spending your own money",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -4,
+          "happiness": 3,
+          "social": 2,
+          "education_change": 1
+        },
+        "result": "The application process takes time but you get it. The bootcamp becomes accessible without the financial risk."
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "domain": "money",
+    "title": "Salary Negotiation",
+    "text": "You have a job offer. The number they put on the table is lower than you expected and lower than what the market suggests you are worth. The recruiter says the offer is firm but they always say that.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 45,
+      "career_level_min": 1
+    },
+    "choices": [
+      {
+        "text": "Counter directly with a specific higher number",
+        "effects": {
+          "money": 14,
+          "health": 0,
+          "energy": -2,
+          "happiness": 7,
+          "social": 1
+        },
+        "result": "The discomfort of asking lasts about thirty seconds. They come up. You leave with a number you actually feel good about."
+      },
+      {
+        "text": "Accept it and prove your value before asking for more",
+        "effects": {
+          "money": 5,
+          "health": 0,
+          "energy": -3,
+          "happiness": 2,
+          "social": 1
+        },
+        "result": "You get the job and make yourself indispensable quickly. The raise conversation comes eventually, just later than it needed to."
+      },
+      {
+        "text": "Negotiate for better perks instead of more money",
+        "effects": {
+          "money": 3,
+          "health": 3,
+          "energy": 4,
+          "happiness": 5,
+          "social": 2
+        },
+        "result": "You trade some salary for flexibility and benefits that improve daily life more than a pay bump would have."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "domain": "money",
+    "title": "Living Paycheck to Paycheck",
+    "text": "You are making enough to cover your costs, but only just. Every unexpected expense feels like a crisis. You have no buffer and no breathing room. Something has to change.",
+    "conditions": {
+      "money_max": 30,
+      "age_min": 20
+    },
+    "choices": [
+      {
+        "text": "Cut non-essentials and build a small emergency fund",
+        "effects": {
+          "money": 10,
+          "health": 0,
+          "energy": -2,
+          "happiness": -3,
+          "social": -4
+        },
+        "result": "The restrictions are uncomfortable but slowly a buffer appears. The anxiety decreases with every dollar you set aside."
+      },
+      {
+        "text": "Pick up a second income source for a few months",
+        "effects": {
+          "money": 16,
+          "health": -4,
+          "energy": -10,
+          "happiness": -2,
+          "social": -3
+        },
+        "result": "You work more than you should for a stretch. The bank balance grows. Your body and sleep take the hit."
+      },
+      {
+        "text": "Focus on increasing your income rather than cutting spending",
+        "effects": {
+          "money": -2,
+          "health": -1,
+          "energy": -6,
+          "happiness": 4,
+          "social": 1,
+          "career_change": 1
+        },
+        "result": "You invest energy in growing your value rather than shrinking your life. The return takes time but the direction feels right."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "domain": "money",
+    "title": "A Financial Windfall",
+    "text": "A small inheritance, a bonus, or an old investment just came through. It is more money than you have seen arrive at once in your life. The temptation to spend it is real. So is the wisdom to think carefully.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 50
+    },
+    "choices": [
+      {
+        "text": "Invest most of it and let it compound",
+        "effects": {
+          "money": 20,
+          "health": 0,
+          "energy": -1,
+          "happiness": 6,
+          "social": 0
+        },
+        "result": "You resist the impulse and think long term. The money starts working for you in ways that feel quietly powerful."
+      },
+      {
+        "text": "Use it to clear any debt and start fresh",
+        "effects": {
+          "money": 12,
+          "health": 3,
+          "energy": 4,
+          "happiness": 10,
+          "social": 1
+        },
+        "result": "Clearing the weight of debt changes your mental landscape immediately. You breathe differently after."
+      },
+      {
+        "text": "Spend some and invest the rest",
+        "effects": {
+          "money": 10,
+          "health": 1,
+          "energy": 2,
+          "happiness": 8,
+          "social": 4
+        },
+        "result": "You give yourself permission to enjoy a portion of it and put the rest to work. The balance feels sustainable."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "domain": "money",
+    "title": "The Big Financial Mistake",
+    "text": "You put money into something that looked solid but has fallen apart. Not everything is lost, but the damage is significant. Now you have to decide how to respond.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 48,
+      "money_min": 25
+    },
+    "choices": [
+      {
+        "text": "Accept the loss and move forward methodically",
+        "effects": {
+          "money": -15,
+          "health": -2,
+          "energy": -3,
+          "happiness": -4,
+          "social": 1
+        },
+        "result": "It hurts. You process it honestly and begin rebuilding with more caution and more experience."
+      },
+      {
+        "text": "Try to recover quickly by taking on more risk",
+        "effects": {
+          "money": -5,
+          "health": -5,
+          "energy": -6,
+          "happiness": -8,
+          "social": -2
+        },
+        "result": "The second bet does not land cleanly either. You lose less than you feared but more than you wanted."
+      },
+      {
+        "text": "Seek financial advice before making any more moves",
+        "effects": {
+          "money": -12,
+          "health": 0,
+          "energy": -2,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "The advisor helps you separate panic from plan. The loss is real but it does not have to compound."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "domain": "money",
+    "title": "Debt Piling Up",
+    "text": "Between student loans, credit cards, and daily expenses, the debt number has grown to something that no longer feels manageable. Minimum payments are not making a dent.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 42,
+      "money_max": 40
+    },
+    "choices": [
+      {
+        "text": "Attack the highest interest debt first aggressively",
+        "effects": {
+          "money": -5,
+          "health": -2,
+          "energy": -5,
+          "happiness": -2,
+          "social": -3
+        },
+        "result": "The sacrifice is real but the interest stops eating you alive. Momentum builds slowly as the balances shrink."
+      },
+      {
+        "text": "Consolidate everything into a single manageable payment",
+        "effects": {
+          "money": 6,
+          "health": 2,
+          "energy": 3,
+          "happiness": 4,
+          "social": 0
+        },
+        "result": "The structure simplifies everything and makes the debt feel less like a monster. Progress becomes visible."
+      },
+      {
+        "text": "Seek out a financial counselor for a real plan",
+        "effects": {
+          "money": 4,
+          "health": 1,
+          "energy": 2,
+          "happiness": 5,
+          "social": 2
+        },
+        "result": "Someone who has seen this before helps you see clearly. The plan is not easy but it is honest and doable."
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "domain": "health",
+    "title": "Seeking Therapy",
+    "text": "The background noise in your head has been getting louder. You have not told anyone about it, but the weight of it is affecting your focus, your sleep, and the way you move through the world.",
+    "conditions": {
+      "happiness_max": 52,
+      "age_min": 18
+    },
+    "choices": [
+      {
+        "text": "Book a session and commit to giving it a real try",
+        "effects": {
+          "money": -8,
+          "health": 4,
+          "energy": 3,
+          "happiness": 12,
+          "social": 3
+        },
+        "result": "The first session is uncomfortable and necessary. By the third you start hearing yourself more clearly."
+      },
+      {
+        "text": "Try journaling and self-directed reflection first",
+        "effects": {
+          "money": -1,
+          "health": 2,
+          "energy": -2,
+          "happiness": 5,
+          "social": 0
+        },
+        "result": "You develop a practice that helps you name things more precisely. It is not therapy but it is something."
+      },
+      {
+        "text": "Open up to a trusted friend instead",
+        "effects": {
+          "money": 0,
+          "health": 2,
+          "energy": 2,
+          "happiness": 7,
+          "social": 8
+        },
+        "result": "Saying it out loud to someone who actually cares turns out to be more powerful than you expected."
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "domain": "health",
+    "title": "Your Body's Warning Signs",
+    "text": "Persistent headaches, irregular sleep, and a heaviness that never fully lifts. Your body is communicating something and you have been overriding it for months.",
+    "conditions": {
+      "health_max": 45,
+      "age_min": 22
+    },
+    "choices": [
+      {
+        "text": "Book a full checkup and stop ignoring the signals",
+        "effects": {
+          "money": -6,
+          "health": 12,
+          "energy": 5,
+          "happiness": 4,
+          "social": 0
+        },
+        "result": "The results come back with things you needed to know. Addressing them early makes a real difference."
+      },
+      {
+        "text": "Prioritize sleep and recovery for the next few weeks",
+        "effects": {
+          "money": -2,
+          "health": 8,
+          "energy": 10,
+          "happiness": 5,
+          "social": -1
+        },
+        "result": "You protect your time with seriousness for once. The improvement is not instant but it is undeniable."
+      },
+      {
+        "text": "Push through and tell yourself it will pass",
+        "effects": {
+          "money": 5,
+          "health": -8,
+          "energy": -6,
+          "happiness": -4,
+          "social": -2
+        },
+        "result": "It does not pass. The symptoms accumulate until the cost of ignoring them becomes impossible to avoid."
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "domain": "health",
+    "title": "Gym Commitment",
+    "text": "You have thought about building a consistent exercise habit for a long time. A gym has opened nearby and a friend is asking if you want to go together. The timing is as good as it will ever be.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 50,
+      "energy_min": 30
+    },
+    "choices": [
+      {
+        "text": "Commit and go consistently every week",
+        "effects": {
+          "money": -5,
+          "health": 10,
+          "energy": 8,
+          "happiness": 7,
+          "social": 4
+        },
+        "result": "Three months in, the habit has taken hold. You feel structurally better, and the discipline spills into other parts of your life."
+      },
+      {
+        "text": "Start with walks and free exercise until the habit forms",
+        "effects": {
+          "money": 0,
+          "health": 6,
+          "energy": 5,
+          "happiness": 4,
+          "social": 1
+        },
+        "result": "The barrier is low and you actually stick with it. Small consistent movement compounds into something real."
+      },
+      {
+        "text": "Agree to go but cancel most of the time",
+        "effects": {
+          "money": -3,
+          "health": 1,
+          "energy": -1,
+          "happiness": -2,
+          "social": -2
+        },
+        "result": "You pay for the membership and rarely use it. The guilt is a minor but persistent drain."
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "domain": "health",
+    "title": "Work-Life Balance Collapse",
+    "text": "Your calendar has no white space in it anymore. Work bleeds into evenings and weekends. The output is strong but something important is being quietly dismantled.",
+    "conditions": {
+      "energy_max": 40,
+      "career_level_min": 1,
+      "age_min": 24
+    },
+    "choices": [
+      {
+        "text": "Set firm boundaries starting this week",
+        "effects": {
+          "money": -3,
+          "health": 6,
+          "energy": 10,
+          "happiness": 8,
+          "social": 5
+        },
+        "result": "The first week of protecting your time feels wrong and then right. Work does not collapse without you."
+      },
+      {
+        "text": "Push through the current sprint and reassess after",
+        "effects": {
+          "money": 8,
+          "health": -6,
+          "energy": -10,
+          "happiness": -5,
+          "social": -3
+        },
+        "result": "The sprint extends into another sprint. The reassessment keeps getting delayed."
+      },
+      {
+        "text": "Have an honest conversation with your manager about sustainability",
+        "effects": {
+          "money": 2,
+          "health": 4,
+          "energy": 5,
+          "happiness": 6,
+          "social": 3
+        },
+        "result": "The conversation is harder than it should be and more effective than you expected."
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "domain": "social",
+    "title": "A Mentor Appears",
+    "text": "Someone significantly ahead of you in the field has expressed interest in your development. They have offered to meet regularly and share what they know. This kind of relationship is rare.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 40,
+      "career_level_min": 1,
+      "career_level_max": 3
+    },
+    "choices": [
+      {
+        "text": "Accept and show up to every meeting prepared",
+        "effects": {
+          "money": 4,
+          "health": 0,
+          "energy": -3,
+          "happiness": 8,
+          "social": 7,
+          "career_change": 1
+        },
+        "result": "The relationship changes your trajectory in ways that are hard to quantify and impossible to ignore."
+      },
+      {
+        "text": "Accept but treat it casually",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": -1,
+          "happiness": 4,
+          "social": 4
+        },
+        "result": "You get something from it, but not what you could have. The mentor senses your level of investment and matches it."
+      },
+      {
+        "text": "Decline and rely on your own path",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 2,
+          "happiness": -2,
+          "social": -2
+        },
+        "result": "You stay independent. The opportunity passes. You wonder occasionally what that relationship might have opened."
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "domain": "social",
+    "title": "Toxic Friend You Keep Around",
+    "text": "There is someone in your circle who consistently drains you. They take more than they give, make situations about themselves, and leave you feeling worse after every interaction. You keep making excuses for them.",
+    "conditions": {
+      "age_min": 18,
+      "happiness_min": 35
+    },
+    "choices": [
+      {
+        "text": "Cut them out cleanly and protect your energy",
+        "effects": {
+          "money": 0,
+          "health": 2,
+          "energy": 5,
+          "happiness": 8,
+          "social": -3
+        },
+        "result": "The absence feels strange at first. Then it feels like relief. The space opens up for people who actually add something."
+      },
+      {
+        "text": "Pull back slowly and reduce how much access they have",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 3,
+          "happiness": 4,
+          "social": -1
+        },
+        "result": "The slow fade works well enough. You protect most of your energy without having a difficult conversation."
+      },
+      {
+        "text": "Have an honest conversation about how they make you feel",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -3,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "The conversation goes sideways at first and better later. Whether anything changes depends entirely on them."
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "domain": "social",
+    "title": "Industry Conference Opportunity",
+    "text": "There is a conference in your field happening in another city. It is expensive and takes a week away from work, but the people in that room shape where entire industries go next.",
+    "conditions": {
+      "age_min": 24,
+      "age_max": 48,
+      "career_level_min": 2,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Attend and invest in making real connections",
+        "effects": {
+          "money": -10,
+          "health": -1,
+          "energy": -5,
+          "happiness": 8,
+          "social": 10,
+          "career_change": 1
+        },
+        "result": "You come back with three genuine new relationships and more clarity on where your field is headed. Worth it."
+      },
+      {
+        "text": "Attend but mostly observe from the edges",
+        "effects": {
+          "money": -9,
+          "health": 0,
+          "energy": -3,
+          "happiness": 4,
+          "social": 4
+        },
+        "result": "You take in a lot but give back little. The knowledge is valuable. The missed connections are hard to measure."
+      },
+      {
+        "text": "Skip it and put the money toward something more concrete",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 2,
+          "happiness": -1,
+          "social": -2
+        },
+        "result": "You stay home. The networking opportunity passes but your bank balance and energy are intact."
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "domain": "social",
+    "title": "The Volunteer Project",
+    "text": "A local organization is building something genuinely meaningful and needs help. Contributing would cost you time and energy but would put you in the company of people who care about the same things you do.",
+    "conditions": {
+      "age_min": 18,
+      "energy_min": 28
+    },
+    "choices": [
+      {
+        "text": "Commit and show up consistently",
+        "effects": {
+          "money": -3,
+          "health": 2,
+          "energy": -5,
+          "happiness": 10,
+          "social": 8
+        },
+        "result": "The work is meaningful and the people are good. Something about giving your time freely makes the rest of life feel richer."
+      },
+      {
+        "text": "Contribute occasionally when life allows",
+        "effects": {
+          "money": -1,
+          "health": 1,
+          "energy": -2,
+          "happiness": 5,
+          "social": 4
+        },
+        "result": "You show up when you can. The contribution is small but real. The community appreciates whatever you bring."
+      },
+      {
+        "text": "Donate money instead of time",
+        "effects": {
+          "money": -4,
+          "health": 0,
+          "energy": 0,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "You support the cause in the way that is most practical for where you are right now."
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "domain": "family",
+    "title": "Your Parents Need Help",
+    "text": "Something has shifted at home. Your parents are dealing with a health issue or financial strain that they have not asked you to solve but clearly cannot manage alone. You can help but it will cost you something.",
+    "conditions": {
+      "age_min": 26,
+      "age_max": 50
+    },
+    "choices": [
+      {
+        "text": "Step in fully and take on whatever is needed",
+        "effects": {
+          "money": -10,
+          "health": -3,
+          "energy": -8,
+          "happiness": 5,
+          "social": 4
+        },
+        "result": "The sacrifice is real and the family leans on you heavily. You carry it. The closeness that comes from that has its own weight."
+      },
+      {
+        "text": "Help what you can without dismantling your own life",
+        "effects": {
+          "money": -5,
+          "health": -1,
+          "energy": -4,
+          "happiness": 6,
+          "social": 3
+        },
+        "result": "You find a balance that respects your limits while showing up meaningfully. It is not perfect but it is honest."
+      },
+      {
+        "text": "Help coordinate outside support rather than doing everything yourself",
+        "effects": {
+          "money": -4,
+          "health": 0,
+          "energy": -3,
+          "happiness": 4,
+          "social": 3
+        },
+        "result": "You build a system of support rather than becoming the only support. It takes longer to set up and works better long term."
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "domain": "family",
+    "title": "A New Person in Your Life",
+    "text": "Someone has entered your life slowly and is now undeniably present in your thoughts and your time. The connection is real. So is the vulnerability of letting it continue.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 42,
+      "social_min": 35
+    },
+    "choices": [
+      {
+        "text": "Let it grow and invest in the relationship",
+        "effects": {
+          "money": -4,
+          "health": 2,
+          "energy": -3,
+          "happiness": 12,
+          "social": 10
+        },
+        "set_flags": ["in_relationship"],
+        "result": "You let someone in and they stay. It does not solve everything but it changes the weight of daily life."
+      },
+      {
+        "text": "Keep it casual and protect your independence",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 0,
+          "happiness": 3,
+          "social": 4
+        },
+        "result": "You stay in control of your time and your emotional space. Whether this was the right call remains to be seen."
+      },
+      {
+        "text": "Be honest that you are not in a place for this right now",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 2,
+          "happiness": -3,
+          "social": -2
+        },
+        "result": "You choose honesty over convenience. The moment passes. You feel both clear and a little lonely."
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "domain": "growth",
+    "title": "Long Overdue Vacation",
+    "text": "You cannot remember the last time you completely stepped away from your responsibilities. A chance to travel has appeared and the timing is actually workable for once.",
+    "conditions": {
+      "age_min": 24,
+      "age_max": 52,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Book it, go, and actually disconnect",
+        "effects": {
+          "money": -14,
+          "health": 5,
+          "energy": 15,
+          "happiness": 14,
+          "social": 5
+        },
+        "result": "You come back changed in small important ways. The distance gave you perspective that no amount of staying home could."
+      },
+      {
+        "text": "Take a short local trip that is manageable and cheap",
+        "effects": {
+          "money": -5,
+          "health": 3,
+          "energy": 8,
+          "happiness": 7,
+          "social": 2
+        },
+        "result": "It is not exotic but it is enough. A change of scene refreshes something that was getting stale."
+      },
+      {
+        "text": "Stay home and use the time to genuinely rest",
+        "effects": {
+          "money": -2,
+          "health": 4,
+          "energy": 10,
+          "happiness": 5,
+          "social": 0
+        },
+        "result": "You defend the week with unusual seriousness. The absence of obligation turns out to be a real destination."
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "domain": "growth",
+    "title": "The Life Audit",
+    "text": "You have been living on autopilot. Something small recently made you pause and ask whether the life you are living is actually the one you intended. The question is harder than it should be to answer.",
+    "conditions": {
+      "age_min": 26,
+      "age_max": 50
+    },
+    "choices": [
+      {
+        "text": "Set aside real time to examine what you want and why",
+        "effects": {
+          "money": -2,
+          "health": 2,
+          "energy": -3,
+          "happiness": 9,
+          "social": 1
+        },
+        "result": "The answers are not all comfortable. Some are surprising. But having them reshapes how you move through the next year."
+      },
+      {
+        "text": "Make one concrete change rather than overhauling everything",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 1,
+          "happiness": 6,
+          "social": 2
+        },
+        "result": "The single change creates more momentum than expected. One real shift turns out to be more valuable than a full plan."
+      },
+      {
+        "text": "Keep moving and trust that the direction will clarify",
+        "effects": {
+          "money": 2,
+          "health": 0,
+          "energy": 0,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "The question fades back into the background. Life continues. The thing you noticed does not entirely go away."
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "domain": "growth",
+    "title": "Digital Detox",
+    "text": "You have noticed how much time disappears into screens. The hours are real. So is the subtle way it affects your focus, your mood, and the quality of your attention.",
+    "conditions": {
+      "age_min": 18,
+      "happiness_max": 65
+    },
+    "choices": [
+      {
+        "text": "Commit to a full week offline and see what emerges",
+        "effects": {
+          "money": 0,
+          "health": 3,
+          "energy": 5,
+          "happiness": 8,
+          "social": 3
+        },
+        "result": "The first two days are uncomfortable. By day four, something quieter and more present has taken over."
+      },
+      {
+        "text": "Set specific rules about when and how you use devices",
+        "effects": {
+          "money": 0,
+          "health": 2,
+          "energy": 3,
+          "happiness": 5,
+          "social": 2
+        },
+        "result": "The boundaries are imperfect but effective. You recover a few hours of real attention every day."
+      },
+      {
+        "text": "Acknowledge the problem and change nothing",
+        "effects": {
+          "money": 0,
+          "health": -1,
+          "energy": -2,
+          "happiness": -2,
+          "social": -1
+        },
+        "result": "Naming the problem without addressing it becomes its own small weight. Nothing changes."
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "domain": "housing",
+    "title": "Moving Out for the First Time",
+    "text": "You have an opportunity to get your own place. The cost is significant and it will require restructuring everything. But the independence is real and the personal space is something you have been missing.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 26,
+      "money_min": 25,
+      "flags_exclude": ["moved_out"]
+    },
+    "choices": [
+      {
+        "text": "Take the leap and move into your own place",
+        "effects": {
+          "money": -14,
+          "health": 1,
+          "energy": -5,
+          "happiness": 10,
+          "social": 2
+        },
+        "set_flags": ["moved_out"],
+        "result": "The first night alone in your own space feels significant. The financial pressure is real and so is the freedom."
+      },
+      {
+        "text": "Find a roommate to make it financially manageable",
+        "effects": {
+          "money": -6,
+          "health": 0,
+          "energy": -2,
+          "happiness": 7,
+          "social": 5
+        },
+        "set_flags": ["moved_out"],
+        "result": "You get your independence with a safety net built in. The arrangement works well enough and teaches you a lot about coexisting."
+      },
+      {
+        "text": "Stay where you are and build savings first",
+        "effects": {
+          "money": 10,
+          "health": 0,
+          "energy": 2,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "You stay patient and build the financial runway you need. The independence will come. Just not yet."
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "domain": "housing",
+    "title": "The Rent Keeps Climbing",
+    "text": "Your landlord has raised the rent again. Staying means stretching your budget uncomfortably. Moving means disruption, costs, and starting fresh somewhere you do not know yet.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 45,
+      "money_max": 55
+    },
+    "choices": [
+      {
+        "text": "Move somewhere more affordable even if it is less convenient",
+        "effects": {
+          "money": 8,
+          "health": -1,
+          "energy": -8,
+          "happiness": 2,
+          "social": -2
+        },
+        "result": "The move is exhausting but the financial relief is immediate. The new place grows on you faster than expected."
+      },
+      {
+        "text": "Stay and absorb the increase while cutting elsewhere",
+        "effects": {
+          "money": -5,
+          "health": 0,
+          "energy": -2,
+          "happiness": -3,
+          "social": -1
+        },
+        "result": "You stay in familiar territory at the cost of financial breathing room. The trade-off feels worth it some months and not others."
+      },
+      {
+        "text": "Start seriously researching buying instead of renting",
+        "effects": {
+          "money": -2,
+          "health": 0,
+          "energy": -4,
+          "happiness": 3,
+          "social": 1
+        },
+        "result": "The research takes time but it reframes your relationship to housing entirely. A plan starts forming."
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "domain": "life",
+    "title": "First Big Purchase",
+    "text": "You need more reliable transportation and a used car has come up at a reasonable price. It would solve a practical problem and give you more independence. The cost is significant but manageable.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 35,
+      "money_min": 30
+    },
+    "choices": [
+      {
+        "text": "Buy it and invest in your independence",
+        "effects": {
+          "money": -18,
+          "health": 1,
+          "energy": 4,
+          "happiness": 7,
+          "social": 2
+        },
+        "result": "The purchase strains your savings but the gain in flexibility changes your daily quality of life immediately."
+      },
+      {
+        "text": "Negotiate hard and only buy if the price comes down",
+        "effects": {
+          "money": -12,
+          "health": 1,
+          "energy": 2,
+          "happiness": 6,
+          "social": 1
+        },
+        "result": "You get a better deal than the asking price. The negotiation was uncomfortable and the outcome was worth it."
+      },
+      {
+        "text": "Pass on it and rely on public transport for now",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": -2,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "You keep your savings intact. The inconvenience is real but manageable. You wait for a better opportunity."
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "domain": "life",
+    "title": "A Night That Gets Out of Hand",
+    "text": "You end up in a situation that started as a normal evening out and has escalated into something that feels risky. You are not in immediate danger but your choices in the next hour will matter.",
+    "conditions": {
+      "age_min": 18,
+      "age_max": 30
+    },
+    "choices": [
+      {
+        "text": "Remove yourself from the situation immediately",
+        "effects": {
+          "money": -2,
+          "health": 2,
+          "energy": -2,
+          "happiness": 2,
+          "social": -2
+        },
+        "result": "You leave before it escalates further. The decision is anti-climactic and entirely correct."
+      },
+      {
+        "text": "Stay but position yourself carefully",
+        "effects": {
+          "money": 0,
+          "health": -4,
+          "energy": -5,
+          "happiness": -2,
+          "social": 3
+        },
+        "result": "You manage it but the situation costs you more than you planned to spend."
+      },
+      {
+        "text": "Lean into it and deal with the consequences later",
+        "effects": {
+          "money": -5,
+          "health": -8,
+          "energy": -8,
+          "happiness": -3,
+          "social": 2
+        },
+        "result": "The night becomes a story. The recovery is longer and more expensive than you expected."
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "domain": "risk",
+    "title": "The Get-Rich Scheme",
+    "text": "Someone in your extended network is promoting an investment opportunity that promises outsized returns. The pitch is polished. The math does not quite add up. Several people you know have already put money in.",
+    "conditions": {
+      "age_min": 20,
+      "age_max": 45,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Pass on it regardless of what others are doing",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 0,
+          "happiness": 2,
+          "social": -1
+        },
+        "result": "You trust your instincts and stay out. The scheme eventually unravels and the people you know lose what they put in."
+      },
+      {
+        "text": "Invest a small amount you can afford to lose",
+        "effects": {
+          "money": -8,
+          "health": -1,
+          "energy": -2,
+          "happiness": -3,
+          "social": 1
+        },
+        "result": "The small bet is lost when the thing collapses. The loss stings but you contained the damage well."
+      },
+      {
+        "text": "Research it thoroughly before deciding",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -2,
+          "happiness": 1,
+          "social": 0
+        },
+        "result": "The research reveals enough to make the decision easy. You walk away without regret."
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "domain": "risk",
+    "title": "Taking a Real Risk",
+    "text": "An opportunity has appeared that could significantly change your trajectory. The upside is real. So is the downside. Most people in your position would not take it.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 40
+    },
+    "choices": [
+      {
+        "text": "Take the risk with full commitment",
+        "effects": {
+          "money": 15,
+          "health": -3,
+          "energy": -8,
+          "happiness": 8,
+          "social": -2,
+          "career_change": 1
+        },
+        "result": "The risk pays off in ways that feel both earned and fortunate. You carry the lesson about what calculated courage can do."
+      },
+      {
+        "text": "Take a modified version of the risk to limit exposure",
+        "effects": {
+          "money": 6,
+          "health": -1,
+          "energy": -4,
+          "happiness": 5,
+          "social": 0
+        },
+        "result": "You get a meaningful portion of the upside without full exposure. The compromise feels intelligent in retrospect."
+      },
+      {
+        "text": "Pass and wait for a risk with better odds",
+        "effects": {
+          "money": -2,
+          "health": 1,
+          "energy": 2,
+          "happiness": -3,
+          "social": 0
+        },
+        "result": "You protect your position. The opportunity moves on without you. The what-if will linger."
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "domain": "work",
+    "title": "The Public Speaking Moment",
+    "text": "You have been asked to present at a company-wide event or industry gathering. It is more visible than anything you have done before. You are not sure you are ready.",
+    "conditions": {
+      "age_min": 24,
+      "age_max": 48,
+      "career_level_min": 2
+    },
+    "choices": [
+      {
+        "text": "Accept and prepare seriously for weeks ahead",
+        "effects": {
+          "money": 3,
+          "health": -1,
+          "energy": -6,
+          "happiness": 8,
+          "social": 6,
+          "career_change": 1
+        },
+        "result": "The presentation lands well. The visibility you gain from it is immediate and lasting."
+      },
+      {
+        "text": "Accept but underprepare and wing it",
+        "effects": {
+          "money": 1,
+          "health": -2,
+          "energy": -3,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "You get through it. The result is acceptable and nothing more. A missed opportunity to make a real impression."
+      },
+      {
+        "text": "Decline and suggest a colleague instead",
+        "effects": {
+          "money": 0,
+          "health": 1,
+          "energy": 2,
+          "happiness": -3,
+          "social": -2
+        },
+        "result": "You avoid the pressure and your colleague gets the visibility. You wonder for a while if that was the right call."
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "domain": "work",
+    "title": "Executive-Level Pressure",
+    "text": "At your level, decisions affect real people and real outcomes. A major choice is in front of you with no clean answer, high stakes, and a team waiting to see how you handle it.",
+    "conditions": {
+      "age_min": 35,
+      "age_max": 58,
+      "career_level_min": 4
+    },
+    "choices": [
+      {
+        "text": "Make the call decisively and own the outcome",
+        "effects": {
+          "money": 8,
+          "health": -3,
+          "energy": -8,
+          "happiness": 5,
+          "social": 4,
+          "career_change": 1
+        },
+        "result": "Not everyone agrees with the decision. Most respect how you made it. The outcome validates your judgment."
+      },
+      {
+        "text": "Consult widely before committing to a direction",
+        "effects": {
+          "money": 4,
+          "health": -1,
+          "energy": -6,
+          "happiness": 6,
+          "social": 7
+        },
+        "result": "The process is slower but the buy-in is stronger. The decision lands better because the team felt included."
+      },
+      {
+        "text": "Delay the decision until you have more information",
+        "effects": {
+          "money": -2,
+          "health": -2,
+          "energy": -5,
+          "happiness": -3,
+          "social": -2
+        },
+        "result": "The delay costs something. The decision gets made eventually but the window for the best outcome has narrowed."
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "domain": "growth",
+    "title": "Mentoring the Next Generation",
+    "text": "Someone earlier in their path is asking for your guidance. You remember what it felt like to be where they are. You have more to offer than you realize.",
+    "conditions": {
+      "age_min": 38,
+      "age_max": 58,
+      "career_level_min": 3
+    },
+    "choices": [
+      {
+        "text": "Commit to mentoring them regularly and invest in their growth",
+        "effects": {
+          "money": -2,
+          "health": 2,
+          "energy": -4,
+          "happiness": 10,
+          "social": 8
+        },
+        "result": "Watching someone grow because of your investment becomes one of the more meaningful things you do this decade."
+      },
+      {
+        "text": "Offer occasional advice but keep it informal",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": -1,
+          "happiness": 5,
+          "social": 4
+        },
+        "result": "You contribute what you can. It is enough to make a difference, even if it is not the full relationship they were hoping for."
+      },
+      {
+        "text": "Redirect them to a more experienced resource",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 1,
+          "happiness": 0,
+          "social": 0
+        },
+        "result": "You stay protective of your time. They find guidance elsewhere. You are left with a small, quiet question."
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "domain": "growth",
+    "title": "Thinking About What Comes Next",
+    "text": "You are past the middle of the story you have been living and some part of you is starting to look ahead. What you do with the next decade will determine how this chapter ends.",
+    "conditions": {
+      "age_min": 42,
+      "age_max": 58
+    },
+    "choices": [
+      {
+        "text": "Begin planning a real transition toward what matters most",
+        "effects": {
+          "money": -3,
+          "health": 3,
+          "energy": 3,
+          "happiness": 10,
+          "social": 3
+        },
+        "result": "The planning itself changes how you spend your days. You start moving toward something instead of just moving."
+      },
+      {
+        "text": "Focus on strengthening the best parts of what you have built",
+        "effects": {
+          "money": 5,
+          "health": 2,
+          "energy": 2,
+          "happiness": 6,
+          "social": 4
+        },
+        "result": "You invest in depth rather than change. The familiar becomes richer when you stop taking it for granted."
+      },
+      {
+        "text": "Keep the same pace and trust that clarity will come when it does",
+        "effects": {
+          "money": 4,
+          "health": -1,
+          "energy": -2,
+          "happiness": -2,
+          "social": 0
+        },
+        "result": "Life continues. The question you were sitting with gets quieter rather than answered."
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "domain": "social",
+    "title": "Reconnecting With Someone From Before",
+    "text": "Someone from your past has reached out. A friendship, a former colleague, someone who mattered once and then disappeared into life. You have both changed. So has the world you share.",
+    "conditions": {
+      "age_min": 26,
+      "age_max": 55
+    },
+    "choices": [
+      {
+        "text": "Meet them and see who you both are now",
+        "effects": {
+          "money": -2,
+          "health": 0,
+          "energy": -2,
+          "happiness": 7,
+          "social": 8
+        },
+        "result": "The conversation is surprisingly easy. Something about reconnecting with someone who knew you before reminds you of parts of yourself."
+      },
+      {
+        "text": "Reply warmly but keep things at a distance for now",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 0,
+          "happiness": 2,
+          "social": 2
+        },
+        "result": "You leave the door open without walking through it. The connection remains possible."
+      },
+      {
+        "text": "Let it go and focus on the present",
+        "effects": {
+          "money": 0,
+          "health": 0,
+          "energy": 1,
+          "happiness": 0,
+          "social": -1
+        },
+        "result": "You move forward rather than backward. The connection closes. So does that particular version of the past."
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "domain": "money",
+    "title": "Emergency Fund or Investment",
+    "text": "You have some money saved and two paths for it. Building an emergency fund means financial security but low returns. Investing means potential growth but less cushion if something goes wrong.",
+    "conditions": {
+      "age_min": 22,
+      "age_max": 45,
+      "money_min": 20
+    },
+    "choices": [
+      {
+        "text": "Build the emergency fund first, invest what remains",
+        "effects": {
+          "money": 6,
+          "health": 2,
+          "energy": 2,
+          "happiness": 5,
+          "social": 0
+        },
+        "result": "The cushion changes your relationship to risk. Decisions made from stability are measurably better than decisions made from fear."
+      },
+      {
+        "text": "Invest aggressively and accept the uncertainty",
+        "effects": {
+          "money": 12,
+          "health": -1,
+          "energy": -2,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "The growth is real and so is the background anxiety. You build wealth and carry the stress of having no buffer."
+      },
+      {
+        "text": "Split it evenly and leave the decision for later",
+        "effects": {
+          "money": 8,
+          "health": 1,
+          "energy": 1,
+          "happiness": 3,
+          "social": 0
+        },
+        "result": "The compromise is imperfect and sensible. You move in two directions at once and cover your exposure reasonably well."
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "domain": "health",
+    "title": "Confronting Unhealthy Patterns",
+    "text": "You have been coping with stress in ways that are not serving you. The patterns are familiar, comfortable, and quietly damaging. Changing them requires admitting they exist.",
+    "conditions": {
+      "health_max": 55,
+      "happiness_max": 55,
+      "age_min": 22
+    },
+    "choices": [
+      {
+        "text": "Name them honestly and start building better replacements",
+        "effects": {
+          "money": -3,
+          "health": 10,
+          "energy": 6,
+          "happiness": 8,
+          "social": 3
+        },
+        "result": "The work is harder than expected and more effective. The relief of addressing something directly is its own reward."
+      },
+      {
+        "text": "Reduce the behaviors without trying to eliminate them",
+        "effects": {
+          "money": -1,
+          "health": 5,
+          "energy": 3,
+          "happiness": 4,
+          "social": 1
+        },
+        "result": "Moderation is imperfect and real. The patterns lose some of their grip. The improvement is genuine even if incomplete."
+      },
+      {
+        "text": "Acknowledge the issue but delay addressing it",
+        "effects": {
+          "money": 0,
+          "health": -3,
+          "energy": -2,
+          "happiness": -3,
+          "social": -1
+        },
+        "result": "You know and do nothing. The knowing makes it worse. The pattern deepens slightly with each cycle."
+      }
+    ]
   }
 ]
