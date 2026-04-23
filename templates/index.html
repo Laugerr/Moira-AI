@@ -13,6 +13,8 @@
   <div class="sparkles"></div>
 
   <main class="app-shell">
+
+    <!-- ── Topbar ── -->
     <header class="topbar">
       <div class="brand">
         <div class="brand-mark">
@@ -28,192 +30,146 @@
       </div>
     </header>
 
+    <!-- ── Game Board ── -->
     <section id="game-section" class="game-board hidden">
-      <div class="board-content">
 
-        <!-- Identity Card -->
-        <section class="identity-card">
-          <div class="avatar-wrap">
-            <div class="avatar-face">M</div>
-          </div>
-          <div class="identity-main">
-            <div class="identity-headline">
-              <div>
-                <h2 id="profile-name">Moira Citizen</h2>
-                <p id="profile-subtitle" class="identity-subtitle">Continuous Life Journey</p>
-              </div>
+      <!-- 1. STAT STRIP — always visible -->
+      <div class="stat-strip">
+        <div class="strip-identity">
+          <div class="strip-avatar">M</div>
+          <div class="strip-info">
+            <div class="strip-name-row">
+              <strong id="profile-name">Moira Citizen</strong>
+              <span id="profile-age-badge" class="strip-age">Age 18</span>
               <span id="profile-mood" class="mood-badge">Steady</span>
             </div>
-            <div class="profile-facts">
-              <span id="profile-stage" class="fact-chip">Emerging Adult</span>
-              <span id="profile-trait" class="fact-chip">Ambitious</span>
-              <span id="profile-origin" class="fact-chip">Unknown Origin</span>
-              <span id="profile-job" class="fact-chip fact-chip--career">Unemployed</span>
-              <span id="profile-education" class="fact-chip fact-chip--edu">High School</span>
-              <span id="profile-relationship" class="fact-chip fact-chip--relationship hidden">Single</span>
-              <span id="profile-children" class="fact-chip fact-chip--children hidden">No Children</span>
+            <div class="strip-chips">
+              <span id="profile-relationship" class="fact-chip fact-chip--relationship hidden"></span>
+              <span id="profile-children" class="fact-chip fact-chip--children hidden"></span>
             </div>
-            <p id="profile-summary" class="profile-summary">
-              You are entering adulthood with a blank canvas, a little pressure, and a lot of possibility.
-            </p>
           </div>
-          <div class="identity-money">
+          <div class="strip-money">
             <strong id="money-stat">$50</strong>
-            <span>Bank Balance</span>
             <span id="salary-stat" class="salary-label">No income</span>
           </div>
-        </section>
-
-        <!-- Main game columns -->
-        <div class="game-columns">
-
-          <!-- Left: Story + Next Year -->
-          <div class="game-left">
-
-            <section class="story-panel">
-              <div class="story-header">
-                <div>
-                  <p id="game-message" class="panel-kicker">Your story is waiting...</p>
-                  <h2 id="scenario-title">Your Life Awaits</h2>
-                </div>
-                <div class="age-pill">
-                  <span id="profile-age-badge">Age 18</span>
-                  <strong id="age-stat">18</strong>
-                </div>
-              </div>
-
-              <div class="story-body">
-                <p id="scenario-text" class="scenario-text">Press Next Year to begin. Each year may bring an event that shapes your life — respond to it, take actions, then move on.</p>
-                <div id="choices-container" class="choices-container"></div>
-              </div>
-
-              <div class="story-footer">
-                <button id="age-btn" class="age-btn">
-                  <span class="age-btn-label">Next Year</span>
-                  <span class="age-btn-arrow">→</span>
-                </button>
-              </div>
-            </section>
-
-            <section class="result-card">
-              <p class="card-kicker">Latest Outcome</p>
-              <p id="result-text">Choices and actions will appear here.</p>
-            </section>
-
-          </div>
-
-          <!-- Right: Actions + Status + History -->
-          <div class="game-right">
-
-            <section class="actions-card">
-              <div class="card-header">
-                <div>
-                  <p class="card-kicker">This Year</p>
-                  <h3>Your Actions</h3>
-                </div>
-              </div>
-              <p class="actions-summary">
-                Actions happen within the current year — they don't age you. Take as many as your energy and money allow before pressing Next Year.
-              </p>
-              <div id="actions-container" class="actions-container"></div>
-            </section>
-
-            <section class="decisions-card">
-              <div class="card-header">
-                <div>
-                  <p class="card-kicker">Major Moves</p>
-                  <h3>Life Decisions</h3>
-                </div>
-              </div>
-              <p class="actions-summary">
-                These are the decisions that reshape your life — relationships, family, and where you live. They leave a permanent mark on your story.
-              </p>
-              <div id="decisions-container" class="decisions-container"></div>
-            </section>
-
-            <div class="status-card">
-              <div class="status-header">
-                <h3>Life Needs</h3>
-                <p>Track the needs that shape your daily life.</p>
-              </div>
-              <p id="needs-summary" class="needs-summary">
-                Your life is in balance. Keep an eye on the areas that start slipping.
-              </p>
-              <div class="stat-rows">
-                <div class="stat-row">
-                  <div class="stat-row-label">
-                    <div class="stat-row-meta">
-                      <span>Health</span>
-                      <span id="health-state" class="stat-state">Stable</span>
-                    </div>
-                    <strong id="health-stat">50%</strong>
-                  </div>
-                  <div class="stat-track">
-                    <div id="health-bar" class="stat-fill health-fill" style="width: 50%;"></div>
-                  </div>
-                </div>
-                <div class="stat-row">
-                  <div class="stat-row-label">
-                    <div class="stat-row-meta">
-                      <span>Energy</span>
-                      <span id="energy-state" class="stat-state">Stable</span>
-                    </div>
-                    <strong id="energy-stat">50%</strong>
-                  </div>
-                  <div class="stat-track">
-                    <div id="energy-bar" class="stat-fill energy-fill" style="width: 50%;"></div>
-                  </div>
-                </div>
-                <div class="stat-row">
-                  <div class="stat-row-label">
-                    <div class="stat-row-meta">
-                      <span>Happiness</span>
-                      <span id="happiness-state" class="stat-state">Stable</span>
-                    </div>
-                    <strong id="happiness-stat">50%</strong>
-                  </div>
-                  <div class="stat-track">
-                    <div id="happiness-bar" class="stat-fill happiness-fill" style="width: 50%;"></div>
-                  </div>
-                </div>
-                <div class="stat-row">
-                  <div class="stat-row-label">
-                    <div class="stat-row-meta">
-                      <span>Social</span>
-                      <span id="social-state" class="stat-state">Stable</span>
-                    </div>
-                    <strong id="social-stat">50%</strong>
-                  </div>
-                  <div class="stat-track">
-                    <div id="social-bar" class="stat-fill social-fill" style="width: 50%;"></div>
-                  </div>
-                </div>
-              </div>
+        </div>
+        <div class="strip-bars">
+          <div class="strip-bar-item">
+            <div class="strip-bar-meta">
+              <span class="strip-bar-label">Health</span>
+              <strong id="health-stat" class="strip-bar-value">50%</strong>
             </div>
-
-            <aside class="history-card">
-              <div class="card-header">
-                <div>
-                  <p class="card-kicker">Run Memory</p>
-                  <h3>Life Timeline</h3>
-                </div>
-                <span id="history-count" class="history-count">1 entry</span>
-              </div>
-              <div id="history-list" class="history-list"></div>
-            </aside>
-
+            <div class="stat-track">
+              <div id="health-bar" class="stat-fill health-fill" style="width:50%"></div>
+            </div>
+          </div>
+          <div class="strip-bar-item">
+            <div class="strip-bar-meta">
+              <span class="strip-bar-label">Energy</span>
+              <strong id="energy-stat" class="strip-bar-value">50%</strong>
+            </div>
+            <div class="stat-track">
+              <div id="energy-bar" class="stat-fill energy-fill" style="width:50%"></div>
+            </div>
+          </div>
+          <div class="strip-bar-item">
+            <div class="strip-bar-meta">
+              <span class="strip-bar-label">Happiness</span>
+              <strong id="happiness-stat" class="strip-bar-value">50%</strong>
+            </div>
+            <div class="stat-track">
+              <div id="happiness-bar" class="stat-fill happiness-fill" style="width:50%"></div>
+            </div>
+          </div>
+          <div class="strip-bar-item">
+            <div class="strip-bar-meta">
+              <span class="strip-bar-label">Social</span>
+              <strong id="social-stat" class="strip-bar-value">50%</strong>
+            </div>
+            <div class="stat-track">
+              <div id="social-bar" class="stat-fill social-fill" style="width:50%"></div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <!-- Game Over -->
-        <div id="game-over-card" class="game-over-card hidden">
-          <h2 id="ending-title">Journey Complete</h2>
-          <p id="ending-meta" class="ending-meta"></p>
-          <p id="ending-message"></p>
-          <button id="restart-btn" class="restart-btn">Start Again</button>
+      <!-- 2. STORY STAGE — main focal point -->
+      <div class="story-stage">
+        <p id="game-message" class="stage-kicker">Your story is waiting...</p>
+        <div class="stage-card">
+          <h2 id="scenario-title">Your Life Awaits</h2>
+          <p id="scenario-text" class="scenario-text">Press Next Year to begin. Each year may bring an event that shapes your life — respond to it, take actions, then move on.</p>
+          <div id="choices-container" class="choices-container"></div>
+        </div>
+      </div>
+
+      <!-- 3. RESULT STRIP -->
+      <div class="result-strip">
+        <span class="result-strip-label">Latest —</span>
+        <span id="result-text">Choices and actions will appear here.</span>
+      </div>
+
+      <!-- 4. AGE DOCK — always visible, always prominent -->
+      <div class="age-dock">
+        <button id="age-btn" class="age-btn">
+          <span class="age-btn-label">Next Year</span>
+          <span class="age-btn-arrow">→</span>
+        </button>
+      </div>
+
+      <!-- 5. TAB BAR -->
+      <div class="tab-bar">
+        <button class="tab-btn active" data-tab="actions">⚡ Actions</button>
+        <button class="tab-btn" data-tab="decisions">💍 Life</button>
+        <button class="tab-btn" data-tab="timeline">📜 Timeline</button>
+        <button class="tab-btn" data-tab="profile">👤 Profile</button>
+      </div>
+
+      <!-- 6. TAB PANELS -->
+      <div class="tab-panels">
+
+        <div class="tab-panel active" id="tab-actions">
+          <div id="actions-container" class="actions-container"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-decisions">
+          <p class="tab-panel-intro">Major decisions that permanently reshape your story.</p>
+          <div id="decisions-container" class="decisions-container"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-timeline">
+          <div class="tab-panel-header">
+            <span class="tab-panel-intro">Life events</span>
+            <span id="history-count" class="history-count">1 entry</span>
+          </div>
+          <div id="history-list" class="history-list"></div>
+        </div>
+
+        <div class="tab-panel" id="tab-profile">
+          <div class="profile-panel">
+            <div class="profile-facts">
+              <span id="profile-job" class="fact-chip fact-chip--career">Unemployed</span>
+              <span id="profile-education" class="fact-chip fact-chip--edu">High School</span>
+              <span id="profile-stage" class="fact-chip">Emerging Adult</span>
+              <span id="profile-trait" class="fact-chip">Ambitious</span>
+              <span id="profile-origin" class="fact-chip">—</span>
+            </div>
+            <p id="profile-subtitle" class="profile-subtitle-sm"></p>
+            <p id="profile-summary" class="profile-summary"></p>
+            <p id="needs-summary" class="needs-summary"></p>
+          </div>
         </div>
 
       </div>
+
+      <!-- 7. GAME OVER OVERLAY -->
+      <div id="game-over-card" class="game-over-card hidden">
+        <h2 id="ending-title">Journey Complete</h2>
+        <p id="ending-meta" class="ending-meta"></p>
+        <p id="ending-message"></p>
+        <button id="restart-btn" class="restart-btn">Start Again</button>
+      </div>
+
     </section>
   </main>
 
