@@ -2,6 +2,7 @@
 
 let currentStats = { age: 18, money: 50, health: 50, energy: 50, happiness: 50, social: 50 };
 let careerState = { career_level: 0, education_level: 1 };
+let relationshipState = { status: "single", partner_name: null, relationship_health: 0, children: 0 };
 let currentHistory = [];
 let usedScenarios = [];
 let currentScenario = null;
@@ -21,6 +22,7 @@ const scenarioTitle   = document.getElementById("scenario-title");
 const scenarioText    = document.getElementById("scenario-text");
 const choicesContainer  = document.getElementById("choices-container");
 const actionsContainer  = document.getElementById("actions-container");
+const decisionsContainer = document.getElementById("decisions-container");
 const resultText      = document.getElementById("result-text");
 const gameOverCard    = document.getElementById("game-over-card");
 const endingMessage   = document.getElementById("ending-message");
@@ -56,10 +58,12 @@ const profileSummary  = document.getElementById("profile-summary");
 const profileAgeBadge = document.getElementById("profile-age-badge");
 const profileJob      = document.getElementById("profile-job");
 const profileEducation = document.getElementById("profile-education");
+const profileRelationship = document.getElementById("profile-relationship");
+const profileChildren = document.getElementById("profile-children");
 const salaryStat      = document.getElementById("salary-stat");
 
 const animatedPanels  = document.querySelectorAll(
-  ".identity-card, .story-panel, .actions-card, .status-card, .result-card, .history-card"
+  ".identity-card, .story-panel, .actions-card, .decisions-card, .status-card, .result-card, .history-card"
 );
 
 // ── Age button state ──────────────────────────────────────────────────────────
@@ -184,6 +188,16 @@ function updateStatsUI(stats) {
   lastStatsSnapshot = { ...stats };
 }
 
+function getRelationshipLabel(rel) {
+  const status = rel.status || "single";
+  const partner = rel.partner_name;
+  if (status === "single") return null;
+  if (status === "dating" && partner) return `Dating ${partner}`;
+  if (status === "married" && partner) return `Married to ${partner}`;
+  if (status === "divorced") return "Divorced";
+  return status.charAt(0).toUpperCase() + status.slice(1);
+}
+
 function renderProfile(profile) {
   profileName.textContent = profile.name;
   profileSubtitle.textContent = `${profile.title} — chasing a life to ${profile.dream}`;
@@ -198,6 +212,24 @@ function renderProfile(profile) {
   if (typeof profile.salary === "number") {
     salaryStat.textContent = profile.salary > 0 ? `$${profile.salary}/yr salary` : "No income";
   }
+
+  // Relationship chip
+  const relLabel = getRelationshipLabel(profile);
+  if (relLabel) {
+    profileRelationship.textContent = relLabel;
+    profileRelationship.classList.remove("hidden");
+  } else {
+    profileRelationship.classList.add("hidden");
+  }
+
+  // Children chip
+  if (profile.children > 0) {
+    profileChildren.textContent = `${profile.children} ${profile.children === 1 ? "Child" : "Children"}`;
+    profileChildren.classList.remove("hidden");
+  } else {
+    profileChildren.classList.add("hidden");
+  }
+
   animatePanelSwap(document.querySelector(".identity-card"));
 }
 
@@ -260,8 +292,18 @@ function renderHistory(history) {
 
   reversed.forEach((entry) => {
     const item = document.createElement("div");
-    item.className = "history-item";
-    item.innerHTML = `<span class="history-age">Age ${entry.age}</span><p>${entry.event}</p>`;
+    const isMilestone = entry.type === "milestone";
+    item.className = isMilestone ? "history-item history-item--milestone" : "history-item";
+
+    if (isMilestone) {
+      item.innerHTML = `
+        <span class="history-age">Age ${entry.age}</span>
+        <span class="milestone-label">${entry.event}</span>
+      `;
+    } else {
+      item.innerHTML = `<span class="history-age">Age ${entry.age}</span><p>${entry.event}</p>`;
+    }
+
     historyList.appendChild(item);
   });
 
@@ -293,6 +335,31 @@ function renderActions(actions) {
   animatePanelSwap(document.querySelector(".actions-card"));
 }
 
+function renderDecisions(decisions) {
+  decisionsContainer.innerHTML = "";
+
+  if (!decisions || !decisions.length) {
+    decisionsContainer.innerHTML = '<div class="history-empty">No major decisions available right now. Build your life and new paths will open.</div>';
+    animatePanelSwap(document.querySelector(".decisions-card"));
+    return;
+  }
+
+  decisions.forEach((decision) => {
+    const button = document.createElement("button");
+    button.className = "decision-btn";
+    button.type = "button";
+    button.innerHTML = `
+      <span class="decision-title">${decision.title}</span>
+      <span class="decision-subtitle">${decision.subtitle}</span>
+      <span class="decision-description">${decision.description}</span>
+    `;
+    button.addEventListener("click", () => handleDecision(decision.id));
+    decisionsContainer.appendChild(button);
+  });
+
+  animatePanelSwap(document.querySelector(".decisions-card"));
+}
+
 function showEnding(data) {
   gameOverCard.classList.remove("hidden");
   endingMessage.textContent = data.ending_message;
@@ -306,6 +373,31 @@ function showEnding(data) {
   animatePanelSwap(gameOverCard);
 }
 
+// ── Shared state sync ─────────────────────────────────────────────────────────
+
+function syncState(data) {
+  if (data.updated_stats) currentStats = data.updated_stats;
+  if (data.career_state) careerState = data.career_state;
+  if (data.relationship_state) relationshipState = data.relationship_state;
+  if (data.history) currentHistory = data.history;
+  if (data.used_scenarios) usedScenarios = data.used_scenarios;
+  if (data.life_flags) lifeFlags = data.life_flags;
+  if (data.profile_seed) profileSeed = data.profile_seed;
+}
+
+function buildRequestBody(extras = {}) {
+  return JSON.stringify({
+    stats: currentStats,
+    career_state: careerState,
+    relationship_state: relationshipState,
+    history: currentHistory,
+    used_scenarios: usedScenarios,
+    life_flags: lifeFlags,
+    profile_seed: profileSeed,
+    ...extras
+  });
+}
+
 // ── Core game functions ───────────────────────────────────────────────────────
 
 async function startGame() {
@@ -316,12 +408,13 @@ async function startGame() {
     if (!response.ok) throw new Error(`Start failed: ${response.status}`);
     const data = await response.json();
 
-    currentStats   = data.stats;
-    careerState    = data.career_state || { career_level: 0, education_level: 1 };
-    currentHistory = data.history || [];
-    usedScenarios  = data.used_scenarios || [];
-    lifeFlags      = data.life_flags || [];
-    profileSeed    = data.profile_seed || null;
+    currentStats      = data.stats;
+    careerState       = data.career_state || { career_level: 0, education_level: 1 };
+    relationshipState = data.relationship_state || { status: "single", partner_name: null, relationship_health: 0, children: 0 };
+    currentHistory    = data.history || [];
+    usedScenarios     = data.used_scenarios || [];
+    lifeFlags         = data.life_flags || [];
+    profileSeed       = data.profile_seed || null;
     lastStatsSnapshot = null;
     hasActiveScenario = false;
 
@@ -329,6 +422,7 @@ async function startGame() {
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
     renderActions(data.available_actions || []);
+    renderDecisions(data.available_decisions || []);
 
     // Reset story panel to intro state
     gameMessage.textContent = "Your life is ready.";
@@ -360,29 +454,18 @@ async function ageUp() {
     const response = await fetch("/age", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        stats: currentStats,
-        career_state: careerState,
-        history: currentHistory,
-        used_scenarios: usedScenarios,
-        life_flags: lifeFlags,
-        profile_seed: profileSeed
-      })
+      body: buildRequestBody()
     });
     if (!response.ok) throw new Error(`Age request failed: ${response.status}`);
     const data = await response.json();
 
-    currentStats   = data.updated_stats;
-    careerState    = data.career_state || careerState;
-    currentHistory = data.history || [];
-    usedScenarios  = data.used_scenarios || [];
-    lifeFlags      = data.life_flags || [];
-    profileSeed    = data.profile_seed || profileSeed;
+    syncState(data);
 
     updateStatsUI(currentStats);
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
     renderActions(data.available_actions || []);
+    renderDecisions(data.available_decisions || []);
 
     if (data.status === "game_over" || data.status === "completed") {
       showEnding(data);
@@ -405,13 +488,7 @@ async function handleChoice(choice) {
     const response = await fetch("/choice", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        stats: currentStats,
-        career_state: careerState,
-        history: currentHistory,
-        used_scenarios: usedScenarios,
-        life_flags: lifeFlags,
-        profile_seed: profileSeed,
+      body: buildRequestBody({
         effects: choice.effects,
         result: choice.result,
         set_flags: choice.set_flags || [],
@@ -421,16 +498,13 @@ async function handleChoice(choice) {
     if (!response.ok) throw new Error(`Choice failed: ${response.status}`);
     const data = await response.json();
 
-    currentStats   = data.updated_stats;
-    careerState    = data.career_state || careerState;
-    currentHistory = data.history || [];
-    lifeFlags      = data.life_flags || [];
-    profileSeed    = data.profile_seed || profileSeed;
+    syncState(data);
 
     updateStatsUI(currentStats);
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
     renderActions(data.available_actions || []);
+    renderDecisions(data.available_decisions || []);
     resultText.textContent = data.result_text;
     animatePanelSwap(document.querySelector(".result-card"));
 
@@ -456,29 +530,18 @@ async function handleAction(actionId) {
     const response = await fetch("/action", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        stats: currentStats,
-        career_state: careerState,
-        history: currentHistory,
-        used_scenarios: usedScenarios,
-        life_flags: lifeFlags,
-        profile_seed: profileSeed,
-        action_id: actionId
-      })
+      body: buildRequestBody({ action_id: actionId })
     });
     if (!response.ok) throw new Error(`Action failed: ${response.status}`);
     const data = await response.json();
 
-    currentStats   = data.updated_stats;
-    careerState    = data.career_state || careerState;
-    currentHistory = data.history || [];
-    lifeFlags      = data.life_flags || [];
-    profileSeed    = data.profile_seed || profileSeed;
+    syncState(data);
 
     updateStatsUI(currentStats);
     renderProfile(data.player_profile);
     renderHistory(currentHistory);
     renderActions(data.available_actions || []);
+    renderDecisions(data.available_decisions || []);
     resultText.textContent = data.result_text;
     animatePanelSwap(document.querySelector(".result-card"));
 
@@ -492,6 +555,41 @@ async function handleAction(actionId) {
 
   } catch (error) {
     resultText.textContent = "An error happened while processing your action.";
+    console.error(error);
+  }
+}
+
+async function handleDecision(decisionId) {
+  try {
+    decisionsContainer.innerHTML = '<button class="decision-btn" disabled>Making decision...</button>';
+
+    const response = await fetch("/decision", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: buildRequestBody({ decision_id: decisionId })
+    });
+    if (!response.ok) throw new Error(`Decision failed: ${response.status}`);
+    const data = await response.json();
+
+    syncState(data);
+
+    updateStatsUI(currentStats);
+    renderProfile(data.player_profile);
+    renderHistory(currentHistory);
+    renderActions(data.available_actions || []);
+    renderDecisions(data.available_decisions || []);
+    resultText.textContent = data.result_text;
+    animatePanelSwap(document.querySelector(".result-card"));
+
+    if (data.status === "game_over" || data.status === "completed") {
+      showEnding(data);
+      return;
+    }
+
+    animatePanelSwap(document.querySelector(".decisions-card"));
+
+  } catch (error) {
+    resultText.textContent = "An error happened while processing your decision.";
     console.error(error);
   }
 }

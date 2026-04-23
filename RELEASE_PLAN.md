@@ -29,23 +29,27 @@ The roadmap moves in this order:
 7. Ship a stable, complete v1.0
 
 ## 📍 Current State
-Completed as of v0.3.0:
-- Flask application with `/start`, `/age`, `/choice`, `/action` routes
+Completed as of v0.4.0:
+- Flask application with `/start`, `/age`, `/choice`, `/action`, `/decision` routes
 - **BitLife-style game loop** — Next Year button advances time; actions and choices happen within the current year without aging
-- 81 scenarios across 11 life domains
-- 5 player actions with conditional availability (including Apply for Jobs)
+- 81 scenarios across 11 life domains + 5 relationship/family scenarios
+- 5 player actions with conditional availability (Socialize now boosts relationship health)
+- 4 life decisions: Start Dating, Propose, Have a Child, Move City
 - Career system: 6 levels (Unemployed → Director) with salary that ticks every year
 - Education system: 4 levels (High School → Postgraduate) that unlock new scenarios
-- Recurring income and living costs — money now reflects your actual career situation
-- Career and education displayed on the identity card as live chips
-- Flag-based consequence chains and state-aware scenario selection
+- **Persistent relationship state** — partner name, status (single/dating/married/divorced), relationship health (decays yearly), children count
+- **Life Decisions panel** — dedicated section for major player-driven choices with prerequisites
+- **Milestone timeline** — marriage, children, and major decisions appear as gold-bordered entries
+- Relationship-aware scenario selection and scoring
+- Relationship and children chips on identity card
 - Glassmorphism UI with smooth animations and responsive layout
 
-Known gaps heading into v0.4.0:
-- No persistent relationship state (partner, family across turns)
-- No player-initiated major life decisions (apply for jobs is the only one; no propose, have a child, move city)
-- No life milestone markers in the timeline (marriage, graduation, etc.)
-- Scenario content could still grow — more career-level-gated scenarios needed
+Known gaps heading into v0.5.0:
+- Writing tone is inconsistent across the 81 existing scenarios
+- No distinct visual identity beyond the glass UI — colors and typography feel generic
+- End-of-life summary is functional but not cinematic
+- No decade summaries (your 20s, your 30s, etc.)
+- Stat balance has not been audited across all scenarios and actions
 
 ---
 
@@ -107,8 +111,8 @@ Known gaps heading into v0.4.0:
 
 ---
 
-### 🧩 v0.4.0 — Relationships and Life Events
-**Status:** Next
+### ✅ v0.4.0 — Relationships and Life Events
+**Status:** Complete
 
 **Goal:** Add the relationship layer and player-initiated decisions. Currently relationships are isolated one-off scenarios with no memory. This version makes them persistent and meaningful.
 
@@ -129,14 +133,14 @@ Known gaps heading into v0.4.0:
   - Partner and family create new event domains (conflict, support, milestones)
 
 **Definition of done:**
-- Player has a persistent partner who exists across the whole run
-- Player can initiate major life changes, not only react to them
-- The history timeline reads like a real life story with visible milestones
+- ✅ Player has a persistent partner who exists across the whole run
+- ✅ Player can initiate major life changes, not only react to them
+- ✅ The history timeline reads like a real life story with visible milestones
 
 ---
 
 ### 🎨 v0.5.0 — Identity and Product Polish
-**Status:** Planned
+**Status:** Next
 
 **Goal:** Make Moira-AI feel like its own product, not a generic prototype.
 
